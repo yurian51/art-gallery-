@@ -44,7 +44,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
     {
       role: 'ADMIN',
       title: 'Gallery Director & Executive Admin',
-      subtitle: 'Full operations management: catalog, inventory status, artist applications, exhibitions, and audit logs.',
+      subtitle: 'Founder & CEO Daudi Mrisho console: catalog curation, inventory, artist applications, and audit logs.',
       icon: <Compass className="w-5 h-5 text-[#B89B62]" />,
       targetRoute: '/admin',
     },

@@ -176,8 +176,10 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Operational Strip */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#817C73]">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span>© {new Date().getFullYear()} Mrisho Art Gallery Ltd.</span>
+            <span>·</span>
+            <span className="text-white/80">Founder & CEO: Daudi Mrisho</span>
             <span>·</span>
             <span>All Rights Reserved</span>
             <span>·</span>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { ShieldCheck, MapPin, Clock, Mail, Phone, Check, Award, Compass, Sparkles } from 'lucide-react';
+import { ShieldCheck, MapPin, Clock, Mail, Phone, Check, Award, Compass, Sparkles, Quote } from 'lucide-react';
 
 export const AboutView: React.FC = () => {
-  const { navigateTo } = useApp();
+  const { language, navigateTo } = useApp();
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
@@ -86,6 +86,129 @@ export const AboutView: React.FC = () => {
             alt="Interior of Mrisho Art Gallery, Dar es Salaam Pavilion"
             className="w-full h-80 sm:h-96 object-cover"
           />
+        </div>
+      </div>
+
+      {/* Founder & CEO Visionary Profile */}
+      <div className="bg-gradient-to-br from-[#171717] via-[#1f1d1b] to-[#121212] text-[#F7F5F0] border-2 border-[#B89B62]/40 shadow-2xl relative overflow-hidden">
+        {/* Subtle decorative background watermarks */}
+        <div className="absolute -right-16 -bottom-16 w-80 h-80 opacity-5 pointer-events-none">
+          <img
+            src="/assets/aistudio/file_000000003cbc82119fc00a28863060cc_f2901e66.png"
+            alt=""
+            className="w-full h-full object-contain filter invert"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-8 sm:p-12 lg:p-16 relative z-10">
+          {/* Executive Portrait Container */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="relative group">
+              {/* Outer decorative gold frame border */}
+              <div className="absolute -inset-2.5 border border-[#B89B62]/40 translate-x-2 translate-y-2 pointer-events-none transition-transform group-hover:translate-x-3 group-hover:translate-y-3 duration-500"></div>
+              
+              <div className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] bg-[#0E0E0E] overflow-hidden shadow-2xl border-2 border-[#B89B62]">
+                <img
+                  src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
+                  alt="Founder & CEO of Mrisho Art Gallery"
+                  className="w-full h-full object-cover object-top filter brightness-[1.02] contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+
+                {/* Badge Overlay */}
+                <div className="absolute bottom-3 left-3 right-3 bg-[#171717]/90 backdrop-blur-md border border-[#B89B62]/60 px-3.5 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Award className="w-4 h-4 text-[#B89B62]" />
+                    <span className="text-[11px] uppercase tracking-wider font-semibold text-[#B89B62]">
+                      {language === 'sw' ? 'Mwanzilishi & CEO' : 'Founder & CEO'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] uppercase font-mono text-[#F7F5F0]/70">
+                    Mrisho Gallery
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 text-center space-y-0.5">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#B89B62] font-semibold block">
+                Mrisho Art Gallery Ltd.
+              </span>
+              <p className="text-xs text-[#F7F5F0]/60">
+                Dar es Salaam · East Africa
+              </p>
+            </div>
+          </div>
+
+          {/* Executive Vision Text */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#B89B62]/15 border border-[#B89B62]/30 text-[#B89B62] text-[10px] uppercase tracking-[0.25em] font-semibold">
+                <Sparkles className="w-3 h-3 text-[#B89B62]" />
+                {language === 'sw' ? 'Uongozi wa Galari' : 'Executive Leadership'}
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F7F5F0] tracking-tight">
+                {language === 'sw' ? 'Mwanzilishi & Afisa Mtendaji Mkuu' : 'Founder & Chief Executive Officer'}
+              </h2>
+
+              <p className="font-serif italic text-2xl sm:text-3xl text-[#B89B62]">
+                Daudi Mrisho
+              </p>
+              <p className="text-xs uppercase tracking-widest text-[#F7F5F0]/70 font-mono">
+                {language === 'sw'
+                  ? 'Mbunifu Mkuu, Mratibu na Mkurugenzi Mtendaji'
+                  : 'Principal Artist, Chief Curator & Managing Director'}
+              </p>
+            </div>
+
+            <div className="relative pl-6 sm:pl-8 border-l-2 border-[#B89B62] space-y-3">
+              <Quote className="w-8 h-8 text-[#B89B62]/30 absolute -top-3 -left-3.5 fill-[#B89B62]/20" />
+              <p className="font-serif italic text-lg sm:text-xl text-[#F7F5F0] leading-relaxed">
+                {language === 'sw'
+                  ? '"Sanaa ya Kiafrika si kumbukumbu ya kale pekee, bali ni sauti hai inayobeba utajiri wa kiroho, hadhi ya kitamaduni, na mustakabali wetu wa kimataifa. Tulianzisha Mrisho Art Gallery kuwa daraja linalounganisha ubunifu wa mafundi wetu mahiri na wapenzi wa sanaa duniani kote kwa uwazi, ubora wa hali ya juu, na heshima."'
+                  : '"African visual art is not merely an archival memory; it is a transcendent living spirit carrying immense philosophical depth, sovereign cultural dignity, and our collective global future. Mrisho Art Gallery was established to grant our preeminent masters uncompromised stature and authentic international stewardship."'}
+              </p>
+            </div>
+
+            <div className="space-y-3 text-xs sm:text-sm text-[#F7F5F0]/80 leading-relaxed font-sans">
+              <p>
+                {language === 'sw'
+                  ? 'Chini ya uongozi wake, Mrisho Art Gallery imekuwa kitovu kikuu cha sanaa ya kisasa na ya asili ya Afrika Mashariki—kutoka michoro ya Bagamoyo, uchongaji wa Kimakonde wa miti ya Mpingo, hadi picha za kihistoria za Zanzibar. Kila kazi ya sanaa inathibitishwa kwa mifumo ya kisasa ya blockchain, ikiwapa wateja na wakusanyaji wa kimataifa uhakika kamili wa uhalisi.'
+                  : 'Under his leadership, Mrisho Art Gallery has evolved into East Africa’s premier sanctuary for fine art—curating monumental canvases, Makonde modernist Mpingo (African Blackwood) sculptures, and Swahili coastal portraits. Every creation is certified through physical material spectroscopy and private consortium blockchain provenance, setting an unassailable benchmark for global collectors and cultural institutions.'}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-[#817C73]/30 flex flex-wrap items-center gap-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#B89B62]/20 border border-[#B89B62] flex items-center justify-center text-[#B89B62] shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#B89B62] font-semibold block">
+                    {language === 'sw' ? 'Mamlaka ya Uratibu' : 'Curatorial Authority'}
+                  </span>
+                  <span className="text-xs text-[#F7F5F0] font-medium">
+                    {language === 'sw' ? 'Dhamana ya Uhalisi wa Kudumu' : 'Verified African Fine Art Registry'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#B89B62]/20 border border-[#B89B62] flex items-center justify-center text-[#B89B62] shrink-0">
+                  <Compass className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#B89B62] font-semibold block">
+                    {language === 'sw' ? 'Makao Makuu' : 'Institutional Headquarters'}
+                  </span>
+                  <span className="text-xs text-[#F7F5F0] font-medium">
+                    Oysterbay Peninsula, Dar es Salaam
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

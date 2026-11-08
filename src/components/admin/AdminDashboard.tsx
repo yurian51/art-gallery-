@@ -68,8 +68,19 @@ export const AdminDashboard: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
-            <span className="px-3 py-1 bg-white border border-[#817C73]/25 font-mono text-[#171717]">
+          <div className="flex items-center gap-3 text-xs">
+            <div className="flex items-center gap-2.5 px-3 py-1.5 bg-white border border-[#B89B62]/40 shadow-xs">
+              <img
+                src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
+                alt="Founder & CEO"
+                className="w-8 h-8 rounded-none object-cover object-top border border-[#B89B62]"
+              />
+              <div className="text-left">
+                <span className="font-semibold block text-[11px] text-[#171717] leading-tight">Daudi Mrisho</span>
+                <span className="text-[10px] text-[#B89B62] block leading-tight font-medium">Founder & CEO</span>
+              </div>
+            </div>
+            <span className="px-3 py-2 bg-white border border-[#817C73]/25 font-mono text-[#171717] hidden md:inline-block">
               Network: Polygon Fine Art
             </span>
           </div>

@@ -3,6 +3,27 @@ import { createInitialProvenance } from '../services/blockchainProvenance';
 
 export const SEED_ARTISTS: Artist[] = [
   {
+    id: 'artist-mrisho',
+    name: 'Daudi Mrisho',
+    slug: 'daudi-mrisho',
+    title: 'Founder & CEO · Principal Curator',
+    bio: 'Founder and Chief Executive Officer of Mrisho Art Gallery. Dedicated to elevating East African fine art, classical Swahili heritage, and sovereign cryptographic provenance for master painters and sculptors across the continent.',
+    bioSwahili: 'Mwanzilishi na Afisa Mtendaji Mkuu wa Mrisho Art Gallery. Amejitolea kuinua sanaa ya Afrika Mashariki, urithi wa Waswahili, na uthibitishaji salama wa blockchain kwa mafundi na wachoraji mahiri kote barani.',
+    statement: 'Art is our eternal sanctuary. We bridge the sacred traditions of our ancestors with global collectors through unwavering authenticity and cultural pride.',
+    statementSwahili: 'Sanaa ni hazina yetu ya milele. Tunaunganisha mila takatifu za mababu zetu na wakusanyaji wa kimataifa kwa uhalisi usiotikiswa na heshima ya kitamaduni.',
+    profileImage: '/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png',
+    origin: 'Dar es Salaam, Tanzania',
+    disciplines: ['Paintings', 'Contemporary Art', 'Curatorial Direction'],
+    exhibitionsCount: 32,
+    awards: ['African Cultural Vanguard Honoree (2025)', 'East African Creative Entrepreneur of the Year'],
+    verified: true,
+    acceptingCommissions: true,
+    socials: {
+      instagram: '@mrisho_art_gallery',
+      website: 'https://mrishoartgallery.com',
+    },
+  },
+  {
     id: 'artist-1',
     name: 'Mwl. Juma Mwinyi',
     slug: 'juma-mwinyi',

@@ -51,7 +51,7 @@ export const ArtistsView: React.FC = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold">
                       <ShieldCheck className="w-3 h-3" />
-                      <span>ACCREDITED MASTER</span>
+                      <span>{artist.id === 'artist-mrisho' ? 'FOUNDER & CEO' : 'ACCREDITED MASTER'}</span>
                       <span>·</span>
                       <span className="text-[#817C73]">{artist.origin}</span>
                     </div>
@@ -79,24 +79,35 @@ export const ArtistsView: React.FC = () => {
         {/* Right Column: Selected Artist Detailed Dossier & Works (7 cols) */}
         {selectedArtist && (
           <div className="lg:col-span-7 bg-white border border-[#817C73]/25 p-6 sm:p-8 space-y-8">
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-                <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
-                  Curatorial Dossier
-                </span>
-                {selectedArtist.acceptingCommissions && (
-                  <span className="text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 border border-emerald-200">
-                    Accepting Private Commissions
-                  </span>
-                )}
-              </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b border-[#817C73]/20 pb-6">
+              <div className="flex items-center gap-5">
+                <div className="w-20 sm:w-24 h-24 sm:h-28 border-2 border-[#B89B62] overflow-hidden bg-[#0E0E0E] shrink-0 shadow-md">
+                  <img
+                    src={selectedArtist.profileImage}
+                    alt={selectedArtist.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
+                      {selectedArtist.id === 'artist-mrisho' ? 'Founder & CEO Dossier' : 'Curatorial Dossier'}
+                    </span>
+                    {selectedArtist.acceptingCommissions && (
+                      <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                        Accepting Commissions
+                      </span>
+                    )}
+                  </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-                {selectedArtist.name}
-              </h2>
-              <p className="text-sm font-serif italic text-[#817C73] mt-0.5">
-                {selectedArtist.title} · {selectedArtist.origin}
-              </p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
+                    {selectedArtist.name}
+                  </h2>
+                  <p className="text-sm font-serif italic text-[#817C73] mt-0.5">
+                    {selectedArtist.title} · {selectedArtist.origin}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Artist Statement */}

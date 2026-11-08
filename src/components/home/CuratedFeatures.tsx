@@ -223,48 +223,67 @@ export const CuratedFeatures: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {artists.map(artist => (
-            <div
-              key={artist.id}
-              onClick={() => navigateTo('/artists')}
-              className="bg-white border border-[#817C73]/20 p-5 group cursor-pointer hover:border-[#171717] transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-20 h-20 rounded-none border border-[#817C73]/30 overflow-hidden mb-4 bg-[#EBE6DF]">
-                  <img
-                    src={artist.profileImage}
-                    alt={artist.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                  />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {artists.map(artist => {
+            const isFounder = artist.id === 'artist-mrisho';
+            return (
+              <div
+                key={artist.id}
+                onClick={() => navigateTo('/artists')}
+                className={`p-5 group cursor-pointer transition-all flex flex-col justify-between ${
+                  isFounder
+                    ? 'bg-gradient-to-b from-[#1C1A18] to-[#121212] text-white border-2 border-[#B89B62] shadow-lg hover:shadow-xl'
+                    : 'bg-white border border-[#817C73]/20 hover:border-[#171717]'
+                }`}
+              >
+                <div>
+                  <div className={`w-20 h-20 rounded-none overflow-hidden mb-4 shrink-0 ${
+                    isFounder ? 'border-2 border-[#B89B62] bg-[#0E0E0E]' : 'border border-[#817C73]/30 bg-[#EBE6DF]'
+                  }`}>
+                    <img
+                      src={artist.profileImage}
+                      alt={artist.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold mb-1">
+                    <span>{isFounder ? 'FOUNDER & CEO' : 'VERIFIED ATELIER'}</span>
+                    <span>·</span>
+                    <span className={isFounder ? 'text-white/60' : 'text-[#817C73]'}>{artist.origin}</span>
+                  </div>
+
+                  <h3 className={`font-serif text-lg font-bold transition-colors ${
+                    isFounder ? 'text-white group-hover:text-[#B89B62]' : 'text-[#171717] group-hover:text-[#B89B62]'
+                  }`}>
+                    {artist.name}
+                  </h3>
+                  <p className={`text-xs font-medium mt-0.5 truncate ${
+                    isFounder ? 'text-[#B89B62]' : 'text-[#817C73]'
+                  }`}>
+                    {artist.title}
+                  </p>
+
+                  <p className={`text-xs line-clamp-3 mt-3 font-sans leading-relaxed ${
+                    isFounder ? 'text-white/80' : 'text-[#171717]/80'
+                  }`}>
+                    "{artist.statement}"
+                  </p>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold mb-1">
-                  <span>VERIFIED ATELIER</span>
-                  <span>·</span>
-                  <span>{artist.origin}</span>
+                <div className={`mt-4 pt-3 flex items-center justify-between text-xs ${
+                  isFounder ? 'border-t border-[#B89B62]/30 text-white/70' : 'border-t border-[#817C73]/15 text-[#817C73]'
+                }`}>
+                  <span>{artist.exhibitionsCount} Exhibitions</span>
+                  <span className={`font-semibold flex items-center gap-1 ${
+                    isFounder ? 'text-[#B89B62]' : 'text-[#171717]'
+                  }`}>
+                    Dossier <ArrowRight className="w-3 h-3" />
+                  </span>
                 </div>
-
-                <h3 className="font-serif text-lg font-bold text-[#171717] group-hover:text-[#B89B62] transition-colors">
-                  {artist.name}
-                </h3>
-                <p className="text-xs text-[#817C73] font-medium mt-0.5">
-                  {artist.title}
-                </p>
-
-                <p className="text-xs text-[#171717]/80 line-clamp-3 mt-3 font-sans leading-relaxed">
-                  "{artist.statement}"
-                </p>
               </div>
-
-              <div className="mt-4 pt-3 border-t border-[#817C73]/15 flex items-center justify-between text-xs text-[#817C73]">
-                <span>{artist.exhibitionsCount} Exhibitions</span>
-                <span className="font-semibold text-[#171717] flex items-center gap-1">
-                  Portfolio <ArrowRight className="w-3 h-3" />
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
