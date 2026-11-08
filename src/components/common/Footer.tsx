@@ -36,6 +36,7 @@ export const Footer: React.FC = () => {
 
           <div>
             <h2 className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#D7B873]">{sw ? 'Wasiliana nasi' : 'Contact the gallery'}</h2>
+            <p className="mt-3 text-xs leading-6 text-white/45">{sw ? 'Usajili wa jarida utafunguliwa huduma ya barua pepe itakapounganishwa.' : 'Newsletter registration will be available when the gallery mailing service is connected.'}</p>
             <div className="mt-5 space-y-4 text-sm text-white/60">
               <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B873]" /><span>Arusha, Tanzania</span></p>
               <p className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#D7B873]" /><span><a href="tel:+255639827831" className="hover:text-white">+255 639 827 831</a><br /><a href="tel:+255782400311" className="hover:text-white">+255 782 400 311</a></span></p>
