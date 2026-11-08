@@ -33,8 +33,7 @@ export const ExhibitionsView: React.FC = () => {
           Exhibitions & Salons
         </h1>
         <p className="text-xs sm:text-sm text-[#817C73] max-w-2xl mt-2 font-sans font-light">
-          On-site presentations at our Oysterbay Pavilion in Dar es Salaam, international museum partnerships,
-          and virtual 3D spatial showcases.
+          Exhibition details will be published here when dates, venues and participating artists are confirmed.
         </p>
       </div>
 

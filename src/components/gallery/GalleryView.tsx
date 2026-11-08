@@ -94,7 +94,7 @@ export const GalleryView: React.FC = () => {
             <div className="flex items-center gap-2 mb-1.5">
               <span className="w-2 h-2 rounded-full bg-[#B89B62]" />
               <span className="text-xs uppercase tracking-[0.25em] text-[#817C73] font-sans font-semibold">
-                Accessioned Catalog · East African Fine Art
+                Gallery catalogue
               </span>
             </div>
             <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#171717] tracking-tight">
@@ -107,7 +107,7 @@ export const GalleryView: React.FC = () => {
 
           <div className="flex items-center gap-2 text-xs text-[#817C73] bg-white border border-[#817C73]/25 px-3 py-2 shrink-0">
             <ShieldCheck className="w-4 h-4 text-[#B89B62]" />
-            <span>All cataloged works carry cryptographic blockchain deeds.</span>
+            <span>Artwork information is displayed when verified records are available.</span>
           </div>
         </div>
       </div>

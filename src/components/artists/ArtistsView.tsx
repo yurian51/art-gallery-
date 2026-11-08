@@ -13,14 +13,13 @@ export const ArtistsView: React.FC = () => {
       {/* Header */}
       <div className="border-b border-[#817C73]/20 pb-8 mb-10">
         <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-          Master Ateliers & Living Masters
+          Artists
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#171717] tracking-tight">
           Artist Directory & Roster
         </h1>
         <p className="text-xs sm:text-sm text-[#817C73] max-w-2xl mt-2 font-sans font-light">
-          Each artist in our registry is accredited under strict curatorial standards, preserving
-          sovereign artistic traditions from the Swahili coast to the Makonde plateaus.
+          Artist profiles and portfolios will appear here when verified gallery records are available.
         </p>
       </div>
 
@@ -51,7 +50,7 @@ export const ArtistsView: React.FC = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold">
                       <ShieldCheck className="w-3 h-3" />
-                      <span>ACCREDITED MASTER</span>
+                      <span>ARTIST</span>
                       <span>·</span>
                       <span className="text-[#817C73]">{artist.origin}</span>
                     </div>
