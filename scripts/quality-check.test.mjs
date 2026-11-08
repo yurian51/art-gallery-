@@ -77,3 +77,20 @@ test('JSON-LD metadata is valid JSON and does not claim an unconfigured registry
   assert.equal(metadata.address.addressLocality, 'Arusha');
   assert.doesNotMatch(JSON.stringify(metadata), /blockchain|verified/i);
 });
+
+test('browser navigation is synchronized with history and closes the mobile menu safely', () => {
+  const context = read('../src/context/AppContext.tsx');
+  const header = read('../src/components/common/Header.tsx');
+  assert.match(context, /window\.history\.pushState/);
+  assert.match(context, /window\.addEventListener\('popstate'/);
+  assert.match(header, /pointerdown/);
+  assert.match(header, /event\.key === 'Escape'/);
+});
+
+test('contact and newsletter controls do not claim to deliver messages without a service', () => {
+  const about = read('../src/components/about/AboutView.tsx');
+  const footer = read('../src/components/common/Footer.tsx');
+  assert.match(about, /disabled/);
+  assert.match(about, /cannot notify the gallery/i);
+  assert.match(footer, /mailing service is connected/i);
+});
