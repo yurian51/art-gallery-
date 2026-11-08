@@ -233,15 +233,14 @@ export const ArtworkDetailModal: React.FC = () => {
               </div>
             </div>
 
-            {/* White Glove Shipping & Handling Specifications */}
+            {/* Delivery information */}
             <div className="space-y-2 bg-[#EBE6DF]/40 p-3.5 border border-[#817C73]/20 text-xs text-[#817C73]">
               <div className="flex items-center gap-2 text-[#171717] font-semibold">
                 <Package className="w-4 h-4 text-[#B89B62]" />
-                <span>White-Glove Shipping & Museum Crating</span>
+                <span>Delivery arrangements</span>
               </div>
               <p className="text-[11px] leading-relaxed">
-                Includes custom ISPM-15 certified timber crating, anti-static moisture barrier, and transit insurance.
-                Delivery options and timing will be confirmed for each artwork before an acquisition.
+                Delivery options, packaging, insurance and timing have not been configured. Details must be confirmed individually before an acquisition.
               </p>
             </div>
 

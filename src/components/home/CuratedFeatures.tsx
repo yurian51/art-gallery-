@@ -33,21 +33,21 @@ export const CuratedFeatures: React.FC = () => {
       category: 'Paintings',
     },
     {
-      title: 'Makonde Modernist Sculpture',
+      title: 'Sculpture',
       titleSwahili: 'Sanamu za Kimakonde',
       description: 'Discover sculptural forms, materials and three-dimensional work.',
       image: makondeSculptureImage,
       category: 'Sculpture',
     },
     {
-      title: 'Swahili Coastal Portraiture',
+      title: 'Portraiture',
       titleSwahili: 'Picha za Pwani ya Waswahili',
       description: 'Explore portraiture, people and stories through visual art.',
       image: swahiliPortraitImage,
       category: 'Portraiture',
     },
     {
-      title: 'Fine Art Photography & Prints',
+      title: 'Photography & Prints',
       titleSwahili: 'Picha na Machapisho ya Kisasa',
       description: 'Discover photography and fine-art printmaking.',
       image: galleryInteriorImage,
@@ -285,12 +285,10 @@ export const CuratedFeatures: React.FC = () => {
                 Bespoke Art Advisory & Production
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#171717]">
-                Commission a Bespoke Original Masterpiece
+                Start a commission enquiry
               </h2>
               <p className="text-xs sm:text-sm text-[#817C73] max-w-2xl leading-relaxed">
-                Whether curating an international diplomatic residence, luxury safari lodge, or private estate,
-                our curatorial board facilitates direct collaborations with East Africa's preeminent painters and sculptors.
-                Full milestone tracking and cryptographic deed registration upon completion.
+                Share your idea, preferred art discipline and practical requirements. The gallery can review the enquiry when its submission and communication services are connected.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
@@ -298,37 +296,37 @@ export const CuratedFeatures: React.FC = () => {
                   onClick={() => navigateTo('/commissions')}
                   className="px-6 py-3 bg-[#171717] text-[#F7F5F0] uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all"
                 >
-                  Initiate Commission Request
+                  Start an enquiry
                 </button>
                 <button
                   onClick={() => navigateTo('/about')}
                   className="px-6 py-3 border border-[#171717] text-[#171717] uppercase tracking-wider hover:bg-[#171717] hover:text-[#F7F5F0] transition-colors"
                 >
-                  Curatorial Advisory Services
+                  About the gallery
                 </button>
               </div>
             </div>
 
             <div className="lg:col-span-4 bg-white border border-[#817C73]/25 p-6 space-y-3 text-xs">
               <h4 className="font-serif font-bold text-sm text-[#171717]">
-                Commission Workflow Stages
+                Prepare your enquiry
               </h4>
               <ul className="space-y-2 text-[#817C73]">
                 <li className="flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono text-[10px] font-bold">1</span>
-                  <span>Brief & Dimensions Submission</span>
+                  <span>Describe your idea and dimensions</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono text-[10px] font-bold">2</span>
-                  <span>Artist Assignment & Curatorial Quote</span>
+                  <span>Share preferred artist, if known</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono text-[10px] font-bold">3</span>
-                  <span>Studio Milestones & Patron Review</span>
+                  <span>Include timing and delivery needs</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-[#B89B62] text-[#171717] flex items-center justify-center font-mono text-[10px] font-bold">4</span>
-                  <span>Crated Delivery & Blockchain Deed Issuance</span>
+                  <span>Discuss next steps with the gallery</span>
                 </li>
               </ul>
             </div>

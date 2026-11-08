@@ -54,7 +54,7 @@ export const HeroSection: React.FC = () => {
                 </button>
               </div>
 
-              {/* Blockchain Provenance Guarantee Marker */}
+              {/* Gallery information */}
               <div className="pt-3 border-t border-[#817C73]/20 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-none border border-[#B89B62] bg-[#B89B62]/10 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-4 h-4 text-[#B89B62]" />

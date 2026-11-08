@@ -83,7 +83,7 @@ export const AboutView: React.FC = () => {
       </div>
 
 
-      {/* Founder & CEO */}
+      {/* Chief Executive Officer */}
       <section
         aria-labelledby="founder-title"
         className="relative overflow-hidden border border-[#B89B62]/35 bg-[#171717] text-[#F7F5F0] shadow-xl"
@@ -99,7 +99,7 @@ export const AboutView: React.FC = () => {
               <div className="relative h-52 w-52 overflow-hidden rounded-full border-[5px] border-[#B89B62] bg-[#282521] shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:h-64 sm:w-64">
                 <img
                   src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
-                  alt="Hussein Sadiki Gumbo, Founder and CEO of Mrisho Art Gallery"
+                  alt="Hussein Sadiki Gumbo, CEO of Mrisho Art Gallery"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full rounded-full object-cover object-[center_18%]"
@@ -107,7 +107,7 @@ export const AboutView: React.FC = () => {
               </div>
             </div>
             <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89B62]">
-              {language === 'sw' ? 'Mwanzilishi na CEO' : 'Founder & CEO'}
+              {language === 'sw' ? 'Afisa Mtendaji Mkuu' : 'Founder & CEO'}
             </span>
             <p className="mt-2 text-xs tracking-[0.16em] text-[#F7F5F0]/65">
               Mrisho Art Gallery · Arusha, Tanzania
@@ -121,7 +121,7 @@ export const AboutView: React.FC = () => {
                 {language === 'sw' ? 'Uongozi wa Galari' : 'Gallery Leadership'}
               </span>
               <h2 id="founder-title" className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#F7F5F0] sm:text-4xl">
-                {language === 'sw' ? 'Mwanzilishi na Afisa Mtendaji Mkuu' : 'Founder & Chief Executive Officer'}
+                {language === 'sw' ? 'Afisa Mtendaji Mkuu' : 'Chief Executive Officer'}
               </h2>
               <p className="font-serif text-2xl italic text-[#B89B62] sm:text-3xl">
                 Hussein Sadiki Gumbo
@@ -157,11 +157,11 @@ export const AboutView: React.FC = () => {
         </div>
       </section>
 
-      {/* The 4-Pillar Blockchain Provenance Protocol */}
+      {/* Gallery principles */}
       <div className="bg-white border border-[#817C73]/25 p-8 sm:p-12 space-y-8">
         <div className="max-w-2xl">
           <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-            Institutional Authenticity
+            Our approach
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
             Our Approach to Art & Artists

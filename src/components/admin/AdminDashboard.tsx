@@ -115,11 +115,11 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="bg-white border border-[#817C73]/25 p-5">
-              <span className="text-[10px] uppercase text-[#817C73] block mb-1">Total Settled Acquisitions</span>
+              <span className="text-[10px] uppercase text-[#817C73] block mb-1">Recorded order value</span>
               <span className="font-mono text-2xl font-bold text-[#171717] tabular-nums">
-                {formatPrice(totalRevenueTzs, currency)}
+                {orders.length ? formatPrice(totalRevenueTzs, currency) : 'Not connected'}
               </span>
-              <span className="text-[11px] text-emerald-700 block mt-1">100% Reconciled via Escrow</span>
+              <span className="text-[11px] text-emerald-700 block mt-1">{orders.length ? 'Local preview records only' : 'No live order data connected'}</span>
             </div>
 
             <div className="bg-white border border-[#817C73]/25 p-5">
@@ -129,11 +129,11 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="bg-white border border-[#817C73]/25 p-5">
-              <span className="text-[10px] uppercase text-[#817C73] block mb-1">Active Salon Registrations</span>
+              <span className="text-[10px] uppercase text-[#817C73] block mb-1">Exhibition records</span>
               <span className="font-serif text-3xl font-bold text-[#171717]">
-                {exhibitions.reduce((acc, e) => acc + e.registeredCount, 0)}
+                {exhibitions.length}
               </span>
-              <span className="text-[11px] text-[#817C73] block mt-1">Oysterbay & London Salons</span>
+              <span className="text-[11px] text-[#817C73] block mt-1">No venue data connected</span>
             </div>
           </div>
 
@@ -148,7 +148,7 @@ export const AdminDashboard: React.FC = () => {
               </div>
 
               {pendingArtworks.length === 0 ? (
-                <p className="text-xs text-[#817C73] py-4">All submitted masterworks have been cataloged or reviewed.</p>
+                <p className="text-xs text-[#817C73] py-4">No artwork submissions are available in this preview.</p>
               ) : (
                 <div className="space-y-3">
                   {pendingArtworks.map(art => (
@@ -277,7 +277,7 @@ export const AdminDashboard: React.FC = () => {
           </h3>
 
           <div className="space-y-4">
-            {commissions.map(c => (
+            {commissions.length === 0 ? <p className="py-8 text-center text-sm text-[#817C73]">No commission enquiries are connected.</p> : commissions.map(c => (
               <div key={c.id} className="p-5 bg-[#F7F5F0] border border-[#817C73]/20 space-y-4 text-xs">
                 <div className="flex justify-between items-start">
                   <div>
@@ -340,11 +340,11 @@ export const AdminDashboard: React.FC = () => {
       {activeModule === 'ORDERS' && (
         <div className="bg-white border border-[#817C73]/25 p-6 space-y-6">
           <h3 className="font-serif font-bold text-xl text-[#171717] border-b border-[#817C73]/15 pb-4">
-            Commercial Orders & Mobile Money Settlements
+            Order records
           </h3>
 
           <div className="space-y-4">
-            {orders.map(o => (
+            {orders.length === 0 ? <p className="py-8 text-center text-sm text-[#817C73]">No order records are connected.</p> : orders.map(o => (
               <div key={o.id} className="p-4 border border-[#817C73]/20 space-y-3 text-xs">
                 <div className="flex justify-between items-center border-b border-[#817C73]/10 pb-2">
                   <span className="font-mono font-bold text-sm text-[#171717]">{o.orderNumber}</span>
@@ -363,60 +363,21 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Module 5: Artwork documentation Console */}
       {activeModule === 'LEDGER' && (
-        <div className="bg-[#171717] text-[#F7F5F0] p-6 sm:p-8 space-y-6 font-mono text-xs">
-          <div className="flex justify-between items-center border-b border-white/20 pb-4">
-            <div>
-              <span className="text-[10px] text-[#B89B62] uppercase tracking-widest block">
-                POLYGON AFRICAN ART CONSORTIUM · NODE STATUS: SYNCHRONIZED
-              </span>
-              <h3 className="font-serif text-2xl font-bold text-white mt-1">
-                Private Fine Art Smart Escrow & Provenance Registry
-              </h3>
-            </div>
-            <span className="px-3 py-1 bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs">
-              Block Height #4,921,804
-            </span>
+        <section className="border border-[#817C73]/25 bg-white p-6 sm:p-8 space-y-5">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#B89B62]">Artwork documentation</p>
+            <h3 className="mt-1 font-serif text-2xl text-[#171717]">Verification service not connected</h3>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#817C73]">No external registry, certificate issuer, or ownership ledger is connected. Records shown here are not independently verified.</p>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-black/40 p-4 border border-white/10">
-              <span className="text-white/60 block mb-1">Contract Address</span>
-              <span className="text-[#B89B62] break-all">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</span>
+          {artworks.length === 0 ? (
+            <div className="border border-[#817C73]/15 bg-[#F7F5F0] p-6 text-sm text-[#817C73]">No artwork documentation records are available.</div>
+          ) : artworks.map((artwork) => (
+            <div key={artwork.id} className="flex flex-wrap items-center justify-between gap-3 border-t border-[#817C73]/15 pt-4">
+              <div><p className="font-serif text-lg text-[#171717]">{artwork.title}</p><p className="text-xs text-[#817C73]">{artwork.artistName} · {artwork.provenance.isAuthentic ? 'Requires independent confirmation' : 'Not verified'}</p></div>
+              <button onClick={() => setInspectedProvenance(artwork)} className="border border-[#171717] px-3 py-2 text-xs text-[#171717] hover:bg-[#171717] hover:text-white">View record</button>
             </div>
-            <div className="bg-black/40 p-4 border border-white/10">
-              <span className="text-white/60 block mb-1">Active Validator</span>
-              <span className="text-white">Mrisho-Curatorial-Authority-01</span>
-            </div>
-            <div className="bg-black/40 p-4 border border-white/10">
-              <span className="text-white/60 block mb-1">Consortium Protocol</span>
-              <span className="text-white">ERC-721 Physical Fine Art Deed</span>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Recent On-Chain Provenance Transactions
-            </h4>
-            <div className="space-y-2">
-              {artworks.map((a, i) => (
-                <div key={i} className="p-3 bg-black/50 border border-white/10 flex flex-col sm:flex-row justify-between gap-2">
-                  <div>
-                    <span className="text-[#B89B62] font-bold">[{a.provenance.certificateNumber}]</span> {a.title} ({a.artistName})
-                    <p className="text-[10px] text-white/50 truncate max-w-lg mt-0.5">
-                      Hash: {a.provenance.verificationHash}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setInspectedProvenance(a)}
-                    className="px-2.5 py-1 bg-[#B89B62] text-[#171717] font-sans font-semibold text-[11px] hover:bg-white self-start sm:self-center"
-                  >
-                    Inspect Blocks
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          ))}
+        </section>
       )}
 
       {/* Module 6: Audit Trail */}
@@ -427,7 +388,7 @@ export const AdminDashboard: React.FC = () => {
           </h3>
 
           <div className="space-y-3 text-xs">
-            {auditLogs.map(log => (
+            {auditLogs.length === 0 ? <p className="py-8 text-center text-sm text-[#817C73]">No activity records are available.</p> : auditLogs.map(log => (
               <div key={log.id} className="p-3 bg-[#F7F5F0] border border-[#817C73]/15 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
