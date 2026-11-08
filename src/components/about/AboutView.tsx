@@ -45,7 +45,7 @@ export const AboutView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-6 space-y-5 text-[#171717] font-sans">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-            Rooted in East African Heritage, Connected to Global Collectors
+            Rooted in Arusha, connected through art
           </h2>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
@@ -68,7 +68,7 @@ export const AboutView: React.FC = () => {
               onClick={() => navigateTo('/artists')}
               className="px-5 py-2.5 border border-[#171717] text-[#171717] hover:bg-[#171717] hover:text-white transition-colors"
             >
-              Master Artists Roster
+              Artist profiles
             </button>
           </div>
         </div>
@@ -206,12 +206,12 @@ export const AboutView: React.FC = () => {
         </div>
       </div>
 
-      {/* Physical Locations & Contact Curatorial Board */}
+      {/* Gallery location & enquiries */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Gallery Locations (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           <h3 className="font-serif text-2xl font-bold text-[#171717]">
-            Visit Our Salons
+            Where we're based
           </h3>
 
           <div className="space-y-4 text-xs text-[#817C73]">
@@ -220,8 +220,8 @@ export const AboutView: React.FC = () => {
               <h4 className="font-serif font-bold text-base text-[#171717]">Arusha, Tanzania</h4>
               <p>Mrisho Art Gallery</p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Arusha, Tanzania</span>
+                <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
+                <span>Visit details not published</span>
               </div>
             </div>
 
@@ -232,7 +232,7 @@ export const AboutView: React.FC = () => {
               
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Online enquiries welcome</span>
+                <span>Contact service not connected</span>
               </div>
             </div>
           </div>
@@ -241,22 +241,13 @@ export const AboutView: React.FC = () => {
         {/* Contact Form (7 cols) */}
         <div className="lg:col-span-7 bg-white border border-[#817C73]/25 p-6 sm:p-8 space-y-4">
           <h3 className="font-serif text-2xl font-bold text-[#171717]">
-            Curatorial Enquiries & Advisory
+            Contact the gallery
           </h3>
           <p className="text-xs text-[#817C73]">
-            For private acquisitions, museum loans, or private estate curatorial advisory,
-            Contact form delivery is not configured yet, so this form cannot notify the gallery.
+            Contact form delivery is not connected yet. Sending a message here will not notify the gallery.
           </p>
 
-          {false ? (
-            <div className="py-8 text-center space-y-2">
-              <Check className="w-10 h-10 text-emerald-600 mx-auto" />
-              <h4 className="font-serif font-bold text-lg text-[#171717]">Message Received</h4>
-              <p className="text-xs text-[#817C73]">
-                Thank you. Our Chief Curator will contact you shortly.
-              </p>
-            </div>
-          ) : (
+          <div className="border border-[#B89B62]/35 bg-[#F7F5F0] p-4 text-xs leading-relaxed text-[#817C73]">The form below is disabled until a secure message delivery service is connected.</div>
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
               <div>
                 <label className="block text-[#817C73] mb-1">Full Name *</label>

@@ -339,10 +339,10 @@ export const CuratedFeatures: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#817C73]/20">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold font-sans block mb-1">
-              Curatorial Journal & Research
+              Gallery journal
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Essays, Archives & Market Insights
+              Stories & perspectives
             </h2>
           </div>
 
@@ -350,13 +350,15 @@ export const CuratedFeatures: React.FC = () => {
             onClick={() => navigateTo('/journal')}
             className="flex items-center gap-1.5 text-xs font-semibold text-[#171717] hover:text-[#B89B62] transition-colors"
           >
-            <span>Read All Essays</span>
+            <span>Visit the journal</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {journalArticles.map(article => (
+          {journalArticles.length === 0 ? (
+            <div className="col-span-full border border-[#817C73]/20 bg-white px-6 py-10 text-center text-sm text-[#817C73]">Journal stories will appear here when approved for publication.</div>
+          ) : journalArticles.map(article => (
             <article
               key={article.id}
               onClick={() => navigateTo('/journal')}

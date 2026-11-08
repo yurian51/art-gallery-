@@ -196,7 +196,7 @@ export const GalleryView: React.FC = () => {
           {t.gallery.showingCount} <strong className="text-[#171717]">{filteredArtworks.length}</strong> {t.gallery.ofTotal} {artworks.length} {t.gallery.artworksLabel}
         </span>
         <span className="font-mono text-[11px]">
-          Registry Network: Polygon Fine Art Consortium
+          Arusha, Tanzania
         </span>
       </div>
 
@@ -204,7 +204,7 @@ export const GalleryView: React.FC = () => {
       {filteredArtworks.length === 0 ? (
         <div className="bg-white border border-[#817C73]/20 py-20 text-center space-y-3">
           <p className="font-serif italic text-lg text-[#817C73]">
-            {t.gallery.noResults}
+            {artworks.length === 0 ? 'The gallery catalogue is being prepared. Confirmed artwork listings will appear here when available.' : t.gallery.noResults}
           </p>
           <button
             onClick={handleResetFilters}

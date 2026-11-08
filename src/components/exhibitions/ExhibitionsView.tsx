@@ -94,7 +94,7 @@ export const ExhibitionsView: React.FC = () => {
                   {exhibitedArtworks.length > 0 && (
                     <div className="pt-4 border-t border-[#817C73]/15">
                       <span className="text-[10px] uppercase tracking-wider text-[#817C73] block mb-2 font-semibold">
-                        Selected Masterworks on Display ({exhibitedArtworks.length})
+                        Selected artworks ({exhibitedArtworks.length})
                       </span>
                       <div className="flex gap-2 overflow-x-auto pb-1">
                         {exhibitedArtworks.map(art => (
@@ -162,17 +162,7 @@ export const ExhibitionsView: React.FC = () => {
               {selectedExhibitionForRsvp.venue} · {selectedExhibitionForRsvp.location}
             </p>
 
-            {rsvpSubmitted ? (
-              <div className="py-8 text-center space-y-2">
-                <Check className="w-10 h-10 text-emerald-600 mx-auto" />
-                <h4 className="font-serif font-bold text-lg text-[#171717]">
-                  Viewing Invitation Confirmed
-                </h4>
-                <p className="text-xs text-[#817C73]">
-                  A private entrance credential has been sent to {rsvpEmail}. Our curatorial team looks forward to welcoming you.
-                </p>
-              </div>
-            ) : (
+            <div className="mb-4 border border-[#B89B62]/35 bg-[#F7F5F0] p-3 text-xs text-[#817C73]">RSVP delivery is not connected. This form cannot confirm a visit.</div>
               <form onSubmit={handleRsvpSubmit} className="mt-6 space-y-4 text-xs">
                 <div>
                   <label className="block text-[#817C73] mb-1">Patron Full Name</label>
@@ -213,9 +203,10 @@ export const ExhibitionsView: React.FC = () => {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 bg-[#171717] text-[#F7F5F0] text-xs font-bold uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all"
+                    disabled
+                    className="w-full py-3 opacity-50 cursor-not-allowed bg-[#171717] text-[#F7F5F0] text-xs font-bold uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all"
                   >
-                    Confirm Private Reservation
+                    RSVP service unavailable
                   </button>
                 </div>
               </form>

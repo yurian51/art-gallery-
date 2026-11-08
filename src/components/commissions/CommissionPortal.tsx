@@ -382,7 +382,7 @@ export const CommissionPortal: React.FC = () => {
                   <div>
                     <span className="text-[#817C73] block text-[10px] uppercase">Assigned Master Creator</span>
                     <span className="font-serif font-bold text-sm text-[#171717]">
-                      {c.assignedArtistName || 'Curatorial Allocation Pending'}
+                      {c.assignedArtistName || 'Not assigned'}
                     </span>
                   </div>
                   <div>
@@ -392,7 +392,7 @@ export const CommissionPortal: React.FC = () => {
                   <div>
                     <span className="text-[#817C73] block text-[10px] uppercase">Official Atelier Quote</span>
                     <span className="font-mono font-bold text-[#B89B62]">
-                      {c.quoteAmountTzs ? formatPrice(c.quoteAmountTzs, currency) : 'Review in Progress'}
+                      {c.quoteAmountTzs ? formatPrice(c.quoteAmountTzs, currency) : 'Not available'}
                     </span>
                   </div>
                 </div>
