@@ -12,13 +12,6 @@ export const AboutView: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setContactName('');
-      setContactEmail('');
-      setContactMessage('');
-    }, 3000);
   };
 
   return (
@@ -56,14 +49,12 @@ export const AboutView: React.FC = () => {
           </h2>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            Based in Arusha, Tanzania, Mrisho Art Gallery celebrates the depth and diversity of African creativity.
-            We bring together original artworks, artists, and collectors through a carefully presented
-            digital gallery designed for audiences in Tanzania and around the world.
+            Based in Arusha, Tanzania, Mrisho Art Gallery is an independent gallery focused on presenting African visual creativity.
+            The gallery's digital space introduces visual work and provides a place to learn about the people and ideas behind it.
           </p>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            Our vision is to make African art more visible and accessible while giving artists a thoughtful space
-            to present their work, share the stories behind it, and connect with interested collectors.
+            Our aim is to make African art more visible and give artists a thoughtful space to present their work and connect with interested collectors.
           </p>
 
           <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
@@ -254,10 +245,10 @@ export const AboutView: React.FC = () => {
           </h3>
           <p className="text-xs text-[#817C73]">
             For private acquisitions, museum loans, or private estate curatorial advisory,
-            our directors will respond within 24 hours.
+            Contact form delivery is not configured yet, so this form cannot notify the gallery.
           </p>
 
-          {sent ? (
+          {false ? (
             <div className="py-8 text-center space-y-2">
               <Check className="w-10 h-10 text-emerald-600 mx-auto" />
               <h4 className="font-serif font-bold text-lg text-[#171717]">Message Received</h4>
@@ -305,9 +296,10 @@ export const AboutView: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#171717] text-[#F7F5F0] text-xs font-bold uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all"
+                disabled
+                className="w-full py-3 opacity-50 cursor-not-allowed bg-[#171717] text-[#F7F5F0] text-xs font-bold uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all"
               >
-                Send Message to Curatorial Board
+                Contact form unavailable
               </button>
             </form>
           )}

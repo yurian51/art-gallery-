@@ -89,10 +89,11 @@ export const CommissionPortal: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mb-6 border border-[#B89B62]/40 bg-white p-4 text-sm leading-relaxed text-[#817C73]">This form currently saves an enquiry in this browser only. It does not send a message to the gallery because a submission service is not connected.</div>
       {/* Header */}
       <div className="border-b border-[#817C73]/20 pb-8 mb-8">
         <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-          Bespoke Curatorial Atelier
+          Commission enquiry
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#171717] tracking-tight">
           {t.commissions.title}
