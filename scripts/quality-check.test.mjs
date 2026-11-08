@@ -128,3 +128,11 @@ test('Vercel serves application routes through the single-page entry point', () 
   const config = JSON.parse(read('../vercel.json'));
   assert.equal(config.rewrites[0].destination, '/index.html');
 });
+
+test('homepage discipline tiles are keyboard-accessible and filter the gallery catalogue', () => {
+  const home = read('../src/components/home/CuratedFeatures.tsx');
+  const gallery = read('../src/components/gallery/GalleryView.tsx');
+  assert.match(home, /<button[\\s\\S]*setSearchQuery\\(cat\\.category\\)/);
+  assert.match(home, /aria-label=\{\`Explore \\{cat\\.title\\} in the gallery\`\}/);
+  assert.match(gallery, /art\\.category\\.toLowerCase\\(\\)\\.includes\\(q\\)/);
+});
