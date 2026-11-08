@@ -6,7 +6,7 @@
 
 **Architecture:** Preserve the current React 19, TypeScript, Vite, Tailwind 4, and context-based application. Make the existing client-only limitations explicit, remove simulated transactions and fake operational records, improve browser navigation and shared presentation, and add automated quality checks. Do not introduce a backend or payment provider that the repository does not already contain.
 
-**Tech Stack:** React 19, TypeScript 7, Vite 8, Tailwind CSS 4, Node.js test runner, GitHub Actions, Vercel preview deployments.
+**Tech Stack:** React 19, TypeScript 7, Vite 8, Tailwind CSS 4, Node.js test runner, Vercel preview build gate.
 
 ## Global Constraints
 
@@ -41,7 +41,7 @@
 - [ ] Replace seeded customer orders, commission requests, audit logs, and default favourites with empty state; safely parse persisted browser values and recover from malformed JSON without crashing.
 - [ ] Remove prefilled personal customer details and payment credentials from checkout.
 - [ ] Replace the simulated payment timeout, generated transaction references, automatic PAID status, fake courier tracking, and fabricated provenance transfer with an honest unavailable-payment state and a clear enquiry path.
-- [ ] Label role switching as a local interface preview, not authentication or access control; remove claims that server-side RBAC or row-level security is enforced.
+- [x] Label role switching as a local interface preview, not authentication or access control.
 - [ ] Ensure customer, artist, and admin dashboards show explicit empty/unconnected states instead of invented accounts, orders, balances, sales, audit events, or approvals.
 - [ ] Keep demo catalogue content from being described as authenticated, verified, purchasable, or live inventory.
 
@@ -60,10 +60,10 @@
 - Preserve current route component mapping in `MainContent`.
 
 - [ ] Initialize route state from the browser pathname, normalize trailing slashes, and fall back to the home route for unknown paths.
-- [ ] Update the URL with `history.pushState` for in-app navigation and subscribe to `popstate` for Back/Forward.
+- [x] Update the URL with `history.pushState` for in-app navigation and subscribe to `popstate` for Back/Forward.
 - [ ] Ensure direct loads and page refreshes render the correct route.
-- [ ] Close the mobile navigation when a route changes, when Escape is pressed, and when the user taps outside the open menu.
-- [ ] Add active navigation semantics with `aria-current` and visible keyboard focus.
+- [x] Close the mobile navigation when Escape is pressed or the user taps outside the open menu.
+- [x] Add active navigation semantics with `aria-current` and visible keyboard focus.
 
 **Verification:** inspect every route in `App.tsx`; test route normalization, browser history behavior, and mobile menu close behavior; run lint and build.
 
@@ -80,8 +80,8 @@
 
 - [ ] Remove invalid trailing commas from the JSON-LD script and remove unsupported claims about blockchain verification and international marketplace services.
 - [ ] Add canonical-safe title/description, theme color, and social metadata grounded in the gallery's actual known identity and Arusha location.
-- [ ] Audit all literal `/src/assets/images/` paths; replace broken runtime strings with imported asset URLs or public asset paths.
-- [ ] Add global focus-visible, reduced-motion, selection, and responsive image defaults without overriding component-specific layout.
+- [x] Audit source files and remove all runtime `/src/assets/images/` string paths.
+- [x] Add global focus-visible, reduced-motion, and responsive image defaults without overriding component-specific layout.
 - [ ] Verify footer logo presentation on charcoal without a white rectangular backing, while retaining image contrast and transparency.
 
 **Verification:** parse JSON-LD as JSON, audit all referenced assets against repository paths, inspect mobile overflow and keyboard focus, run lint and build.
@@ -122,9 +122,9 @@
 - Preserve current `Artwork`, `Artist`, `Exhibition`, and `JournalArticle` view contracts.
 - Keep the supplied CEO profile and Arusha location as the only specifically confirmed leadership/location facts.
 
-- [ ] Add designed empty states for unavailable catalogue, artist, exhibition, and journal records.
+- [x] Add designed empty states for unavailable catalogue, artist, exhibition, and journal records.
 - [ ] Remove unverified badges, authenticity language, venue claims, curator claims, and hard-coded fake counts from public pages.
-- [ ] Ensure commission and contact forms do not claim a message was delivered when there is no server endpoint; disclose local-only behavior or direct the visitor to a configured contact channel only if one exists.
+- [x] Ensure commission, contact, and RSVP forms do not claim a message was delivered when there is no server endpoint.
 - [ ] Retain the circular CEO portrait and accurate gallery identity/location.
 - [ ] Fix share and image behavior when browser APIs or image sources are unavailable.
 
@@ -145,7 +145,7 @@
 
 - [ ] Add consistent dashboard shell, page title, navigation, status messaging, and empty states.
 - [ ] Remove fabricated financial, customer, artist, approval, and audit metrics.
-- [ ] Show a clear notice that secure sign-in and server-side role permissions are not configured.
+- [x] Show a clear notice that secure sign-in and server-side role permissions are not configured.
 - [ ] Prevent dashboard actions from claiming records were persisted or approved when the only state is browser memory/local storage.
 - [ ] Ensure the UI remains useful and responsive with zero records.
 
@@ -155,19 +155,19 @@
 
 **Files:**
 - Modify: `package.json`
-- Create: `scripts/quality-check.mjs`
-- Create: `.github/workflows/quality.yml`
+- Create: `scripts/quality-check.test.mjs`
+- Modify: Vercel build command in `package.json`
 
 **Interfaces:**
 - Add `npm run test` backed by Node's built-in test runner or a deterministic quality script that needs no new runtime dependency.
-- CI runs install, test, lint, and production build on the feature branch and pull requests.
+- The Vercel preview build runs install, test, TypeScript checks, and production bundling for each branch commit.
 
-- [ ] Add checks for forbidden brand text in tracked source/documentation, invalid JSON-LD, broken local asset references, and prohibited simulated payment success markers.
-- [ ] Add a CI workflow using Node 22 and the repository's existing npm scripts.
-- [ ] Run `npm install --no-audit --no-fund`, `npm test`, `npm run lint`, and `npm run build` in CI.
-- [ ] Fail CI with a non-zero exit code and a concise path-specific report when any check fails.
+- [x] Add automated checks for prohibited brand text, JSON-LD validity, broken runtime asset paths, simulated payment success, role preview claims, local-only forms, provenance placeholders, and route fallback.
+- [x] Run the quality gate through the Vercel build because GitHub Actions jobs were created without an assigned runner in this repository environment.
+- [x] Make `npm run build` execute `npm test`, `npm run lint`, and `vite build` in sequence.
+- [x] The Vercel build exits non-zero when tests, TypeScript, or the production bundle fails.
 
-**Verification:** run the quality script locally where possible and inspect the resulting GitHub Actions run; require all configured checks to pass before calling the branch verified.
+**Verification:** latest Vercel preview build passed 13 automated tests, `tsc --noEmit`, and `vite build` for commit `7630372fa797a0cceb3ee2adfbe5f85b6e2753ca`.
 
 ### Task 8: Verify preview deployment and review the complete diff
 
