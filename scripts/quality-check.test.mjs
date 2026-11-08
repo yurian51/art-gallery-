@@ -132,7 +132,7 @@ test('Vercel serves application routes through the single-page entry point', () 
 test('homepage discipline tiles are keyboard-accessible and filter the gallery catalogue', () => {
   const home = read('../src/components/home/CuratedFeatures.tsx');
   const gallery = read('../src/components/gallery/GalleryView.tsx');
-  assert.ok(home.includes('<button') && home.includes('setSearchQuery(cat.category)'));
-  assert.ok(home.includes('aria-label={`Explore ${language === \'sw\' ? cat.titleSwahili : cat.title} in the gallery`}'));
+  assert.ok(home.includes('type="button"') && home.includes('setSearchQuery(query)'));
+  assert.ok(home.includes('aria-label={title}'));
   assert.ok(gallery.includes('art.category.toLowerCase().includes(q)'));
 });
