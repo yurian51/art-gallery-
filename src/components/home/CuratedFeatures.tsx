@@ -66,10 +66,10 @@ export const CuratedFeatures: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#817C73]/20">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold font-sans block mb-1">
-              Selected gallery imagery
+              {language === 'sw' ? 'Picha za galari' : 'Selected gallery imagery'}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Explore the gallery
+              {language === 'sw' ? 'Chunguza galari' : 'Explore the gallery'}
             </h2>
             <p className="text-xs sm:text-sm text-[#817C73] font-sans mt-1">
               Artwork listings will appear here when verified gallery records are connected.
@@ -130,7 +130,7 @@ export const CuratedFeatures: React.FC = () => {
                 </div>
                 <div className="p-4 sm:p-5">
                   <h3 className="font-serif font-bold text-lg text-[#171717] group-hover:text-[#B89B62] transition-colors">
-                    {cat.title}
+                    {language === 'sw' ? cat.titleSwahili : cat.title}
                   </h3>
                   <p className="text-xs text-[#817C73] mt-1 line-clamp-2">
                     {language === 'sw' ? cat.descriptionSwahili : cat.description}
