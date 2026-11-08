@@ -1,4 +1,8 @@
 import React from 'react';
+import heroArtworkImage from '../../assets/images/hero_african_art_gallery_1794114972525.jpg';
+import makondeSculptureImage from '../../assets/images/artwork_makonde_sculpture_1794114972660.jpg';
+import swahiliPortraitImage from '../../assets/images/artwork_swahili_portrait_1794114974703.jpg';
+import galleryInteriorImage from '../../assets/images/gallery_interior_dar_1794114974688.jpg';
 import { useApp } from '../../context/AppContext';
 import { translations } from '../../translations';
 import { ArtworkCard } from '../gallery/ArtworkCard';
@@ -25,28 +29,28 @@ export const CuratedFeatures: React.FC = () => {
       title: 'Original Paintings',
       titleSwahili: 'Michoro Asilia',
       description: 'Monumental contemporary canvases using natural earth pigments and 24k gold leaf.',
-      image: '/src/assets/images/hero_african_art_gallery_1794114972525.jpg',
+      image: heroArtworkImage,
       category: 'Paintings',
     },
     {
       title: 'Makonde Modernist Sculpture',
       titleSwahili: 'Sanamu za Kimakonde',
       description: 'Aerodynamic abstract forms sculpted from sustainably harvested Tanzanian Mpingo (Blackwood).',
-      image: '/src/assets/images/artwork_makonde_sculpture_1794114972660.jpg',
+      image: makondeSculptureImage,
       category: 'Sculpture',
     },
     {
       title: 'Swahili Coastal Portraiture',
       titleSwahili: 'Picha za Pwani ya Waswahili',
       description: 'Intimate figurative studies capturing matriarchal lineage and rich kanga textile heritage.',
-      image: '/src/assets/images/artwork_swahili_portrait_1794114974703.jpg',
+      image: swahiliPortraitImage,
       category: 'Portraiture',
     },
     {
       title: 'Fine Art Photography & Prints',
       titleSwahili: 'Picha na Machapisho ya Kisasa',
       description: 'Museum-grade silver gelatin and 12-color archival giclée impressions on cotton rag.',
-      image: '/src/assets/images/gallery_interior_dar_1794114974688.jpg',
+      image: galleryInteriorImage,
       category: 'Fine Art Prints',
     },
   ];
@@ -64,7 +68,7 @@ export const CuratedFeatures: React.FC = () => {
               Featured Original Artworks
             </h2>
             <p className="text-xs sm:text-sm text-[#817C73] font-sans mt-1">
-              Each piece carries verified blockchain deed registry and physical Certificate of Authenticity.
+              Explore selected works, discover their makers, and contact the gallery for availability and details.
             </p>
           </div>
 
