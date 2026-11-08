@@ -34,12 +34,12 @@ export const CommissionPortal: React.FC = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [preferredArtistId, setPreferredArtistId] = useState('');
   const [category, setCategory] = useState<ArtCategory>('Paintings');
-  const [mediumPreferred, setMediumPreferred] = useState('');
-  const [dimensionsRequired, setDimensionsRequired] = useState('');
-  const [budgetTzs, setBudgetTzs] = useState(0);
-  const [deadline, setDeadline] = useState('');
-  const [deliveryCity, setDeliveryCity] = useState('');
-  const [deliveryCountry, setDeliveryCountry] = useState('');
+  const [mediumPreferred, setMediumPreferred] = useState('Oil, Natural Ochre & 24k Gold Leaf');
+  const [dimensionsRequired, setDimensionsRequired] = useState('180cm × 140cm');
+  const [budgetTzs, setBudgetTzs] = useState(15000000);
+  const [deadline, setDeadline] = useState('2026-10-31');
+  const [deliveryCity, setDeliveryCity] = useState('Arusha');
+  const [deliveryCountry, setDeliveryCountry] = useState('Tanzania');
   const [brief, setBrief] = useState('');
   const [submittedId, setSubmittedId] = useState<string | null>(null);
 
@@ -273,7 +273,7 @@ export const CommissionPortal: React.FC = () => {
                     value={deliveryCity}
                     onChange={e => setDeliveryCity(e.target.value)}
                     required
-                    placeholder="e.g. Dar es Salaam, London, Dubai"
+                    placeholder="e.g. Arusha, London, Dubai, New York"
                     className="w-full p-2.5 bg-[#F7F5F0] border border-[#817C73]/30 focus:outline-none focus:border-[#B89B62]"
                   />
                 </div>

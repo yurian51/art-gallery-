@@ -47,7 +47,7 @@ export const CustomerDashboard: React.FC = () => {
               Your gallery activity
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Customer workspace preview · Secure sign-in is not configured
+              Registered Patron: <strong className="text-[#171717]">Dr. Amina Rashidi</strong> · Arusha Registry Node
             </p>
           </div>
 

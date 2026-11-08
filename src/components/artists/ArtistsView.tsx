@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Artist } from '../../types';
 import { ArtworkCard } from '../gallery/ArtworkCard';
-import { ShieldCheck, Award, MapPin, ArrowRight, Instagram, Globe, Sparkles } from 'lucide-react';
+import { ShieldCheck, Award, MapPin, ArrowRight, Instagram, Globe, Sparkles, Phone, Mail, MessageSquare } from 'lucide-react';
 
 export const ArtistsView: React.FC = () => {
   const { artists, artworks, navigateTo } = useApp();
@@ -52,7 +52,7 @@ export const ArtistsView: React.FC = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold">
                       <ShieldCheck className="w-3 h-3" />
-                      <span>ARTIST</span>
+                      <span>{artist.id === 'artist-mrisho' ? 'FOUNDER & CEO' : 'ACCREDITED MASTER'}</span>
                       <span>·</span>
                       <span className="text-[#817C73]">{artist.origin}</span>
                     </div>
@@ -80,24 +80,68 @@ export const ArtistsView: React.FC = () => {
         {/* Right Column: Selected Artist Detailed Dossier & Works (7 cols) */}
         {selectedArtist && (
           <div className="lg:col-span-7 bg-white border border-[#817C73]/25 p-6 sm:p-8 space-y-8">
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-                <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
-                  Curatorial Dossier
-                </span>
-                {selectedArtist.acceptingCommissions && (
-                  <span className="text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 border border-emerald-200">
-                    Accepting Private Commissions
-                  </span>
-                )}
-              </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b border-[#817C73]/20 pb-6">
+              <div className="flex items-center gap-5">
+                <div className="w-20 sm:w-24 h-24 sm:h-28 border-2 border-[#B89B62] overflow-hidden bg-[#0E0E0E] shrink-0 shadow-md">
+                  <img
+                    src={selectedArtist.profileImage}
+                    alt={selectedArtist.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
+                      {selectedArtist.id === 'artist-mrisho' ? 'Founder & CEO Dossier' : 'Curatorial Dossier'}
+                    </span>
+                    {selectedArtist.acceptingCommissions && (
+                      <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                        Accepting Commissions
+                      </span>
+                    )}
+                  </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-                {selectedArtist.name}
-              </h2>
-              <p className="text-sm font-serif italic text-[#817C73] mt-0.5">
-                {selectedArtist.title} · {selectedArtist.origin}
-              </p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
+                    {selectedArtist.name}
+                  </h2>
+                  <p className="text-sm font-serif italic text-[#817C73] mt-0.5">
+                    {selectedArtist.title} · {selectedArtist.origin}
+                  </p>
+
+                  {selectedArtist.socials && (
+                    <div className="flex flex-wrap items-center gap-2 mt-2 pt-2 border-t border-[#817C73]/15 text-xs">
+                      {selectedArtist.socials.phone && (
+                        <div className="flex items-center gap-1.5 text-[11px] text-[#171717] bg-[#F7F5F0] px-2.5 py-1 border border-[#817C73]/25 font-mono">
+                          <Phone className="w-3 h-3 text-[#B89B62]" />
+                          <a href="tel:+255639827831" className="hover:text-[#B89B62]">+255 639 827 831</a>
+                          <span>/</span>
+                          <a href="tel:+255782400311" className="hover:text-[#B89B62]">+255 782 400 311</a>
+                        </div>
+                      )}
+                      {selectedArtist.socials.whatsapp && (
+                        <a
+                          href="https://wa.me/255639827831"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-[11px] text-emerald-800 bg-emerald-50 px-2.5 py-1 border border-emerald-300 font-semibold hover:bg-emerald-100 transition-colors"
+                        >
+                          <MessageSquare className="w-3 h-3" />
+                          <span>WhatsApp</span>
+                        </a>
+                      )}
+                      {selectedArtist.socials.email && (
+                        <a
+                          href={`mailto:${selectedArtist.socials.email}`}
+                          className="flex items-center gap-1 text-[11px] text-[#171717] bg-[#F7F5F0] px-2.5 py-1 border border-[#817C73]/25 hover:text-[#B89B62] transition-colors"
+                        >
+                          <Mail className="w-3 h-3 text-[#B89B62]" />
+                          <span>{selectedArtist.socials.email}</span>
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* Artist Statement */}

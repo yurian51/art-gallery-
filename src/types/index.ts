@@ -29,10 +29,12 @@ export type ArtCategory =
   | 'Sculpture'
   | 'Photography'
   | 'Digital Art'
+  | 'Traditional African Art'
   | 'Traditional Art'
   | 'Contemporary Art'
   | 'Abstract Art'
   | 'Portraiture'
+  | 'Landscape Art'
   | 'Fine Art Prints'
   | 'Mixed Media'
   | 'Crafts'
@@ -127,6 +129,9 @@ export interface Artist {
   socials?: {
     instagram?: string;
     website?: string;
+    phone?: string;
+    email?: string;
+    whatsapp?: string;
   };
 }
 

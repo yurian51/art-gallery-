@@ -46,11 +46,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
   const t = translations[language];
 
   const navLinks = [
+    { label: t.nav.gallery, route: '/gallery' },
+    { label: language === 'sw' ? 'Mikusanyiko' : 'Collections', route: '/collections' },
     { label: t.nav.artists, route: '/artists' },
     { label: t.nav.exhibitions, route: '/exhibitions' },
     { label: t.nav.commissions, route: '/commissions' },
     { label: t.nav.journal, route: '/journal' },
     { label: t.nav.about, route: '/about' },
+    { label: language === 'sw' ? 'Mawasiliano' : 'Contact', route: '/contact' },
   ];
 
   const handleNav = (route: string) => {
@@ -83,18 +86,25 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#B89B62]" />
             <span className="font-serif italic tracking-wide text-xs">
               {language === 'sw'
-                ? 'Karibu Mrisho Art Gallery · Arusha, Tanzania'
-                : 'Welcome to Mrisho Art Gallery · Arusha, Tanzania'}
+                ? 'Onyesho la Sasa: "Mwangwi wa Pwani ya Waswahili" · Jumba Kuu la Arusha, Tanzania'
+                : 'Current Salon: "Echoes of the Swahili Coast" · Main Pavilion, Arusha, Tanzania'}
             </span>
           </div>
-          <div className="hidden sm:flex items-center gap-4 text-[11px] text-[#817C73]">
+          <div className="hidden sm:flex items-center gap-3 text-[11px] text-[#817C73]">
+            <a
+              href="tel:+255639827831"
+              className="text-[#B89B62] hover:underline font-mono"
+            >
+              Tel: +255 639 827 831
+            </a>
+            <span>·</span>
             <span className="text-[#F7F5F0]/80">Arusha, Tanzania</span>
             <span>·</span>
             <button
-              onClick={() => handleNav('/about')}
+              onClick={() => handleNav('/contact')}
               className="hover:text-[#B89B62] transition-colors underline underline-offset-2"
             >
-              Visitor Guidelines
+              {language === 'sw' ? 'Wasiliana Nasi' : 'Client Advisory'}
             </button>
           </div>
         </div>

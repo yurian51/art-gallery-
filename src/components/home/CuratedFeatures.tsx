@@ -1,11 +1,7 @@
-import React from 'react';
-import heroArtworkImage from '../../assets/images/hero_african_art_gallery_1794114972525.jpg';
-import makondeSculptureImage from '../../assets/images/artwork_makonde_sculpture_1794114972660.jpg';
-import swahiliPortraitImage from '../../assets/images/artwork_swahili_portrait_1794114974703.jpg';
-import galleryInteriorImage from '../../assets/images/gallery_interior_dar_1794114974688.jpg';
+import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ArtworkCard } from '../gallery/ArtworkCard';
-import { ArrowRight, ArrowUpRight, Palette, Shapes, Camera, Frame, MessageCircle, Eye, Handshake, PackageCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Compass, Sparkles, BookOpen, Layers, Award, Quote, Mail, Check, Phone, MessageSquare } from 'lucide-react';
 
 export const CuratedFeatures: React.FC = () => {
   const {
@@ -13,6 +9,7 @@ export const CuratedFeatures: React.FC = () => {
     artworks,
     artists,
     exhibitions,
+    collections,
     journalArticles,
     navigateTo,
     setSearchQuery,
@@ -23,63 +20,14 @@ export const CuratedFeatures: React.FC = () => {
   const publishedArtists = artists.slice(0, 3);
   const publishedStories = journalArticles.slice(0, 2);
 
-  const categories = [
-    {
-      title: sw ? 'Michoro asilia' : 'Original paintings',
-      description: sw ? 'Rangi, hisia na simulizi katika kila kazi.' : 'Colour, emotion and storytelling in every composition.',
-      image: heroArtworkImage,
-      query: 'Paintings',
-      icon: Palette,
-      number: '01',
-    },
-    {
-      title: sw ? 'Sanamu na uchongaji' : 'Sculpture & carving',
-      description: sw ? 'Sanaa yenye umbo, kina na mguso wa mikono.' : 'Form, texture and the character of hand-crafted work.',
-      image: makondeSculptureImage,
-      query: 'Sculpture',
-      icon: Shapes,
-      number: '02',
-    },
-    {
-      title: sw ? 'Picha za kisanaa' : 'Portraiture',
-      description: sw ? 'Watu, utambulisho na hadithi zinazoonekana.' : 'People, identity and stories captured through art.',
-      image: swahiliPortraitImage,
-      query: 'Portraiture',
-      icon: Camera,
-      number: '03',
-    },
-    {
-      title: sw ? 'Picha na machapisho' : 'Photography & prints',
-      description: sw ? 'Mitazamo ya kisasa na kazi za kuchapishwa.' : 'Contemporary perspectives and fine-art prints.',
-      image: galleryInteriorImage,
-      query: 'Fine Art Prints',
-      icon: Frame,
-      number: '04',
-    },
-  ];
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
+  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
-  const benefits = [
-    {
-      icon: Eye,
-      title: sw ? 'Chunguza kwa utulivu' : 'Explore with clarity',
-      body: sw ? 'Tazama kazi, maelezo na taarifa zilizopo kabla ya kufanya uamuzi.' : 'Review available artwork details and information before making a decision.',
-    },
-    {
-      icon: MessageCircle,
-      title: sw ? 'Wasiliana moja kwa moja' : 'Speak with the gallery',
-      body: sw ? 'Uliza kuhusu kazi, wasanii au uwezekano wa kuagiza sanaa maalum.' : 'Ask about an artwork, an artist or a potential custom commission.',
-    },
-    {
-      icon: Handshake,
-      title: sw ? 'Pata mwongozo wa ununuzi' : 'Get acquisition guidance',
-      body: sw ? 'Jadili mahitaji yako na upate maelezo ya hatua zinazofuata.' : 'Discuss your requirements and understand the next steps.',
-    },
-    {
-      icon: PackageCheck,
-      title: sw ? 'Thibitisha maelezo kwanza' : 'Confirm details first',
-      body: sw ? 'Bei, upatikanaji na usafirishaji huthibitishwa kwa kila kazi.' : 'Pricing, availability and delivery are confirmed individually.',
-    },
-  ];
+  const t = translations[language];
+
+  const featuredArtworks = artworks.filter(a => a.featured).slice(0, 6);
+  const currentExhibition = exhibitions.find(e => e.status === 'CURRENT') || exhibitions[0];
 
   const journey = [
     {
@@ -217,12 +165,129 @@ export const CuratedFeatures: React.FC = () => {
         </div>
       </section>
 
-      <section className="bg-[#171717] py-14 text-[#F7F5F0] sm:py-16">
-        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
-          <div className="flex flex-col gap-5 border-b border-white/15 pb-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.24em] text-[#D7B873]">{sw ? 'Chunguza mitindo' : 'Explore popular art forms'}</span>
-              <h2 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">{sw ? 'Gundua sanaa kwa mtazamo wako.' : 'Find your place in the world of art.'}</h2>
+      {/* Curated Collections Suite */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#817C73]/20">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold font-sans block mb-1">
+              Curatorial Suites
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
+              Curated Collections
+            </h2>
+            <p className="text-xs sm:text-sm text-[#817C73] font-sans mt-1">
+              Thematic and regional suites assembled for serious collectors, institutions, and cultural archives.
+            </p>
+          </div>
+
+          <button
+            onClick={() => navigateTo('/collections')}
+            className="flex items-center gap-1.5 text-xs font-semibold text-[#171717] hover:text-[#B89B62] transition-colors"
+          >
+            <span>Explore All Suites ({collections.length})</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {collections.map(col => (
+            <div
+              key={col.id}
+              onClick={() => navigateTo('/collections')}
+              className="bg-white border border-[#817C73]/25 group cursor-pointer hover:border-[#171717] transition-all flex flex-col justify-between overflow-hidden shadow-sm"
+            >
+              <div className="aspect-[16/9] overflow-hidden bg-[#EBE6DF]">
+                <img
+                  src={col.coverImage}
+                  alt={col.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold block">
+                  {col.subtitle}
+                </span>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#171717] group-hover:text-[#B89B62] transition-colors">
+                  {col.title}
+                </h3>
+                <p className="text-xs text-[#817C73] leading-relaxed line-clamp-2">
+                  {col.description}
+                </p>
+                <div className="pt-3 border-t border-[#817C73]/15 flex items-center justify-between text-xs">
+                  <span className="text-[#817C73]">{col.artworkIds.length} Catalogued Artworks</span>
+                  <span className="font-semibold text-[#171717] flex items-center gap-1">
+                    View Suite <ArrowRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Major Salon Exhibition Showcase */}
+      {currentExhibition && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#171717] text-[#F7F5F0] p-8 sm:p-12 border border-[#817C73]/25">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#B89B62]" />
+                  <span className="text-xs uppercase tracking-widest text-[#B89B62] font-semibold">
+                    Current Major Salon Exhibition
+                  </span>
+                </div>
+
+                <h2 className="font-serif text-2xl sm:text-4xl font-bold leading-tight">
+                  {currentExhibition.title}
+                </h2>
+
+                <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed max-w-xl">
+                  {currentExhibition.description}
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-[#F7F5F0]">
+                  <div>
+                    <span className="text-[#817C73] block text-[10px] uppercase">Venue</span>
+                    <span>{currentExhibition.venue}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#817C73] block text-[10px] uppercase">Curator</span>
+                    <span>{currentExhibition.curator}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#817C73] block text-[10px] uppercase">Dates</span>
+                    <span>
+                      {currentExhibition.startDate} — {currentExhibition.endDate}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-4 flex flex-wrap gap-3">
+                  <button
+                    onClick={() => navigateTo('/exhibitions')}
+                    className="px-5 py-2.5 bg-[#B89B62] text-[#171717] text-xs font-bold uppercase tracking-wider hover:bg-[#B89B62]/90 transition-colors"
+                  >
+                    Exhibition Catalog & RSVP
+                  </button>
+                  <button
+                    onClick={() => navigateTo('/gallery')}
+                    className="px-5 py-2.5 border border-[#F7F5F0]/40 text-xs font-semibold hover:border-white transition-colors"
+                  >
+                    View Exhibited Artworks
+                  </button>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div className="border-2 border-[#817C73]/30 overflow-hidden shadow-2xl">
+                  <img
+                    src={currentExhibition.coverImage}
+                    alt={currentExhibition.title}
+                    className="w-full h-72 sm:h-80 object-cover"
+                  />
+                </div>
+              </div>
             </div>
             <p className="max-w-md text-xs leading-6 text-white/60">{sw ? 'Chagua aina ya sanaa ili kuona kazi zinazohusiana kwenye katalogi.' : 'Choose a discipline to explore related works in the gallery catalogue.'}</p>
           </div>
@@ -246,37 +311,67 @@ export const CuratedFeatures: React.FC = () => {
         </div>
       </section>
 
-      <section className="border-y border-[#817C73]/15 bg-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-14">
-          <div className="relative min-h-[340px] overflow-hidden sm:min-h-[500px]">
-            <img src={galleryInteriorImage} alt={sw ? 'Mazingira ya galari ya sanaa' : 'Art gallery interior'} className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute bottom-5 left-5 border border-white/40 bg-[#171717]/80 px-5 py-4 text-white backdrop-blur-sm sm:bottom-8 sm:left-8">
-              <span className="block text-[9px] font-bold uppercase tracking-[0.2em] text-[#E2C98E]">{sw ? 'Arusha, Tanzania' : 'Arusha, Tanzania'}</span>
-              <span className="mt-1 block font-serif text-xl">{sw ? 'Sanaa, utamaduni na ubunifu' : 'Art, culture & creativity'}</span>
-            </div>
-          </div>
-          <div>
-            <SectionHeading
-              eyebrow={sw ? 'Huduma za galari' : 'A more personal art experience'}
-              title={sw ? 'Mwongozo sahihi. Uamuzi wenye uhakika.' : 'Personal guidance. A considered choice.'}
-              description={sw ? 'Tunataka kila mpenda sanaa apate taarifa anazohitaji kabla ya kuchagua au kuagiza kazi.' : 'We want every art enthusiast and collector to have the information needed before selecting or commissioning a work.'}
-            />
-            <div className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {benefits.map(({ icon: Icon, title, body }, index) => (
-                <div key={title} className="border-t border-[#B89B62]/50 pt-4">
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center bg-[#F1EBDD] text-[#927443]"><Icon className="h-4 w-4" /></span>
-                    <span className="text-[10px] font-bold tracking-[0.18em] text-[#A88B54]">0{index + 1}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {artists.map(artist => {
+            const isFounder = artist.id === 'artist-mrisho';
+            return (
+              <div
+                key={artist.id}
+                onClick={() => navigateTo('/artists')}
+                className={`p-5 group cursor-pointer transition-all flex flex-col justify-between ${
+                  isFounder
+                    ? 'bg-gradient-to-b from-[#1C1A18] to-[#121212] text-white border-2 border-[#B89B62] shadow-lg hover:shadow-xl'
+                    : 'bg-white border border-[#817C73]/20 hover:border-[#171717]'
+                }`}
+              >
+                <div>
+                  <div className={`w-20 h-20 rounded-none overflow-hidden mb-4 shrink-0 ${
+                    isFounder ? 'border-2 border-[#B89B62] bg-[#0E0E0E]' : 'border border-[#817C73]/30 bg-[#EBE6DF]'
+                  }`}>
+                    <img
+                      src={artist.profileImage}
+                      alt={artist.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform"
+                    />
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-[#171717]">{title}</h3>
-                  <p className="mt-2 text-xs leading-6 text-[#70695F]">{body}</p>
+
+                  <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold mb-1">
+                    <span>{isFounder ? 'FOUNDER & CEO' : 'VERIFIED ATELIER'}</span>
+                    <span>·</span>
+                    <span className={isFounder ? 'text-white/60' : 'text-[#817C73]'}>{artist.origin}</span>
+                  </div>
+
+                  <h3 className={`font-serif text-lg font-bold transition-colors ${
+                    isFounder ? 'text-white group-hover:text-[#B89B62]' : 'text-[#171717] group-hover:text-[#B89B62]'
+                  }`}>
+                    {artist.name}
+                  </h3>
+                  <p className={`text-xs font-medium mt-0.5 truncate ${
+                    isFounder ? 'text-[#B89B62]' : 'text-[#817C73]'
+                  }`}>
+                    {artist.title}
+                  </p>
+
+                  <p className={`text-xs line-clamp-3 mt-3 font-sans leading-relaxed ${
+                    isFounder ? 'text-white/80' : 'text-[#171717]/80'
+                  }`}>
+                    "{artist.statement}"
+                  </p>
                 </div>
-              ))}
-            </div>
-            <button onClick={() => navigateTo('/about')} className="mt-9 inline-flex items-center gap-3 bg-[#171717] px-6 py-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#B89B62] hover:text-[#171717]">
-              {sw ? 'Kuhusu galari' : 'Discover the gallery'} <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
+
+                <div className={`mt-4 pt-3 flex items-center justify-between text-xs ${
+                  isFounder ? 'border-t border-[#B89B62]/30 text-white/70' : 'border-t border-[#817C73]/15 text-[#817C73]'
+                }`}>
+                  <span>{artist.exhibitionsCount} Exhibitions</span>
+                  <span className={`font-semibold flex items-center gap-1 ${
+                    isFounder ? 'text-[#B89B62]' : 'text-[#171717]'
+                  }`}>
+                    Dossier <ArrowRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -402,6 +497,179 @@ export const CuratedFeatures: React.FC = () => {
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
             <button onClick={() => navigateTo('/commissions')} className="inline-flex min-h-14 items-center justify-center gap-3 bg-[#171717] px-7 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-[#171717]">{sw ? 'Ulizia sanaa' : 'Make an enquiry'} <ArrowRight className="h-4 w-4" /></button>
             <button onClick={() => navigateTo('/gallery')} className="inline-flex min-h-14 items-center justify-center border border-[#171717]/40 px-7 text-[10px] font-bold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:bg-[#171717]/5">{sw ? 'Chunguza galari' : 'Browse gallery'}</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 12: About the Founder */}
+      <section className="bg-gradient-to-br from-[#171717] via-[#1E1B18] to-[#121212] text-white border-y border-[#B89B62]/30 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Portrait Column */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative group max-w-sm w-full">
+                <div className="absolute -inset-2.5 border border-[#B89B62]/40 translate-x-2.5 translate-y-2.5 pointer-events-none transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5 duration-500"></div>
+                <div className="relative aspect-[3/4] bg-[#0E0E0E] overflow-hidden border-2 border-[#B89B62] shadow-2xl">
+                  <img
+                    src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
+                    alt="Hussein Sadiki Gumbo, Founder & CEO of Mrisho Art Gallery, Arusha, Tanzania"
+                    className="w-full h-full object-cover object-top filter brightness-[1.02] contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none"></div>
+
+                  <div className="absolute bottom-3 left-3 right-3 bg-[#171717]/90 backdrop-blur-md border border-[#B89B62]/60 px-3.5 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Award className="w-4 h-4 text-[#B89B62]" />
+                      <span className="text-[11px] uppercase tracking-wider font-semibold text-[#B89B62]">
+                        Founder & CEO
+                      </span>
+                    </div>
+                    <span className="text-[10px] uppercase font-mono text-white/70">
+                      Arusha, Tanzania
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#B89B62]/15 border border-[#B89B62]/30 text-[#B89B62] text-[10px] uppercase tracking-[0.25em] font-semibold">
+                  <Sparkles className="w-3 h-3 text-[#B89B62]" />
+                  {language === 'sw' ? 'Uongozi wa Galari' : 'Gallery Leadership'}
+                </div>
+
+                <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
+                  Hussein Sadiki Gumbo
+                </h2>
+
+                <p className="text-xs uppercase tracking-widest text-[#B89B62] font-mono">
+                  {language === 'sw' ? 'Mwanzilishi & Afisa Mtendaji Mkuu' : 'Founder & Chief Executive Officer'}
+                </p>
+                <p className="text-xs text-white/70">
+                  Mrisho Art Gallery · Arusha, Tanzania
+                </p>
+                <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] font-mono">
+                  <a href="tel:+255639827831" className="hover:underline flex items-center gap-1 text-white hover:text-[#B89B62] transition-colors">
+                    <Phone className="w-3 h-3 text-[#B89B62]" />
+                    <span>+255 639 827 831</span>
+                  </a>
+                  <span className="text-white/40">·</span>
+                  <a href="tel:+255782400311" className="hover:underline flex items-center gap-1 text-white hover:text-[#B89B62] transition-colors">
+                    <Phone className="w-3 h-3 text-[#B89B62]" />
+                    <span>+255 782 400 311</span>
+                  </a>
+                  <span className="text-white/40">·</span>
+                  <a href="mailto:mrishoartist@gmail.com" className="hover:underline text-[#B89B62]">
+                    mrishoartist@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative pl-6 sm:pl-8 border-l-2 border-[#B89B62] space-y-3">
+                <Quote className="w-8 h-8 text-[#B89B62]/30 absolute -top-3 -left-3.5 fill-[#B89B62]/20" />
+                <p className="font-serif italic text-lg sm:text-xl text-white leading-relaxed">
+                  {language === 'sw'
+                    ? '"Sanaa ni sauti yetu kuu na daraja la kitamaduni. Kutoka Arusha kuelekea ulimwenguni, lengo letu ni kuonyesha ubunifu na uzuri wa sanaa ya Kiafrika kwa ubora na heshima ya juu ya kimataifa."'
+                    : '"Art is our sovereign voice and cultural bridge. From Arusha to the world, our mission is to present African brilliance with unapologetic museum excellence and authenticity."'}
+                </p>
+              </div>
+
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-sans">
+                {language === 'sw'
+                  ? 'Mrisho Art Gallery ilianzishwa ikiwa na makao makuu yake jijini Arusha, Tanzania, kwa lengo la kuwawezesha wasanii mahiri wa Afrika, kulinda uhalisi kupitia teknolojia ya blockchain, na kutoa jukwaa la kimataifa la biashara ya sanaa bila mipaka.'
+                  : 'Founded and based in Arusha, Tanzania, Mrisho Art Gallery is dedicated to elevating African visual arts into the forefront of global institutional and private collections with verified provenance and uncompromising curatorial integrity.'}
+              </p>
+
+              <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
+                <button
+                  onClick={() => navigateTo('/about')}
+                  className="px-6 py-3 bg-[#B89B62] text-[#171717] uppercase tracking-wider hover:bg-[#B89B62]/90 transition-all font-bold"
+                >
+                  {language === 'sw' ? 'Soma Wasifu wa Mwanzilishi' : 'Read Founder Charter'}
+                </button>
+                <button
+                  onClick={() => navigateTo('/gallery')}
+                  className="px-6 py-3 border border-white/40 text-white uppercase tracking-wider hover:border-white hover:bg-white/10 transition-colors"
+                >
+                  {language === 'sw' ? 'Tazama Kazi za Sanaa' : 'Explore Permanent Gallery'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 13: Consent-Based Newsletter */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="bg-white border border-[#817C73]/25 p-8 sm:p-12">
+          <div className="max-w-2xl mx-auto text-center space-y-4">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block">
+              Curatorial Gazette
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
+              {language === 'sw' ? 'Jiunge na Jarida Letu la Sanaa' : 'Subscribe to the Curatorial Gazette'}
+            </h2>
+            <p className="text-xs sm:text-sm text-[#817C73]">
+              {language === 'sw'
+                ? 'Pokea mialiko ya maonyesho mapya, habari za wasanii wetu, na uchambuzi wa kina wa soko la sanaa.'
+                : 'Receive private exhibition invitations, newly accessioned masterworks, and curatorial dispatches directly to your inbox.'}
+            </p>
+
+            {newsletterSubscribed ? (
+              <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-center gap-2">
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span>
+                  {language === 'sw'
+                    ? 'Asante! Ombi lako la kujiunga na jarida limepokelewa.'
+                    : 'Thank you! You are now subscribed to the Mrisho Art Gazette.'}
+                </span>
+              </div>
+            ) : (
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  if (newsletterEmail && newsletterConsent) {
+                    setNewsletterSubscribed(true);
+                  }
+                }}
+                className="space-y-4 text-left pt-2"
+              >
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={e => setNewsletterEmail(e.target.value)}
+                    required
+                    placeholder="name@collector.com"
+                    className="flex-1 p-3 bg-[#F7F5F0] border border-[#817C73]/30 text-xs text-[#171717] focus:outline-none focus:border-[#B89B62]"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!newsletterConsent}
+                    className="px-6 py-3 bg-[#171717] text-[#F7F5F0] text-xs font-bold uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                  >
+                    {language === 'sw' ? 'Jiunge Sasa' : 'Subscribe'}
+                  </button>
+                </div>
+
+                <label className="flex items-start gap-2 cursor-pointer text-[11px] text-[#817C73]">
+                  <input
+                    type="checkbox"
+                    checked={newsletterConsent}
+                    onChange={e => setNewsletterConsent(e.target.checked)}
+                    required
+                    className="mt-0.5 accent-[#B89B62]"
+                  />
+                  <span>
+                    {language === 'sw'
+                      ? 'Ninakubali kupokea taarifa za kielektroniki kutoka Mrisho Art Gallery. Unaweza kujiondoa wakati wowote.'
+                      : 'I consent to receive electronic curatorial dispatches from Mrisho Art Gallery. You may unsubscribe at any time.'}
+                  </span>
+                </label>
+              </form>
+            )}
           </div>
         </div>
       </section>

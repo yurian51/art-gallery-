@@ -43,8 +43,8 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
     },
     {
       role: 'ADMIN',
-      title: 'Admin workspace',
-      subtitle: 'Preview gallery administration tools.',
+      title: 'Gallery Director & Executive Admin',
+      subtitle: 'Founder & CEO Hussein Sadiki Gumbo console: catalog curation, inventory, artist applications, and audit logs.',
       icon: <Compass className="w-5 h-5 text-[#B89B62]" />,
       targetRoute: '/admin',
     },

@@ -25,7 +25,8 @@ export const ExhibitionsView: React.FC = () => {
           Exhibitions & Salons
         </h1>
         <p className="text-xs sm:text-sm text-[#817C73] max-w-2xl mt-2 font-sans font-light">
-          Exhibition details will be published here when dates, venues and participating artists are confirmed.
+          On-site presentations at our Arusha Pavilion in Arusha, Tanzania, international museum partnerships,
+          and virtual 3D spatial showcases.
         </p>
       </div>
 

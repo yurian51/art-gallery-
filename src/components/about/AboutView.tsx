@@ -45,16 +45,19 @@ export const AboutView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-6 space-y-5 text-[#171717] font-sans">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-            Rooted in Arusha, connected through art
+            Rooted in African Heritage, Connected to Global Collectors
           </h2>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            Based in Arusha, Tanzania, Mrisho Art Gallery is an independent gallery focused on presenting African visual creativity.
-            The gallery's digital space introduces visual work and provides a place to learn about the people and ideas behind it.
+            Headquartered in Arusha, Tanzania, Mrisho Art Gallery was founded with a singular conviction:
+            that African visual art, master wood sculpture, fine textiles, and contemporary paintings
+            belong in the forefront of international cultural dialogues, museums, and private collections.
           </p>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            Our aim is to make African art more visible and give artists a thoughtful space to present their work and connect with interested collectors.
+            From the creative frontiers of Tanzania and East Africa to the international stage, our mission
+            is to provide exceptional artists with sovereign accreditation, fair primary market valuation,
+            and transparent digital blockchain provenance under the banner of Art Beyond Boundaries.
           </p>
 
           <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
@@ -75,89 +78,147 @@ export const AboutView: React.FC = () => {
 
         <div className="lg:col-span-6 border-2 border-[#817C73]/25 overflow-hidden shadow-xl bg-[#EBE6DF]">
           <img
-            src={galleryInteriorImage}
-            alt="Gallery interior reference image"
+            src="/src/assets/images/gallery_interior_dar_1794114974688.jpg"
+            alt="Interior of Mrisho Art Gallery, Arusha Pavilion"
             className="w-full h-80 sm:h-96 object-cover"
           />
         </div>
       </div>
 
+      {/* Founder & CEO Visionary Profile */}
+      <div className="bg-gradient-to-br from-[#171717] via-[#1f1d1b] to-[#121212] text-[#F7F5F0] border-2 border-[#B89B62]/40 shadow-2xl relative overflow-hidden">
+        {/* Subtle decorative background watermarks */}
+        <div className="absolute -right-16 -bottom-16 w-80 h-80 opacity-5 pointer-events-none">
+          <img
+            src="/assets/aistudio/file_000000003cbc82119fc00a28863060cc_f2901e66.png"
+            alt=""
+            className="w-full h-full object-contain filter invert"
+          />
+        </div>
 
-      {/* Chief Executive Officer */}
-      <section
-        aria-labelledby="founder-title"
-        className="relative overflow-hidden border border-[#B89B62]/35 bg-[#171717] text-[#F7F5F0] shadow-xl"
-      >
-        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full border border-[#B89B62]/10" />
-        <div className="pointer-events-none absolute -right-12 -top-12 h-56 w-56 rounded-full border border-[#B89B62]/10" />
-
-        <div className="relative grid grid-cols-1 items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-12 lg:gap-14">
-          <div className="flex flex-col items-center text-center lg:col-span-5">
-            <div className="relative mb-7">
-              <div className="absolute -inset-3 rounded-full border border-[#B89B62]/45" />
-              <div className="absolute -inset-6 rounded-full border border-[#B89B62]/15" />
-              <div className="relative h-52 w-52 overflow-hidden rounded-full border-[5px] border-[#B89B62] bg-[#282521] shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:h-64 sm:w-64">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-8 sm:p-12 lg:p-16 relative z-10">
+          {/* Executive Portrait Container */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="relative group">
+              {/* Outer decorative gold frame border */}
+              <div className="absolute -inset-2.5 border border-[#B89B62]/40 translate-x-2 translate-y-2 pointer-events-none transition-transform group-hover:translate-x-3 group-hover:translate-y-3 duration-500"></div>
+              
+              <div className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] bg-[#0E0E0E] overflow-hidden shadow-2xl border-2 border-[#B89B62]">
                 <img
                   src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
-                  alt="Hussein Sadiki Gumbo, CEO of Mrisho Art Gallery"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full rounded-full object-cover object-[center_18%]"
+                  alt="Hussein Sadiki Gumbo, Founder & CEO of Mrisho Art Gallery"
+                  className="w-full h-full object-cover object-top filter brightness-[1.02] contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+
+                {/* Badge Overlay */}
+                <div className="absolute bottom-3 left-3 right-3 bg-[#171717]/90 backdrop-blur-md border border-[#B89B62]/60 px-3.5 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Award className="w-4 h-4 text-[#B89B62]" />
+                    <span className="text-[11px] uppercase tracking-wider font-semibold text-[#B89B62]">
+                      {language === 'sw' ? 'Mwanzilishi & CEO' : 'Founder & CEO'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] uppercase font-mono text-[#F7F5F0]/70">
+                    Mrisho Gallery
+                  </span>
+                </div>
               </div>
             </div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89B62]">
-              {language === 'sw' ? 'Afisa Mtendaji Mkuu' : 'Founder & CEO'}
-            </span>
-            <p className="mt-2 text-xs tracking-[0.16em] text-[#F7F5F0]/65">
-              Mrisho Art Gallery · Arusha, Tanzania
-            </p>
+
+            <div className="mt-5 text-center space-y-1">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#B89B62] font-semibold block">
+                Mrisho Art Gallery
+              </span>
+              <p className="text-xs text-[#F7F5F0]/60">
+                Arusha, Tanzania
+              </p>
+              <div className="pt-2 flex flex-col items-center gap-0.5 text-[11px] text-[#F7F5F0]/85 font-mono">
+                <div className="flex items-center gap-2">
+                  <a href="tel:+255639827831" className="hover:text-[#B89B62] transition-colors">+255 639 827 831</a>
+                  <span>·</span>
+                  <a href="tel:+255782400311" className="hover:text-[#B89B62] transition-colors">+255 782 400 311</a>
+                </div>
+                <a href="mailto:mrishoartist@gmail.com" className="text-[#B89B62] hover:underline font-sans text-[11px]">
+                  mrishoartist@gmail.com
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-5 lg:col-span-7">
-            <div className="space-y-3">
-              <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#B89B62]">
-                <Sparkles className="h-3.5 w-3.5" />
-                {language === 'sw' ? 'Uongozi wa Galari' : 'Gallery Leadership'}
-              </span>
-              <h2 id="founder-title" className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#F7F5F0] sm:text-4xl">
-                {language === 'sw' ? 'Afisa Mtendaji Mkuu' : 'Chief Executive Officer'}
+          {/* Executive Vision Text */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#B89B62]/15 border border-[#B89B62]/30 text-[#B89B62] text-[10px] uppercase tracking-[0.25em] font-semibold">
+                <Sparkles className="w-3 h-3 text-[#B89B62]" />
+                {language === 'sw' ? 'Uongozi wa Galari' : 'Executive Leadership'}
+              </div>
+
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F7F5F0] tracking-tight">
+                {language === 'sw' ? 'Mwanzilishi & Afisa Mtendaji Mkuu' : 'Founder & Chief Executive Officer'}
               </h2>
-              <p className="font-serif text-2xl italic text-[#B89B62] sm:text-3xl">
+
+              <p className="font-serif italic text-2xl sm:text-3xl text-[#B89B62]">
                 Hussein Sadiki Gumbo
               </p>
-            </div>
-
-            <div className="flex gap-4 border-l-2 border-[#B89B62] pl-5">
-              <Quote className="mt-1 h-6 w-6 shrink-0 text-[#B89B62]/70" />
-              <p className="font-serif text-base italic leading-relaxed text-[#F7F5F0]/85 sm:text-lg">
+              <p className="text-xs uppercase tracking-widest text-[#F7F5F0]/70 font-mono">
                 {language === 'sw'
-                  ? '“Kutoka Arusha kuelekea ulimwenguni, tunalenga kuunganisha watu na sanaa ya Kiafrika kupitia ubunifu, urithi na mawasiliano ya moja kwa moja.”'
-                  : '“From Arusha to the world, we aim to connect people with African art through creativity, heritage and meaningful conversation.”'}
+                  ? 'Mwanzilishi na Afisa Mtendaji Mkuu · Arusha, Tanzania'
+                  : 'Founder & CEO · Arusha, Tanzania'}
               </p>
             </div>
 
-            <p className="max-w-2xl text-sm leading-7 text-[#F7F5F0]/70">
-              {language === 'sw'
-                ? 'Hussein Sadiki Gumbo anaongoza Mrisho Art Gallery kwa dhamira ya kuwasilisha kazi za sanaa za Kiafrika kwa hadhira ya ndani na ya kimataifa. Galari inajikita katika kuwatambulisha wasanii, kusimulia historia ya kazi zao na kuwapa wakusanyaji njia rahisi ya kuwasiliana kuhusu kazi wanazozipenda.'
-                : 'Hussein Sadiki Gumbo leads Mrisho Art Gallery with a commitment to presenting African art to local and international audiences. The gallery focuses on introducing artists, sharing the stories behind their work, and making it easier for collectors to enquire about pieces that inspire them.'}
-            </p>
+            <div className="relative pl-6 sm:pl-8 border-l-2 border-[#B89B62] space-y-3">
+              <Quote className="w-8 h-8 text-[#B89B62]/30 absolute -top-3 -left-3.5 fill-[#B89B62]/20" />
+              <p className="font-serif italic text-lg sm:text-xl text-[#F7F5F0] leading-relaxed">
+                {language === 'sw'
+                  ? '"Sanaa ni sauti yetu kuu na daraja la kitamaduni. Kutoka Arusha kuelekea ulimwenguni, lengo letu ni kuonyesha ubunifu na uzuri wa sanaa ya Kiafrika kwa ubora na heshima ya juu ya kimataifa."'
+                  : '"Art is our sovereign voice and cultural bridge. From Arusha to the world, our mission is to present African brilliance with unapologetic museum excellence and authenticity."'}
+              </p>
+            </div>
 
-            <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-5 text-xs">
-              <span className="inline-flex items-center gap-2 text-[#F7F5F0]/75">
-                <MapPin className="h-4 w-4 text-[#B89B62]" />
-                Arusha, Tanzania
-              </span>
-              <span className="inline-flex items-center gap-2 text-[#F7F5F0]/75">
-                <Award className="h-4 w-4 text-[#B89B62]" />
-                {language === 'sw' ? 'Uongozi wa Galari' : 'Gallery Executive'}
-              </span>
+            <div className="space-y-3 text-xs sm:text-sm text-[#F7F5F0]/80 leading-relaxed font-sans">
+              <p>
+                {language === 'sw'
+                  ? 'Chini ya uongozi wa Hussein Sadiki Gumbo, Mrisho Art Gallery imekuwa kitovu cha heshima kwa sanaa asilia na ya kisasa ya Kiafrika—kikijumuisha michoro, sanamu za miti ya Mpingo, picha za asili, na mikusanyiko ya kipekee. Kila kazi ya sanaa inapewa uthibitisho wa kimaabara na usajili wa blockchain, ikiwapa wakusanyaji ujasiri kamili wa umiliki.'
+                  : 'Under the vision of Hussein Sadiki Gumbo, Mrisho Art Gallery operates as a premier institution for visual arts, monumental canvases, African modernist wood sculptures, and fine art prints. Every artwork accessioned undergoes rigorous verification and cryptographic provenance, setting an unassailable benchmark for global art commerce.'}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-[#817C73]/30 flex flex-wrap items-center gap-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#B89B62]/20 border border-[#B89B62] flex items-center justify-center text-[#B89B62] shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#B89B62] font-semibold block">
+                    {language === 'sw' ? 'Mamlaka ya Uratibu' : 'Curatorial Authority'}
+                  </span>
+                  <span className="text-xs text-[#F7F5F0] font-medium">
+                    {language === 'sw' ? 'Dhamana ya Uhalisi wa Kudumu' : 'Verified African Fine Art Registry'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#B89B62]/20 border border-[#B89B62] flex items-center justify-center text-[#B89B62] shrink-0">
+                  <Compass className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#B89B62] font-semibold block">
+                    {language === 'sw' ? 'Makao Makuu' : 'Institutional Headquarters'}
+                  </span>
+                  <span className="text-xs text-[#F7F5F0] font-medium">
+                    Arusha, Tanzania
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Gallery principles */}
+      {/* The 4-Pillar Blockchain Provenance Protocol */}
       <div className="bg-white border border-[#817C73]/25 p-8 sm:p-12 space-y-8">
         <div className="max-w-2xl">
           <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
@@ -176,7 +237,8 @@ export const AboutView: React.FC = () => {
             <span className="font-mono text-base font-bold text-[#B89B62]">01</span>
             <h3 className="font-serif font-bold text-base text-[#171717]">Artist & Artwork Context</h3>
             <p className="text-[#817C73] leading-relaxed">
-              We present the artist, medium, materials, dimensions, and background information when supplied and confirmed.
+              Raw earth pigments, organic binders, and wood species (e.g. Tanzanian Mpingo) are verified
+              by our senior conservator at our Arusha Pavilion.
             </p>
           </div>
 
@@ -215,24 +277,31 @@ export const AboutView: React.FC = () => {
           </h3>
 
           <div className="space-y-4 text-xs text-[#817C73]">
-            <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
-              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Gallery location</span>
+            <div className="p-5 bg-white border border-[#817C73]/20 space-y-2">
+              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Gallery Headquarters & Exhibition Pavilion</span>
               <h4 className="font-serif font-bold text-base text-[#171717]">Arusha, Tanzania</h4>
-              <p>Mrisho Art Gallery</p>
+              <p className="text-[#817C73]">
+                {language === 'sw'
+                  ? 'Kituo kikuu cha maonyesho ya sanaa asilia, mikusanyiko ya kisasa na usimamizi wa wasanii.'
+                  : 'Main institutional pavilion for visual art exhibitions, curated collections, and artist management.'}
+              </p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
                 <span>Visit details not published</span>
               </div>
             </div>
 
-            <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
-              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Online gallery</span>
-              <h4 className="font-serif font-bold text-base text-[#171717]">Online Gallery</h4>
-              <p>Gallery information and artwork listings.</p>
-              
+            <div className="p-5 bg-white border border-[#817C73]/20 space-y-2">
+              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">International Client Services</span>
+              <h4 className="font-serif font-bold text-base text-[#171717]">Tanzania & Global Advisory</h4>
+              <p className="text-[#817C73]">
+                {language === 'sw'
+                  ? 'Huduma za ununuzi wa sanaa kwa wakusanyaji binafsi, makampuni, na taasisi za kimataifa.'
+                  : 'White-glove international shipping, museum crating, and private curatorial acquisition advisory.'}
+              </p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Contact service not connected</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" />
+                <span>Verified Blockchain Registry</span>
               </div>
             </div>
           </div>

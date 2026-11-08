@@ -2,13 +2,14 @@ import React from 'react';
 import heroArtworkImage from '../../assets/images/hero_african_art_gallery_1794114972525.jpg';
 import { useApp } from '../../context/AppContext';
 import { translations } from '../../translations';
-import { ArrowRight, MapPin, ShieldCheck, Sparkles, Eye, Palette } from 'lucide-react';
+import { formatPrice } from '../../services/currencyService';
+import { ShieldCheck, ArrowRight, Compass, Clock, MapPin, Sparkles } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
-  const { language, navigateTo, artworks, setInspectedArtwork } = useApp();
+  const { language, currency, navigateTo, artworks, setInspectedArtwork } = useApp();
   const t = translations[language];
-  const featuredArt = artworks.find(a => a.id === 'art-001') || artworks[0];
-  const sw = language === 'sw';
+
+  const featuredArt = artworks.find(a => a.id === 'art-mrisho-01') || artworks[0];
 
   return (
     <section className="relative overflow-hidden bg-[#F7F5F0]">
@@ -22,68 +23,58 @@ export const HeroSection: React.FC = () => {
             {sw ? 'Sanaa ya kipekee · Arusha, Tanzania' : 'A distinctive art destination · Arusha, Tanzania'}
           </div>
 
-          <h1 className="max-w-[760px] font-serif text-[clamp(3.1rem,6.1vw,6.3rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-[#171717]">
-            {t.hero.headline}
-          </h1>
-
-          <p className="mt-7 max-w-xl text-base leading-8 text-[#625D55] sm:text-lg">
-            {t.hero.subhead}
-          </p>
-
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <button
-              type="button"
-              onClick={() => navigateTo('/gallery')}
-              className="group inline-flex min-h-14 items-center justify-center gap-4 rounded-sm bg-[#171717] px-7 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_12px_30px_rgba(23,23,23,0.14)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#B89B62] hover:text-[#171717]"
+          {/* Right Column: Hero Centerpiece Masterwork (6 cols) */}
+          <div className="lg:col-span-6 relative">
+            <div
+              onClick={() => featuredArt && setInspectedArtwork(featuredArt)}
+              className="relative group cursor-pointer bg-[#EBE6DF] border border-[#817C73]/25 overflow-hidden shadow-md h-full flex flex-col justify-end min-h-[380px] lg:min-h-[480px]"
             >
-              {t.hero.exploreGallery}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </button>
-            <button
-              type="button"
-              onClick={() => navigateTo('/artists')}
-              className="inline-flex min-h-14 items-center justify-center gap-3 rounded-sm border border-[#171717]/20 bg-white/50 px-7 text-xs font-bold uppercase tracking-[0.16em] text-[#171717] transition-all hover:border-[#B89B62] hover:bg-white"
-            >
-              {t.hero.discoverArtists}
-            </button>
-          </div>
+              <img
+                src={featuredArt.images[0]}
+                alt={featuredArt.title}
+                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
 
-          <div className="mt-12 grid max-w-xl grid-cols-3 border-y border-[#817C73]/20 py-5">
-            <div className="pr-3">
-              <Palette className="mb-2 h-5 w-5 text-[#A88B54]" />
-              <p className="text-xs font-bold text-[#171717]">{sw ? 'Sanaa' : 'Art & craft'}</p>
-              <p className="mt-1 text-[10px] leading-4 text-[#817C73]">{sw ? 'Kazi za ubunifu' : 'Creative expression'}</p>
-            </div>
-            <div className="border-x border-[#817C73]/20 px-4">
-              <Eye className="mb-2 h-5 w-5 text-[#A88B54]" />
-              <p className="text-xs font-bold text-[#171717]">{sw ? 'Mkusanyiko' : 'Collections'}</p>
-              <p className="mt-1 text-[10px] leading-4 text-[#817C73]">{sw ? 'Gundua kazi' : 'Discover artworks'}</p>
-            </div>
-            <div className="pl-4">
-              <MapPin className="mb-2 h-5 w-5 text-[#A88B54]" />
-              <p className="text-xs font-bold text-[#171717]">Arusha</p>
-              <p className="mt-1 text-[10px] leading-4 text-[#817C73]">Tanzania</p>
+              {/* Curatorial Scrim Overlay */}
+              <div className="relative z-10 p-5 sm:p-6 bg-gradient-to-t from-black/85 via-black/45 to-transparent text-[#F7F5F0]">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
+                    {language === 'sw' ? 'Kazi Kuu ya Sanaa · Mkusanyiko wa Mwanzilishi' : 'Curatorial Centerpiece · Founder Masterwork'}
+                  </span>
+                </div>
+
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-[#B89B62] transition-colors">
+                  {language === 'sw' && featuredArt.titleSwahili ? featuredArt.titleSwahili : featuredArt.title}
+                </h3>
+                <p className="text-xs text-white/80 font-sans mt-0.5">
+                  {featuredArt.artistName} · {featuredArt.medium}
+                </p>
+
+                <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-white/20">
+                  <span className="font-mono text-sm font-bold text-[#B89B62] tabular-nums">
+                    {formatPrice(featuredArt.priceTzs, currency)} · Blockchain Deed
+                  </span>
+                  <span className="text-[11px] underline underline-offset-2 flex items-center gap-1">
+                    <span>{language === 'sw' ? 'Tazama Kazi Hii' : 'Examine Masterwork'}</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[650px] lg:ml-auto">
-          <div className="absolute -bottom-5 -left-5 z-0 hidden h-2/3 w-2/3 border border-[#B89B62]/50 sm:block" />
-          <button
-            type="button"
-            onClick={() => { if (featuredArt) setInspectedArtwork(featuredArt); else navigateTo('/gallery'); }}
-            aria-label={sw ? 'Tazama kazi ya sanaa iliyoangaziwa' : 'View featured artwork'}
-            className="group relative z-10 block aspect-[4/4.5] w-full overflow-hidden bg-[#DED7CB] text-left shadow-[0_28px_70px_rgba(23,23,23,0.18)]"
-          >
-            <img
-              src={heroArtworkImage}
-              alt={sw ? 'Kazi ya sanaa ya Kiafrika katika galari' : 'African artwork in a curated gallery setting'}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/5" />
-            <div className="absolute left-5 top-5 flex items-center gap-2 border border-white/35 bg-black/25 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm sm:left-7 sm:top-7">
-              <Sparkles className="h-3.5 w-3.5 text-[#D7B873]" />
-              {sw ? 'Sanaa iliyochaguliwa' : 'Curated selection'}
+      {/* Operational Utility Ribbon below the Hero (Pattern A from references) */}
+      <div className="border-t border-[#817C73]/20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-[#171717]">
+            <div className="flex items-center gap-2.5">
+              <MapPin className="w-4 h-4 text-[#B89B62] shrink-0" />
+              <div>
+                <span className="font-semibold block leading-tight">Main Gallery Pavilion</span>
+                <span className="text-[11px] text-[#817C73]">Arusha, Tanzania</span>
+              </div>
             </div>
             <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-9">
               <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D7B873]">

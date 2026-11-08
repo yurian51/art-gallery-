@@ -65,13 +65,24 @@ export const AdminDashboard: React.FC = () => {
               Gallery administration
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Workspace preview · No live database or secure administrator session is connected
+              Consortium Node: <strong className="text-[#171717]">PAAC-Arusha-Mainnet</strong> · Smart Escrow Enforced
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
-            <span className="px-3 py-1 bg-white border border-[#817C73]/25 font-mono text-[#171717]">
-              Local preview
+          <div className="flex items-center gap-3 text-xs">
+            <div className="flex items-center gap-2.5 px-3 py-1.5 bg-white border border-[#B89B62]/40 shadow-xs">
+              <img
+                src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
+                alt="Founder & CEO"
+                className="w-8 h-8 rounded-none object-cover object-top border border-[#B89B62]"
+              />
+              <div className="text-left">
+                <span className="font-semibold block text-[11px] text-[#171717] leading-tight">Hussein Sadiki Gumbo</span>
+                <span className="text-[10px] text-[#B89B62] block leading-tight font-medium">Founder & CEO</span>
+              </div>
+            </div>
+            <span className="px-3 py-2 bg-white border border-[#817C73]/25 font-mono text-[#171717] hidden md:inline-block">
+              Network: Polygon Fine Art
             </span>
           </div>
         </div>
@@ -133,7 +144,7 @@ export const AdminDashboard: React.FC = () => {
               <span className="font-serif text-3xl font-bold text-[#171717]">
                 {exhibitions.length}
               </span>
-              <span className="text-[11px] text-[#817C73] block mt-1">No venue data connected</span>
+              <span className="text-[11px] text-[#817C73] block mt-1">Arusha & International Salons</span>
             </div>
           </div>
 

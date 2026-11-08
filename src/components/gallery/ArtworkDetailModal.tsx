@@ -12,6 +12,7 @@ import {
   Check,
   ChevronRight,
   ZoomIn,
+  MessageSquare,
 } from 'lucide-react';
 
 export const ArtworkDetailModal: React.FC = () => {
@@ -244,14 +245,29 @@ export const ArtworkDetailModal: React.FC = () => {
               </p>
             </div>
 
-            {/* Curator Inquiry Button */}
+            {/* Curator Inquiry Options */}
             {!showInquiryForm ? (
-              <button
-                onClick={() => setShowInquiryForm(true)}
-                className="w-full py-2.5 border border-[#171717] text-xs font-medium text-[#171717] hover:bg-[#171717] hover:text-[#F7F5F0] transition-colors"
-              >
-                Ask about this artwork
-              </button>
+              <div className="space-y-2">
+                <button
+                  onClick={() => setShowInquiryForm(true)}
+                  className="w-full py-2.5 border border-[#171717] text-xs font-medium text-[#171717] hover:bg-[#171717] hover:text-[#F7F5F0] transition-colors"
+                >
+                  {language === 'sw' ? 'Wasiliana na Mkurugenzi wa Uratibu' : 'Inquire with Chief Curator'}
+                </button>
+                <a
+                  href={`https://wa.me/255639827831?text=${encodeURIComponent(
+                    `Habari Hussein Sadiki Gumbo (Mrisho Art Gallery), ninaulizia kuhusu kazi ya sanaa: "${inspectedArtwork.title}" (Ref: ${inspectedArtwork.id}).`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 bg-emerald-800 text-white text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>
+                    {language === 'sw' ? 'Wasiliana Moja kwa Moja WhatsApp (+255 639 827 831)' : 'Direct WhatsApp Concierge (+255 639 827 831)'}
+                  </span>
+                </a>
+              </div>
             ) : (
               <form onSubmit={handleSendInquiry} className="p-3 bg-white border border-[#817C73]/30 space-y-2">
                 <span className="text-[10px] uppercase font-semibold text-[#817C73] block">
