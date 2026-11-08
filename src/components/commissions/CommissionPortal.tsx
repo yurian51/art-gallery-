@@ -34,11 +34,11 @@ export const CommissionPortal: React.FC = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [preferredArtistId, setPreferredArtistId] = useState('');
   const [category, setCategory] = useState<ArtCategory>('Paintings');
-  const [mediumPreferred, setMediumPreferred] = useState('Oil, Natural Ochre & 24k Gold Leaf');
-  const [dimensionsRequired, setDimensionsRequired] = useState('180cm × 140cm');
-  const [budgetTzs, setBudgetTzs] = useState(15000000);
-  const [deadline, setDeadline] = useState('2026-10-31');
-  const [deliveryCity, setDeliveryCity] = useState('Dar es Salaam');
+  const [mediumPreferred, setMediumPreferred] = useState('');
+  const [dimensionsRequired, setDimensionsRequired] = useState('');
+  const [budgetTzs, setBudgetTzs] = useState(0);
+  const [deadline, setDeadline] = useState('');
+  const [deliveryCity, setDeliveryCity] = useState('');
   const [deliveryCountry, setDeliveryCountry] = useState('Tanzania');
   const [brief, setBrief] = useState('');
   const [submittedId, setSubmittedId] = useState<string | null>(null);
@@ -313,59 +313,19 @@ export const CommissionPortal: React.FC = () => {
             </form>
           </div>
 
-          {/* Right Column: Curatorial Commission Protocol (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#EBE6DF]/50 border border-[#817C73]/25 p-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-[#B89B62]" />
-                <h3 className="font-serif font-bold text-lg text-[#171717]">
-                  The Mrisho Commission Guarantee
-                </h3>
-              </div>
-
-              <p className="text-xs text-[#817C73] leading-relaxed">
-                All bespoke commissions are structured under escrow contracts. The artist receives studio material
-                disbursements upon initial sketch sign-off, while your final balance is secured until you approve
-                the finished masterpiece in studio review.
-              </p>
-
-              <div className="space-y-3 pt-2 text-xs">
-                <div className="p-3 bg-white border border-[#817C73]/15">
-                  <h4 className="font-bold text-[#171717]">Direct Atelier Dialogue</h4>
-                  <p className="text-[#817C73] mt-0.5">
-                    Receive photographic studio progress updates and raw material provenance documentation directly from the master creator.
-                  </p>
-                </div>
-
-                <div className="p-3 bg-white border border-[#817C73]/15">
-                  <h4 className="font-bold text-[#171717]">Cryptographic Deed Registration</h4>
-                  <p className="text-[#817C73] mt-0.5">
-                    Upon delivery, the artwork is cataloged with an immutable Genesis Block, formalizing its accession into your permanent collection.
-                  </p>
-                </div>
-              </div>
+          <aside className="lg:col-span-5 space-y-5">
+            <div className="border border-[#817C73]/20 bg-white p-6">
+              <h3 className="font-serif text-xl text-[#171717]">Prepare your enquiry</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#817C73]">Useful details help the gallery understand what you have in mind. No price, artist availability or production schedule is confirmed by this form.</p>
+              <ol className="mt-5 space-y-3 text-xs text-[#817C73]">
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">01</span><span>Describe the idea, subject and intended setting.</span></li>
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">02</span><span>Choose an art discipline and preferred medium.</span></li>
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">03</span><span>Add approximate dimensions and your target date.</span></li>
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">04</span><span>Include the destination and any budget guidance.</span></li>
+              </ol>
             </div>
-
-            <div className="bg-white border border-[#817C73]/20 p-6 space-y-3 text-xs">
-              <h4 className="font-serif font-bold text-sm text-[#171717]">
-                Commission Fee Breakdown
-              </h4>
-              <div className="space-y-2 text-[#817C73]">
-                <div className="flex justify-between border-b border-[#817C73]/15 pb-1">
-                  <span>Initial Studio Deposit:</span>
-                  <span className="font-bold text-[#171717]">40% on Brief Approval</span>
-                </div>
-                <div className="flex justify-between border-b border-[#817C73]/15 pb-1">
-                  <span>Mid-Production Milestone:</span>
-                  <span className="font-bold text-[#171717]">30% on Composition Review</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Final Custody Transfer:</span>
-                  <span className="font-bold text-[#171717]">30% on Crating & Dispatch</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div className="border border-[#B89B62]/35 bg-[#F7F5F0] p-5 text-xs leading-relaxed text-[#817C73]">This preview stores the enquiry in this browser only. It does not send a message or create a confirmed commission.</div>
+          </aside>
         </div>
       ) : (
         /* Track Commissions Tab */

@@ -81,13 +81,6 @@ const readStoredString = (key: string, fallback: string): string => {
   try { return window.localStorage.getItem(key) ?? fallback; } catch { return fallback; }
 };
 
-const readStoredJson = <T,>(key: string, fallback: T): T => {
-  try {
-    const raw = window.localStorage.getItem(key);
-    return raw ? (JSON.parse(raw) as T) : fallback;
-  } catch { return fallback; }
-};
-
 const readStoredArray = <T,>(key: string, fallback: T[] = []): T[] => {
   try {
     const raw = window.localStorage.getItem(key);
@@ -117,22 +110,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [currentRole, setCurrentRole] = useState<UserRole>('CUSTOMER');
   const [currentRoute, setCurrentRoute] = useState<string>(() => normalizeRoute(window.location.pathname));
 
-  const [artworks, setArtworks] = useState<Artwork[]>(() => readStoredArray<Artwork>('mag_artworks', SEED_ARTWORKS));
+  const [artworks, setArtworks] = useState<Artwork[]>(() => readStoredArray<Artwork>('mag_artworks_v2', SEED_ARTWORKS));
 
   const [artists] = useState<Artist[]>(SEED_ARTISTS);
   const [exhibitions] = useState<Exhibition[]>(SEED_EXHIBITIONS);
   const [collections] = useState<Collection[]>(SEED_COLLECTIONS);
   const [journalArticles] = useState<JournalArticle[]>(SEED_JOURNAL_ARTICLES);
 
-  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => readStoredArray<CommissionRequest>('mag_commissions'));
+  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => readStoredArray<CommissionRequest>('mag_commissions_v2'));
 
-  const [orders, setOrders] = useState<Order[]>(() => readStoredArray<Order>('mag_orders'));
+  const [orders, setOrders] = useState<Order[]>(() => readStoredArray<Order>('mag_orders_v2'));
 
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
 
-  const [cart, setCart] = useState<CartItem[]>(() => readStoredArray<CartItem>('mag_cart'));
+  const [cart, setCart] = useState<CartItem[]>(() => readStoredArray<CartItem>('mag_cart_v2'));
 
-  const [favorites, setFavorites] = useState<string[]>(() => readStoredArray<string>('mag_favorites'));
+  const [favorites, setFavorites] = useState<string[]>(() => readStoredArray<string>('mag_favorites_v2'));
 
   const [inspectedArtwork, setInspectedArtwork] = useState<Artwork | null>(null);
   const [inspectedProvenance, setInspectedProvenance] = useState<Artwork | null>(null);
@@ -148,23 +141,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   }, [currency]);
 
   useEffect(() => {
-    writeStored('mag_cart', cart);
+    writeStored('mag_cart_v2', cart);
   }, [cart]);
 
   useEffect(() => {
-    writeStored('mag_favorites', favorites);
+    writeStored('mag_favorites_v2', favorites);
   }, [favorites]);
 
   useEffect(() => {
-    writeStored('mag_artworks', artworks);
+    writeStored('mag_artworks_v2', artworks);
   }, [artworks]);
 
   useEffect(() => {
-    writeStored('mag_commissions', commissions);
+    writeStored('mag_commissions_v2', commissions);
   }, [commissions]);
 
   useEffect(() => {
-    writeStored('mag_orders', orders);
+    writeStored('mag_orders_v2', orders);
   }, [orders]);
 
   const setLanguage = (lang: Language) => {

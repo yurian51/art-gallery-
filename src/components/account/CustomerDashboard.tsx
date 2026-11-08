@@ -196,7 +196,7 @@ export const CustomerDashboard: React.FC = () => {
         <div>
           {favoriteArtworks.length === 0 ? (
             <div className="bg-white border border-[#817C73]/20 py-16 text-center space-y-3">
-              <p className="font-serif italic text-lg text-[#817C73]">No masterworks saved to your curatorial wishlist.</p>
+              <p className="font-serif italic text-lg text-[#817C73]">No artworks have been saved in this browser.</p>
               <button
                 onClick={() => navigateTo('/gallery')}
                 className="px-4 py-2 bg-[#171717] text-white text-xs font-semibold hover:bg-[#B89B62]"
@@ -249,7 +249,7 @@ export const CustomerDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Tab 4: Provenance Deeds in Custody */}
+      {/* Tab 4: Artwork documentation in Custody */}
       {activeTab === 'DEEDS' && (
         <div className="space-y-4">
           <div className="bg-[#FFFDF9] border-2 border-[#B89B62] p-6 space-y-3">
