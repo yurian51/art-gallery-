@@ -54,6 +54,8 @@ export const GalleryView: React.FC = () => {
             art.title.toLowerCase().includes(q) ||
             art.artistName.toLowerCase().includes(q) ||
             art.medium.toLowerCase().includes(q) ||
+            art.category.toLowerCase().includes(q) ||
+            art.artistOrigin.toLowerCase().includes(q) ||
             art.origin.toLowerCase().includes(q);
           if (!match) return false;
         }
