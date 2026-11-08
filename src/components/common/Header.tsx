@@ -65,14 +65,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#B89B62]" />
             <span className="font-serif italic tracking-wide text-xs">
               {language === 'sw'
-                ? 'Onyesho la Sasa: "Mwangwi wa Pwani ya Waswahili" · Jumba Kuu la Oysterbay Dar es Salaam'
-                : 'Current Salon: "Echoes of the Swahili Coast" · Oysterbay Pavilion, Dar es Salaam'}
+                ? 'Karibu Mrisho Art Gallery · Arusha, Tanzania'
+                : 'Welcome to Mrisho Art Gallery · Arusha, Tanzania'}
             </span>
           </div>
           <div className="hidden sm:flex items-center gap-4 text-[11px] text-[#817C73]">
-            <span className="text-[#F7F5F0]/80">Toure Drive, Dar es Salaam</span>
-            <span>·</span>
-            <span className="text-[#F7F5F0]/80">Stone Town, Zanzibar</span>
+            <span className="text-[#F7F5F0]/80">Arusha, Tanzania</span>
             <span>·</span>
             <button
               onClick={() => handleNav('/about')}
