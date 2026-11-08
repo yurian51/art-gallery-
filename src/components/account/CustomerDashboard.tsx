@@ -219,7 +219,7 @@ export const CustomerDashboard: React.FC = () => {
         <div className="space-y-4">
           <div className="flex justify-between items-center mb-2">
             <span className="text-xs text-[#817C73]">
-              Track your bespoke art commissions and atelier progress.
+              Review commission enquiries saved in this browser.
             </span>
             <button
               onClick={() => navigateTo('/commissions')}
@@ -229,7 +229,7 @@ export const CustomerDashboard: React.FC = () => {
             </button>
           </div>
 
-          {commissions.map(c => (
+          {commissions.length === 0 ? <p className="border border-[#817C73]/20 bg-white py-10 text-center text-sm text-[#817C73]">No commission enquiries are saved in this browser.</p> : commissions.map(c => (
             <div key={c.id} className="bg-white border border-[#817C73]/25 p-5 space-y-3">
               <div className="flex justify-between items-start">
                 <div>
@@ -237,7 +237,7 @@ export const CustomerDashboard: React.FC = () => {
                   <h3 className="font-serif font-bold text-lg text-[#171717]">
                     {c.category} Commission · {c.dimensionsRequired}
                   </h3>
-                  <p className="text-xs text-[#817C73]">Artist: {c.assignedArtistName || 'Curatorial Allocation'}</p>
+                  <p className="text-xs text-[#817C73]">Artist: {c.assignedArtistName || 'Not assigned'}</p>
                 </div>
                 <span className="font-mono text-xs font-bold text-[#171717]">
                   {formatPrice(c.budgetTzs, currency)}

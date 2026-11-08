@@ -79,11 +79,11 @@ export const AdminDashboard: React.FC = () => {
         {/* Module Navigation */}
         <div className="flex items-center gap-2 mt-8 overflow-x-auto pb-1">
           {[
-            { id: 'OVERVIEW', label: 'Executive Metrics' },
-            { id: 'ARTWORKS', label: `Artwork Approvals (${pendingArtworks.length})` },
+            { id: 'OVERVIEW', label: 'Workspace overview' },
+            { id: 'ARTWORKS', label: `Artwork submissions (${pendingArtworks.length})` },
             { id: 'COMMISSIONS', label: `Commissions (${commissions.length})` },
-            { id: 'ORDERS', label: `Orders & Settlements (${orders.length})` },
-            { id: 'EXHIBITIONS', label: `Salons (${exhibitions.length})` },
+            { id: 'ORDERS', label: `Order records (${orders.length})` },
+            { id: 'EXHIBITIONS', label: `Exhibitions (${exhibitions.length})` },
             { id: 'LEDGER', label: 'Artwork documentation' },
             { id: 'AUDIT', label: `Audit Trail (${auditLogs.length})` },
           ].map(mod => (
@@ -163,13 +163,13 @@ export const AdminDashboard: React.FC = () => {
                           onClick={() => approveArtwork(art.id)}
                           className="px-2.5 py-1 bg-[#171717] text-white text-[11px] font-semibold hover:bg-[#B89B62]"
                         >
-                          Approve & Publish
+                          Approve in preview
                         </button>
                         <button
                           onClick={() => rejectArtwork(art.id)}
                           className="px-2.5 py-1 border border-stone-300 text-stone-600 text-[11px] hover:text-rose-600"
                         >
-                          Reject
+                          Reject in preview
                         </button>
                       </div>
                     </div>

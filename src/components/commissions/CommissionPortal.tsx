@@ -70,11 +70,11 @@ export const CommissionPortal: React.FC = () => {
       UNDER_REVIEW: { label: 'Curatorial Review', color: 'bg-amber-50 text-amber-900' },
       QUOTED: { label: 'Artist Quote Issued', color: 'bg-blue-50 text-blue-900' },
       APPROVED: { label: 'Quote Approved', color: 'bg-indigo-50 text-indigo-900' },
-      DEPOSIT_PAID: { label: 'Deposit Settled', color: 'bg-emerald-50 text-emerald-900' },
+      DEPOSIT_PAID: { label: 'Payment status unavailable', color: 'bg-stone-100 text-stone-700' },
       IN_PROGRESS: { label: 'Atelier In Production', color: 'bg-[#B89B62]/20 text-[#171717]' },
       CUSTOMER_REVIEW: { label: 'Patron Preview Ready', color: 'bg-purple-50 text-purple-900' },
       REVISION_REQUESTED: { label: 'Revisions in Atelier', color: 'bg-orange-50 text-orange-900' },
-      COMPLETED: { label: 'Masterwork Completed', color: 'bg-emerald-100 text-emerald-900' },
+      COMPLETED: { label: 'Completed (local record)', color: 'bg-stone-100 text-stone-700' },
       DELIVERED: { label: 'Deed & Work Delivered', color: 'bg-emerald-200 text-emerald-950' },
       CANCELLED: { label: 'Cancelled', color: 'bg-stone-200 text-stone-600' },
     };

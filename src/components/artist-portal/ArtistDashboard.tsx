@@ -112,7 +112,7 @@ export const ArtistDashboard: React.FC = () => {
             className="px-4 py-2 bg-[#171717] text-[#F7F5F0] text-xs font-semibold uppercase tracking-wider hover:bg-[#B89B62] hover:text-[#171717] transition-all flex items-center gap-1.5"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>Submit New Masterwork</span>
+            <span>Submit artwork</span>
           </button>
         </div>
 
@@ -147,7 +147,7 @@ export const ArtistDashboard: React.FC = () => {
             <div className="bg-white border border-[#817C73]/25 p-5">
               <span className="text-[10px] uppercase text-[#817C73] block mb-1">Cataloged Artworks</span>
               <span className="font-serif text-3xl font-bold text-[#171717]">{artistArtworks.length}</span>
-              <span className="text-[11px] text-emerald-700 block mt-1">All Authenticated</span>
+              <span className="text-[11px] text-emerald-700 block mt-1">Not independently verified</span>
             </div>
 
             <div className="bg-white border border-[#817C73]/25 p-5">
@@ -164,7 +164,7 @@ export const ArtistDashboard: React.FC = () => {
             <div className="bg-white border border-[#817C73]/25 p-5">
               <span className="text-[10px] uppercase text-[#817C73] block mb-1">Artist Royalty Share</span>
               <span className="font-serif text-3xl font-bold text-[#B89B62]">70%</span>
-              <span className="text-[11px] text-[#817C73] block mt-1">Direct Escrow Settlement</span>
+              <span className="text-[11px] text-[#817C73] block mt-1">Payment service not connected</span>
             </div>
 
             <div className="bg-white border border-[#817C73]/25 p-5">
@@ -189,7 +189,7 @@ export const ArtistDashboard: React.FC = () => {
                       <h4 className="font-serif font-bold text-base text-[#171717]">{art.title}</h4>
                       <p className="text-xs text-[#817C73]">{art.medium} · {art.creationYear}</p>
                       <span className="font-mono text-[10px] text-[#B89B62]">
-                        Deed #{art.provenance.certificateNumber}
+                        Documentation: {art.provenance.isAuthentic ? 'Requires confirmation' : 'Not verified'}
                       </span>
                     </div>
                   </div>
@@ -212,7 +212,7 @@ export const ArtistDashboard: React.FC = () => {
                     <button
                       onClick={() => setInspectedProvenance(art)}
                       className="p-1.5 text-[#817C73] hover:text-[#B89B62] transition-colors"
-                      title="Inspect blockchain deed"
+                      title="View artwork documentation status"
                     >
                       <ShieldCheck className="w-4 h-4 text-[#B89B62]" />
                     </button>
@@ -232,7 +232,7 @@ export const ArtistDashboard: React.FC = () => {
               Curatorial Accession Registry
             </span>
             <h2 className="font-serif text-2xl font-bold text-[#171717]">
-              Submit New Masterwork for Review & Blockchain Deed
+              Submit artwork for local preview
             </h2>
           </div>
 
@@ -240,7 +240,7 @@ export const ArtistDashboard: React.FC = () => {
             <div className="py-12 text-center space-y-3">
               <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
               <h3 className="font-serif text-2xl font-bold text-[#171717]">
-                Masterwork Submitted to Curatorial Board
+                Artwork submission saved in this browser
               </h3>
               <p className="text-xs text-[#817C73]">
                 Initial Genesis Provenance hash minted. Chief Curator will review UV spectrometry notes and approve for cataloging.
@@ -389,7 +389,7 @@ export const ArtistDashboard: React.FC = () => {
                 className="w-full py-3.5 bg-[#171717] text-[#F7F5F0] text-xs font-bold uppercase tracking-widest hover:bg-[#B89B62] hover:text-[#171717] transition-all flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
-                <span>Submit Masterwork to Curatorial Registry</span>
+                <span>Save artwork submission</span>
               </button>
             </form>
           )}
