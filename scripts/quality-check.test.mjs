@@ -91,7 +91,7 @@ test('contact and newsletter controls do not claim to deliver messages without a
   const about = read('../src/components/about/AboutView.tsx');
   const footer = read('../src/components/common/Footer.tsx');
   assert.match(about, /disabled/);
-  assert.match(about, /cannot notify the gallery/i);
+  assert.match(about, /not notify the gallery/i);
   assert.match(footer, /mailing service is connected/i);
 });
 
