@@ -1,0 +1,32 @@
+name: Quality checks
+
+on:
+  push:
+    branches:
+      - improve/mrisho-gallery-premium-2026-11
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run quality tests
+        run: npm test
+      - name: Check TypeScript
+        run: npm run lint
+      - name: Build production bundle
+        run: npm run build
