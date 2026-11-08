@@ -29,6 +29,7 @@ export const CuratedFeatures: React.FC = () => {
       title: 'Original Paintings',
       titleSwahili: 'Michoro Asilia',
       description: 'Explore paintings and visual expressions from the gallery.',
+      descriptionSwahili: 'Chunguza michoro na maonesho ya ubunifu wa sanaa kutoka kwenye galari.',
       image: heroArtworkImage,
       category: 'Paintings',
     },
@@ -36,6 +37,7 @@ export const CuratedFeatures: React.FC = () => {
       title: 'Sculpture',
       titleSwahili: 'Sanamu za Kimakonde',
       description: 'Discover sculptural forms, materials and three-dimensional work.',
+      descriptionSwahili: 'Gundua sanamu, matumizi ya vifaa mbalimbali na kazi za sanaa zenye umbo la pande tatu.',
       image: makondeSculptureImage,
       category: 'Sculpture',
     },
@@ -43,6 +45,7 @@ export const CuratedFeatures: React.FC = () => {
       title: 'Portraiture',
       titleSwahili: 'Picha za Pwani ya Waswahili',
       description: 'Explore portraiture, people and stories through visual art.',
+      descriptionSwahili: 'Chunguza picha za watu na simulizi zinazoelezwa kupitia sanaa ya kuona.',
       image: swahiliPortraitImage,
       category: 'Portraiture',
     },
@@ -50,6 +53,7 @@ export const CuratedFeatures: React.FC = () => {
       title: 'Photography & Prints',
       titleSwahili: 'Picha na Machapisho ya Kisasa',
       description: 'Discover photography and fine-art printmaking.',
+      descriptionSwahili: 'Gundua upigaji picha na uchapishaji wa kazi za sanaa za ubora wa juu.',
       image: galleryInteriorImage,
       category: 'Fine Art Prints',
     },
@@ -98,10 +102,10 @@ export const CuratedFeatures: React.FC = () => {
               Art disciplines
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Explore Art Disciplines
+              {language === 'sw' ? 'Chunguza aina za sanaa' : 'Explore Art Disciplines'}
             </h2>
             <p className="text-xs sm:text-sm text-[#817C73] mt-2">
-              Explore different forms of visual expression.
+              {language === 'sw' ? 'Gundua mitindo mbalimbali ya kujieleza kupitia sanaa ya kuona.' : 'Explore different forms of visual expression.'}
             </p>
           </div>
 
@@ -114,13 +118,13 @@ export const CuratedFeatures: React.FC = () => {
                   setSearchQuery(cat.category);
                   navigateTo('/gallery');
                 }}
-                aria-label={`Explore ${cat.title} in the gallery`}
+                aria-label={`Explore ${language === 'sw' ? cat.titleSwahili : cat.title} in the gallery`}
                 className="group block w-full cursor-pointer bg-[#F7F5F0] border border-[#817C73]/20 overflow-hidden text-left hover:border-[#171717] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B89B62] transition-all"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-[#EBE6DF]">
                   <img
                     src={cat.image}
-                    alt={cat.title}
+                    alt={language === 'sw' ? cat.titleSwahili : cat.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
@@ -129,10 +133,10 @@ export const CuratedFeatures: React.FC = () => {
                     {cat.title}
                   </h3>
                   <p className="text-xs text-[#817C73] mt-1 line-clamp-2">
-                    {cat.description}
+                    {language === 'sw' ? cat.descriptionSwahili : cat.description}
                   </p>
                   <div className="mt-3 flex items-center gap-1 text-[11px] font-semibold text-[#171717] group-hover:translate-x-1 transition-transform">
-                    <span>Examine Collection</span>
+                    <span>{language === 'sw' ? 'Tazama mkusanyiko' : 'Examine Collection'}</span>
                     <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
