@@ -108,7 +108,7 @@ const APP_ROUTES = new Set([
 ]);
 const normalizeRoute = (route: string) => {
   const normalized = route === '/' ? '/' : '/' + route.split('/').filter(Boolean).join('/');
-  const dynamicRoute = /^\\/(artwork|gallery|artists|collections|exhibitions|journal)\\/[^/]+$/.test(normalized);
+  const dynamicRoute = new RegExp('^/(artwork|gallery|artists|collections|exhibitions|journal)/[^/]+$').test(normalized);
   return APP_ROUTES.has(normalized) || dynamicRoute ? normalized : '/';
 };
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
