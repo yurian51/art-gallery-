@@ -39,7 +39,9 @@ export const ExhibitionsView: React.FC = () => {
 
       {/* Exhibitions List */}
       <div className="space-y-12">
-        {exhibitions.map(ex => {
+        {exhibitions.length === 0 ? (
+          <div className="border border-[#817C73]/20 bg-white px-6 py-16 text-center"><h2 className="font-serif text-2xl text-[#171717]">No exhibitions announced</h2><p className="mx-auto mt-2 max-w-xl text-sm text-[#817C73]">Confirmed exhibition dates, venues and participating artists will be published here.</p></div>
+        ) : exhibitions.map(ex => {
           const exhibitedArtworks = artworks.filter(a => ex.artworkIds.includes(a.id));
 
           return (

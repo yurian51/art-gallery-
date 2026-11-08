@@ -99,7 +99,7 @@ export const Footer: React.FC = () => {
                   onClick={() => navigateTo('/about')}
                   className="hover:text-[#F7F5F0] transition-colors"
                 >
-                  Provenance & Conservation
+                  About the gallery
                 </button>
               </li>
             </ul>
@@ -121,7 +121,7 @@ export const Footer: React.FC = () => {
             <span className="font-serif italic text-[#B89B62]">Sanaa Bila Mipaka</span>
           </div>
 
-          <div className="text-[11px]">Arusha, Tanzania</div>>
+          <div className="text-[11px]">Arusha, Tanzania</div>
         </div>
       </div>
     </footer>

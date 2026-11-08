@@ -148,7 +148,7 @@ export const JournalView: React.FC = () => {
             </div>
           </article>
         ))}
-      </div>
+      </div>}
     </div>
   );
 };
