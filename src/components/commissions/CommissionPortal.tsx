@@ -70,11 +70,11 @@ export const CommissionPortal: React.FC = () => {
       UNDER_REVIEW: { label: 'Curatorial Review', color: 'bg-amber-50 text-amber-900' },
       QUOTED: { label: 'Artist Quote Issued', color: 'bg-blue-50 text-blue-900' },
       APPROVED: { label: 'Quote Approved', color: 'bg-indigo-50 text-indigo-900' },
-      DEPOSIT_PAID: { label: 'Deposit Settled', color: 'bg-emerald-50 text-emerald-900' },
+      DEPOSIT_PAID: { label: 'Payment status unavailable', color: 'bg-stone-100 text-stone-700' },
       IN_PROGRESS: { label: 'Atelier In Production', color: 'bg-[#B89B62]/20 text-[#171717]' },
       CUSTOMER_REVIEW: { label: 'Patron Preview Ready', color: 'bg-purple-50 text-purple-900' },
       REVISION_REQUESTED: { label: 'Revisions in Atelier', color: 'bg-orange-50 text-orange-900' },
-      COMPLETED: { label: 'Masterwork Completed', color: 'bg-emerald-100 text-emerald-900' },
+      COMPLETED: { label: 'Completed (local record)', color: 'bg-stone-100 text-stone-700' },
       DELIVERED: { label: 'Deed & Work Delivered', color: 'bg-emerald-200 text-emerald-950' },
       CANCELLED: { label: 'Cancelled', color: 'bg-stone-200 text-stone-600' },
     };
@@ -89,10 +89,11 @@ export const CommissionPortal: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mb-6 border border-[#B89B62]/40 bg-white p-4 text-sm leading-relaxed text-[#817C73]">This form currently saves an enquiry in this browser only. It does not send a message to the gallery because a submission service is not connected.</div>
       {/* Header */}
       <div className="border-b border-[#817C73]/20 pb-8 mb-8">
         <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-          Bespoke Curatorial Atelier
+          Commission enquiry
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#171717] tracking-tight">
           {t.commissions.title}
@@ -198,7 +199,7 @@ export const CommissionPortal: React.FC = () => {
                     onChange={e => setPreferredArtistId(e.target.value)}
                     className="w-full p-2.5 bg-[#F7F5F0] border border-[#817C73]/30 focus:outline-none focus:border-[#B89B62]"
                   >
-                    <option value="">Curatorial Board Recommendation</option>
+                    <option value="">Preferred artist (optional)</option>
                     {artists.map(a => (
                       <option key={a.id} value={a.id}>
                         {a.name} ({a.origin})
@@ -312,59 +313,19 @@ export const CommissionPortal: React.FC = () => {
             </form>
           </div>
 
-          {/* Right Column: Curatorial Commission Protocol (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#EBE6DF]/50 border border-[#817C73]/25 p-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-[#B89B62]" />
-                <h3 className="font-serif font-bold text-lg text-[#171717]">
-                  The Mrisho Commission Guarantee
-                </h3>
-              </div>
-
-              <p className="text-xs text-[#817C73] leading-relaxed">
-                All bespoke commissions are structured under escrow contracts. The artist receives studio material
-                disbursements upon initial sketch sign-off, while your final balance is secured until you approve
-                the finished masterpiece in studio review.
-              </p>
-
-              <div className="space-y-3 pt-2 text-xs">
-                <div className="p-3 bg-white border border-[#817C73]/15">
-                  <h4 className="font-bold text-[#171717]">Direct Atelier Dialogue</h4>
-                  <p className="text-[#817C73] mt-0.5">
-                    Receive photographic studio progress updates and raw material provenance documentation directly from the master creator.
-                  </p>
-                </div>
-
-                <div className="p-3 bg-white border border-[#817C73]/15">
-                  <h4 className="font-bold text-[#171717]">Cryptographic Deed Registration</h4>
-                  <p className="text-[#817C73] mt-0.5">
-                    Upon delivery, the artwork is cataloged with an immutable Genesis Block, formalizing its accession into your permanent collection.
-                  </p>
-                </div>
-              </div>
+          <aside className="lg:col-span-5 space-y-5">
+            <div className="border border-[#817C73]/20 bg-white p-6">
+              <h3 className="font-serif text-xl text-[#171717]">Prepare your enquiry</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#817C73]">Useful details help the gallery understand what you have in mind. No price, artist availability or production schedule is confirmed by this form.</p>
+              <ol className="mt-5 space-y-3 text-xs text-[#817C73]">
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">01</span><span>Describe the idea, subject and intended setting.</span></li>
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">02</span><span>Choose an art discipline and preferred medium.</span></li>
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">03</span><span>Add approximate dimensions and your target date.</span></li>
+                <li className="flex gap-3"><span className="font-mono text-[#B89B62]">04</span><span>Include the destination and any budget guidance.</span></li>
+              </ol>
             </div>
-
-            <div className="bg-white border border-[#817C73]/20 p-6 space-y-3 text-xs">
-              <h4 className="font-serif font-bold text-sm text-[#171717]">
-                Commission Fee Breakdown
-              </h4>
-              <div className="space-y-2 text-[#817C73]">
-                <div className="flex justify-between border-b border-[#817C73]/15 pb-1">
-                  <span>Initial Studio Deposit:</span>
-                  <span className="font-bold text-[#171717]">40% on Brief Approval</span>
-                </div>
-                <div className="flex justify-between border-b border-[#817C73]/15 pb-1">
-                  <span>Mid-Production Milestone:</span>
-                  <span className="font-bold text-[#171717]">30% on Composition Review</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Final Custody Transfer:</span>
-                  <span className="font-bold text-[#171717]">30% on Crating & Dispatch</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div className="border border-[#B89B62]/35 bg-[#F7F5F0] p-5 text-xs leading-relaxed text-[#817C73]">This preview stores the enquiry in this browser only. It does not send a message or create a confirmed commission.</div>
+          </aside>
         </div>
       ) : (
         /* Track Commissions Tab */
@@ -421,7 +382,7 @@ export const CommissionPortal: React.FC = () => {
                   <div>
                     <span className="text-[#817C73] block text-[10px] uppercase">Assigned Master Creator</span>
                     <span className="font-serif font-bold text-sm text-[#171717]">
-                      {c.assignedArtistName || 'Curatorial Allocation Pending'}
+                      {c.assignedArtistName || 'Not assigned'}
                     </span>
                   </div>
                   <div>
@@ -431,7 +392,7 @@ export const CommissionPortal: React.FC = () => {
                   <div>
                     <span className="text-[#817C73] block text-[10px] uppercase">Official Atelier Quote</span>
                     <span className="font-mono font-bold text-[#B89B62]">
-                      {c.quoteAmountTzs ? formatPrice(c.quoteAmountTzs, currency) : 'Review in Progress'}
+                      {c.quoteAmountTzs ? formatPrice(c.quoteAmountTzs, currency) : 'Not available'}
                     </span>
                   </div>
                 </div>

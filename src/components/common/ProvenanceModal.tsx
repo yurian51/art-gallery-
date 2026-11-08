@@ -1,77 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { ShieldCheck, Copy, Check, QrCode, FileText, ArrowRight, X, ExternalLink, Printer } from 'lucide-react';
+import { X, ShieldAlert, FileText } from 'lucide-react';
 
 export const ProvenanceModal: React.FC = () => {
   const { inspectedProvenance, setInspectedProvenance } = useApp();
-  const [copiedHash, setCopiedHash] = useState(false);
-  const [viewMode, setViewMode] = useState<'LEDGER' | 'CERTIFICATE'>('LEDGER');
-
   if (!inspectedProvenance) return null;
 
   const { provenance, title, artistName, creationYear, medium, origin, dimensions } = inspectedProvenance;
 
-  const handleCopyHash = () => {
-    navigator.clipboard.writeText(provenance.verificationHash);
-    setCopiedHash(true);
-    setTimeout(() => setCopiedHash(false), 2000);
-  };
-
-  const handlePrint = () => {
-    window.print();
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md overflow-y-auto">
-      <div className="bg-[#F7F5F0] border border-[#B89B62]/40 max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
-        {/* Close Button */}
-        <button
-          onClick={() => setInspectedProvenance(null)}
-          className="absolute top-5 right-5 p-1 text-[#817C73] hover:text-[#171717] transition-colors"
-          aria-label="Close provenance modal"
-        >
-          <X className="w-5 h-5" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" role="presentation">
+      <section role="dialog" aria-modal="true" aria-labelledby="record-title" className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto border border-[#B89B62]/40 bg-[#F7F5F0] p-6 shadow-2xl sm:p-8">
+        <button type="button" onClick={() => setInspectedProvenance(null)} aria-label="Close artwork documentation" className="absolute right-5 top-5 p-2 text-[#817C73] hover:text-[#171717]">
+          <X className="h-5 w-5" />
         </button>
-
-        {/* Modal Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#817C73]/20">
+        <div className="mb-6 flex items-center gap-3 border-b border-[#817C73]/20 pb-5">
+          <span className="flex h-11 w-11 items-center justify-center border border-[#B89B62]/50 bg-white"><FileText className="h-5 w-5 text-[#B89B62]" /></span>
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <ShieldCheck className="w-4 h-4 text-[#B89B62]" />
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#B89B62] font-semibold">
-                Blockchain Fine Art Registry · Consortium Protocol
-              </span>
-            </div>
-            <h2 className="font-serif text-2xl font-bold text-[#171717]">
-              {title}
-            </h2>
-            <p className="text-xs text-[#817C73] mt-0.5">
-              By {artistName} ({creationYear}) · {origin}
-            </p>
-          </div>
-
-          {/* Toggle View: Ledger Explorer vs Certificate of Authenticity */}
-          <div className="flex items-center p-1 bg-white border border-[#817C73]/25 shrink-0">
-            <button
-              onClick={() => setViewMode('LEDGER')}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                viewMode === 'LEDGER'
-                  ? 'bg-[#171717] text-[#F7F5F0]'
-                  : 'text-[#817C73] hover:text-[#171717]'
-              }`}
-            >
-              Block Explorer
-            </button>
-            <button
-              onClick={() => setViewMode('CERTIFICATE')}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                viewMode === 'CERTIFICATE'
-                  ? 'bg-[#171717] text-[#F7F5F0]'
-                  : 'text-[#817C73] hover:text-[#171717]'
-              }`}
-            >
-              Certificate of Authenticity
-            </button>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B89B62]">Artwork documentation</p>
+            <h2 id="record-title" className="font-serif text-2xl font-semibold text-[#171717]">{title}</h2>
           </div>
         </div>
 
@@ -292,8 +239,18 @@ export const ProvenanceModal: React.FC = () => {
               </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+        <dl className="grid grid-cols-1 gap-4 border border-[#817C73]/20 bg-white p-5 text-sm sm:grid-cols-2">
+          <div><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Artist</dt><dd className="mt-1 text-[#171717]">{artistName || 'Not provided'}</dd></div>
+          <div><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Year</dt><dd className="mt-1 text-[#171717]">{creationYear || 'Not provided'}</dd></div>
+          <div><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Medium</dt><dd className="mt-1 text-[#171717]">{medium || 'Not provided'}</dd></div>
+          <div><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Origin</dt><dd className="mt-1 text-[#171717]">{origin || 'Not provided'}</dd></div>
+          <div><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Dimensions</dt><dd className="mt-1 text-[#171717]">{dimensions.heightCm} × {dimensions.widthCm} cm{dimensions.depthCm ? ` × ${dimensions.depthCm} cm` : ''}</dd></div>
+          <div><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Documentation status</dt><dd className="mt-1 text-[#171717]">{provenance.isAuthentic ? 'Requires independent confirmation' : 'Not verified'}</dd></div>
+          <div className="sm:col-span-2"><dt className="text-[10px] uppercase tracking-wider text-[#817C73]">Registry</dt><dd className="mt-1 text-[#171717]">{provenance.network}</dd></div>
+        </dl>
+        <button type="button" onClick={() => setInspectedProvenance(null)} className="mt-6 w-full bg-[#171717] px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#F7F5F0] hover:bg-[#B89B62] hover:text-[#171717]">Close</button>
+      </section>
     </div>
   );
 };

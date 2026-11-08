@@ -42,3 +42,24 @@ h1, h2, h3, .font-serif {
 ::-webkit-scrollbar-thumb:hover {
   background: #B89B62;
 }
+
+
+:focus-visible {
+  outline: 2px solid #B89B62;
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -102,11 +102,13 @@ export const JournalView: React.FC = () => {
           The Mrisho Art Journal
         </h1>
         <p className="text-xs sm:text-sm text-[#817C73] max-w-2xl mt-2 font-sans font-light">
-          In-depth essays examining East African visual heritage, the philosophy of Makonde sculpture,
-          and the technological frontiers of blockchain provenance.
+          Stories, ideas and perspectives on African visual creativity will appear here when approved for publication.
         </p>
       </div>
 
+      {journalArticles.length === 0 ? (
+        <div className="border border-[#817C73]/20 bg-white px-6 py-16 text-center"><h2 className="font-serif text-2xl text-[#171717]">The journal is being prepared</h2><p className="mt-2 text-sm text-[#817C73]">Editorial articles will appear here when approved for publication.</p></div>
+      ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {journalArticles.map(article => (
           <article
@@ -149,6 +151,7 @@ export const JournalView: React.FC = () => {
           </article>
         ))}
       </div>
+      )}
     </div>
   );
 };

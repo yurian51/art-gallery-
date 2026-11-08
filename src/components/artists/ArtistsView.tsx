@@ -13,14 +13,13 @@ export const ArtistsView: React.FC = () => {
       {/* Header */}
       <div className="border-b border-[#817C73]/20 pb-8 mb-10">
         <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-          Master Ateliers & Living Masters
+          Artists
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#171717] tracking-tight">
           Artist Directory & Roster
         </h1>
         <p className="text-xs sm:text-sm text-[#817C73] max-w-2xl mt-2 font-sans font-light">
-          Each artist in our registry is accredited under strict curatorial standards, preserving
-          sovereign artistic traditions from the Swahili coast to the Makonde plateaus.
+          Artist profiles and portfolios will appear here when verified gallery records are available.
         </p>
       </div>
 
@@ -28,7 +27,9 @@ export const ArtistsView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Artists List (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          {artists.map(artist => {
+          {artists.length === 0 ? (
+            <div className="border border-[#817C73]/20 bg-white p-6 text-sm leading-relaxed text-[#817C73]">Artist profiles are not connected yet. Confirmed artist information will appear here.</div>
+          ) : artists.map(artist => {
             const isSelected = selectedArtist?.id === artist.id;
             return (
               <div

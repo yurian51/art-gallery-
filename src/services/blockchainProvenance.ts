@@ -1,27 +1,11 @@
-import { ProvenanceRecord, ProvenanceBlock } from '../types';
-
-// Deterministic mock hash generator that outputs authentic 64-char hex strings
-export function generateCryptographicHash(seed: string): string {
-  let hash = 0;
-  for (let i = 0; i < seed.length; i++) {
-    const char = seed.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash |= 0;
-  }
-  
-  // Pad and expand into standard sha256 64-char hex format
-  const base = Math.abs(hash).toString(16).padStart(8, '0');
-  const salt = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
-  
-  return (base + salt.slice(base.length)).slice(0, 64);
-}
+import { ProvenanceRecord } from '../types';
 
 export function createInitialProvenance(
-  artworkId: string,
-  artistName: string,
-  year: number,
-  title: string,
-  origin: string
+  _artworkId: string,
+  _artistName: string,
+  _year: number,
+  _title: string,
+  _origin: string
 ): ProvenanceRecord {
   const genesisHash = generateCryptographicHash(`GENESIS_${artworkId}_${artistName}_${year}`);
   const curatorialHash = generateCryptographicHash(`CURATED_${artworkId}_MRISHO_GALLERY`);
@@ -86,8 +70,13 @@ export function appendTransferBlock(
   };
 
   return {
-    ...provenance,
-    verificationHash: newTxHash,
-    blocks: [...provenance.blocks, transferBlock],
+    contractAddress: 'Not configured',
+    tokenId: 'Not issued',
+    certificateNumber: 'Not issued',
+    verificationHash: 'Not verified',
+    mintedDate: 'Not issued',
+    network: 'No verification service connected',
+    isAuthentic: false,
+    blocks: [],
   };
 }

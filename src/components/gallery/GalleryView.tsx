@@ -56,6 +56,8 @@ export const GalleryView: React.FC = () => {
             art.title.toLowerCase().includes(q) ||
             art.artistName.toLowerCase().includes(q) ||
             art.medium.toLowerCase().includes(q) ||
+            art.category.toLowerCase().includes(q) ||
+            art.artistOrigin.toLowerCase().includes(q) ||
             art.origin.toLowerCase().includes(q);
           if (!match) return false;
         }
@@ -96,7 +98,7 @@ export const GalleryView: React.FC = () => {
             <div className="flex items-center gap-2 mb-1.5">
               <span className="w-2 h-2 rounded-full bg-[#B89B62]" />
               <span className="text-xs uppercase tracking-[0.25em] text-[#817C73] font-sans font-semibold">
-                Accessioned Catalog · East African Fine Art
+                Gallery catalogue
               </span>
             </div>
             <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#171717] tracking-tight">
@@ -109,7 +111,7 @@ export const GalleryView: React.FC = () => {
 
           <div className="flex items-center gap-2 text-xs text-[#817C73] bg-white border border-[#817C73]/25 px-3 py-2 shrink-0">
             <ShieldCheck className="w-4 h-4 text-[#B89B62]" />
-            <span>All cataloged works carry cryptographic blockchain deeds.</span>
+            <span>Artwork information is displayed when verified records are available.</span>
           </div>
         </div>
       </div>
@@ -198,7 +200,7 @@ export const GalleryView: React.FC = () => {
           {t.gallery.showingCount} <strong className="text-[#171717]">{filteredArtworks.length}</strong> {t.gallery.ofTotal} {artworks.length} {t.gallery.artworksLabel}
         </span>
         <span className="font-mono text-[11px]">
-          Registry Network: Polygon Fine Art Consortium
+          Arusha, Tanzania
         </span>
       </div>
 
@@ -206,7 +208,7 @@ export const GalleryView: React.FC = () => {
       {filteredArtworks.length === 0 ? (
         <div className="bg-white border border-[#817C73]/20 py-20 text-center space-y-3">
           <p className="font-serif italic text-lg text-[#817C73]">
-            {t.gallery.noResults}
+            {artworks.length === 0 ? 'The gallery catalogue is being prepared. Confirmed artwork listings will appear here when available.' : t.gallery.noResults}
           </p>
           <button
             onClick={handleResetFilters}

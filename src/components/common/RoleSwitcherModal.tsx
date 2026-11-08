@@ -22,22 +22,22 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
   }[] = [
     {
       role: 'CUSTOMER',
-      title: 'Collector / Patron',
-      subtitle: 'Browse gallery, acquire original artworks, track custom commissions, inspect blockchain deeds.',
+      title: 'Customer workspace',
+      subtitle: 'Preview saved selections and enquiry history when connected.',
       icon: <Eye className="w-5 h-5 text-[#B89B62]" />,
       targetRoute: '/account',
     },
     {
       role: 'ARTIST',
-      title: 'Master Artist Portal',
-      subtitle: 'Submit new artworks for curatorial review, manage portfolio, review incoming commission inquiries.',
+      title: 'Artist workspace',
+      subtitle: 'Preview artist submissions and portfolio tools.',
       icon: <Palette className="w-5 h-5 text-[#B89B62]" />,
       targetRoute: '/artist-portal',
     },
     {
       role: 'ART_CURATOR',
-      title: 'Chief Art Curator',
-      subtitle: 'Review & approve artwork submissions, mint initial blockchain provenance blocks, manage salon exhibitions.',
+      title: 'Curator workspace',
+      subtitle: 'Preview catalogue and exhibition management tools.',
       icon: <Shield className="w-5 h-5 text-[#B89B62]" />,
       targetRoute: '/admin',
     },
@@ -50,14 +50,14 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
     },
     {
       role: 'FINANCE_MANAGER',
-      title: 'Treasury & Settlements',
-      subtitle: 'Reconcile East African mobile money (M-Pesa, Airtel), cards, bank wires, and issue transactional refunds.',
+      title: 'Finance workspace',
+      subtitle: 'Payment and settlement tools are unavailable until a provider is connected.',
       icon: <Wallet className="w-5 h-5 text-[#B89B62]" />,
       targetRoute: '/admin',
     },
     {
       role: 'VISITOR',
-      title: 'Gallery Guest (Public)',
+      title: 'Public visitor',
       subtitle: 'Public visitor exploring collections, exhibitions, and educational art journal articles.',
       icon: <Eye className="w-5 h-5 text-[#817C73]" />,
       targetRoute: '/gallery',
@@ -83,13 +83,13 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
 
         <div className="mb-6">
           <span className="text-[10px] uppercase tracking-widest text-[#817C73] font-sans block mb-1">
-            Perspective & Role-Based Access Control
+            Workspace Preview
           </span>
           <h2 className="font-serif text-2xl font-bold text-[#171717]">
             Select Platform Persona
           </h2>
           <p className="text-xs text-[#817C73] mt-1">
-            Experience Mrisho Art Gallery from different stakeholders across the art ecosystem.
+            Preview different workspace layouts. This does not sign you in or grant secure access.
           </p>
         </div>
 
@@ -130,7 +130,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
         </div>
 
         <div className="mt-6 pt-4 border-t border-[#817C73]/20 flex justify-between items-center text-xs text-[#817C73]">
-          <span>Enforces strict server-side RBAC & Row Level Security</span>
+          <span>Local interface preview only · Secure sign-in is not configured</span>
           <button
             onClick={onClose}
             className="px-4 py-1.5 bg-[#171717] text-[#F7F5F0] text-xs font-medium hover:bg-[#171717]/80 transition-colors"

@@ -20,7 +20,7 @@ import {
   SEED_COLLECTIONS,
   SEED_JOURNAL_ARTICLES,
 } from '../data/seedData';
-import { appendTransferBlock, createInitialProvenance } from '../services/blockchainProvenance';
+import { createInitialProvenance } from '../services/blockchainProvenance';
 
 interface AppContextType {
   language: Language;
@@ -52,7 +52,6 @@ interface AppContextType {
   favorites: string[];
   toggleFavorite: (artworkId: string) => void;
   isFavorite: (artworkId: string) => boolean;
-  placeOrder: (orderData: Omit<Order, 'id' | 'orderNumber' | 'createdAt'>) => Order;
 
   // Modals & Inspectors
   inspectedArtwork: Artwork | null;
@@ -181,17 +180,25 @@ const SEED_AUDIT_LOGS: AuditLog[] = [
   },
 ];
 
+const writeStored = (key: string, value: unknown) => {
+  try { window.localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch { /* Storage may be unavailable. */ }
+};
+
+const APP_ROUTES = new Set(['/', '/gallery', '/artists', '/exhibitions', '/commissions', '/journal', '/about', '/account', '/artist-portal', '/admin']);
+const normalizeRoute = (route: string) => {
+  const normalized = route === '/' ? '/' : '/' + route.split('/').filter(Boolean).join('/');
+  return APP_ROUTES.has(normalized) ? normalized : '/';
+};
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    return (localStorage.getItem('mag_lang') as Language) || 'en';
-  });
+  const [language, setLanguageState] = useState<Language>(() => readStoredString('mag_lang', 'en') === 'sw' ? 'sw' : 'en');
 
   const [currency, setCurrencyState] = useState<Currency>(() => {
-    return (localStorage.getItem('mag_currency') as Currency) || 'TZS';
+    const stored = readStoredString('mag_currency', 'TZS');
+    return ['TZS', 'USD', 'EUR', 'GBP'].includes(stored) ? stored as Currency : 'TZS';
   });
 
   const [currentRole, setCurrentRole] = useState<UserRole>('CUSTOMER');
-  const [currentRoute, setCurrentRoute] = useState<string>('/');
+  const [currentRoute, setCurrentRoute] = useState<string>(() => normalizeRoute(window.location.pathname));
 
   const [artworks, setArtworks] = useState<Artwork[]>(() => {
     const saved = localStorage.getItem('mag_artworks');
@@ -211,27 +218,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [collections] = useState<Collection[]>(SEED_COLLECTIONS);
   const [journalArticles] = useState<JournalArticle[]>(SEED_JOURNAL_ARTICLES);
 
-  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => {
-    const saved = localStorage.getItem('mag_commissions');
-    return saved ? JSON.parse(saved) : SEED_COMMISSIONS;
-  });
+  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => readStoredArray<CommissionRequest>('mag_commissions_v2'));
 
-  const [orders, setOrders] = useState<Order[]>(() => {
-    const saved = localStorage.getItem('mag_orders');
-    return saved ? JSON.parse(saved) : SEED_ORDERS;
-  });
+  const [orders, setOrders] = useState<Order[]>(() => readStoredArray<Order>('mag_orders_v2'));
 
-  const [auditLogs, setAuditLogs] = useState<AuditLog[]>(SEED_AUDIT_LOGS);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
 
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem('mag_cart');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cart, setCart] = useState<CartItem[]>(() => readStoredArray<CartItem>('mag_cart_v2'));
 
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    const saved = localStorage.getItem('mag_favorites');
-    return saved ? JSON.parse(saved) : ['art-001', 'art-002'];
-  });
+  const [favorites, setFavorites] = useState<string[]>(() => readStoredArray<string>('mag_favorites_v2'));
 
   const [inspectedArtwork, setInspectedArtwork] = useState<Artwork | null>(null);
   const [inspectedProvenance, setInspectedProvenance] = useState<Artwork | null>(null);
@@ -239,31 +234,31 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    localStorage.setItem('mag_lang', language);
+    writeStored('mag_lang', language);
   }, [language]);
 
   useEffect(() => {
-    localStorage.setItem('mag_currency', currency);
+    writeStored('mag_currency', currency);
   }, [currency]);
 
   useEffect(() => {
-    localStorage.setItem('mag_cart', JSON.stringify(cart));
+    writeStored('mag_cart_v2', cart);
   }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('mag_favorites', JSON.stringify(favorites));
+    writeStored('mag_favorites_v2', favorites);
   }, [favorites]);
 
   useEffect(() => {
-    localStorage.setItem('mag_artworks', JSON.stringify(artworks));
+    writeStored('mag_artworks_v2', artworks);
   }, [artworks]);
 
   useEffect(() => {
-    localStorage.setItem('mag_commissions', JSON.stringify(commissions));
+    writeStored('mag_commissions_v2', commissions);
   }, [commissions]);
 
   useEffect(() => {
-    localStorage.setItem('mag_orders', JSON.stringify(orders));
+    writeStored('mag_orders_v2', orders);
   }, [orders]);
 
   const setLanguage = (lang: Language) => {
@@ -274,8 +269,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setCurrencyState(cur);
   };
 
+  useEffect(() => {
+    const syncRoute = () => setCurrentRoute(normalizeRoute(window.location.pathname));
+    const normalized = normalizeRoute(window.location.pathname);
+    if (normalized !== window.location.pathname) window.history.replaceState({}, '', normalized);
+    syncRoute();
+    window.addEventListener('popstate', syncRoute);
+    return () => window.removeEventListener('popstate', syncRoute);
+  }, []);
+
   const navigateTo = (route: string) => {
-    setCurrentRoute(route);
+    const nextRoute = normalizeRoute(route);
+    if (window.location.pathname !== nextRoute) window.history.pushState({}, '', nextRoute);
+    setCurrentRoute(nextRoute);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -307,50 +313,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const isFavorite = (artworkId: string) => favorites.includes(artworkId);
-
-  const placeOrder = (orderData: Omit<Order, 'id' | 'orderNumber' | 'createdAt'>): Order => {
-    const orderNumber = `MAG-ORD-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-    const newOrder: Order = {
-      ...orderData,
-      id: `ord-${Date.now()}`,
-      orderNumber,
-      createdAt: new Date().toISOString(),
-    };
-
-    // Update artworks provenance blocks to append transfer of custody deed
-    setArtworks(prev =>
-      prev.map(art => {
-        const itemInOrder = orderData.items.find(i => i.artworkId === art.id);
-        if (itemInOrder) {
-          const updatedProv = appendTransferBlock(art.provenance, orderData.customerName, orderNumber);
-          return {
-            ...art,
-            status: art.classification === 'ORIGINAL' ? 'SOLD' : art.status,
-            provenance: updatedProv,
-          };
-        }
-        return art;
-      })
-    );
-
-    setOrders(prev => [newOrder, ...prev]);
-    clearCart();
-
-    // Log in audit trail
-    setAuditLogs(prev => [
-      {
-        id: `log-${Date.now()}`,
-        timestamp: new Date().toISOString(),
-        actor: orderData.customerName,
-        role: 'CUSTOMER',
-        action: 'ORDER_PLACED_AND_AUTHENTICATED',
-        details: `Order ${orderNumber} placed for ${orderData.items.length} artwork(s). Payment via ${orderData.paymentMethod}. Blockchain transfer deed signed.`,
-      },
-      ...prev,
-    ]);
-
-    return newOrder;
-  };
 
   const submitCommission = (requestData: Omit<CommissionRequest, 'id' | 'status' | 'createdAt' | 'updatedAt'>): CommissionRequest => {
     const newCommission: CommissionRequest = {
@@ -397,7 +359,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const submitArtwork = (artworkData: Partial<Artwork>): Artwork => {
     const id = `art-${Date.now().toString().slice(-4)}`;
     const title = artworkData.title || 'Untitled Masterpiece';
-    const artistName = artworkData.artistName || 'Emerging Master';
+    const artistName = artworkData.artistName || 'Artist submission';
     const year = artworkData.creationYear || new Date().getFullYear();
     const origin = artworkData.origin || 'Arusha, Tanzania';
 
@@ -405,18 +367,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       id,
       title,
       slug: title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
-      description: artworkData.description || 'Contemporary original work submitted for curatorial registry.',
+      description: artworkData.description || 'Artwork submitted for gallery review.',
       artistId: artworkData.artistId || 'artist-submission',
       artistName,
       artistOrigin: origin,
       category: artworkData.category || 'Paintings',
-      medium: artworkData.medium || 'Mixed Media on Canvas',
-      materials: artworkData.materials || 'Archival pigments and linen',
-      dimensions: artworkData.dimensions || { heightCm: 100, widthCm: 100 },
+      medium: artworkData.medium || 'Not provided',
+      materials: artworkData.materials || 'Not provided',
+      dimensions: artworkData.dimensions || { heightCm: 0, widthCm: 0 },
       creationYear: year,
       origin,
-      images: artworkData.images && artworkData.images.length > 0 ? artworkData.images : ['/src/assets/images/hero_african_art_gallery_1794114972525.jpg'],
-      priceTzs: artworkData.priceTzs || 5000000,
+      images: artworkData.images && artworkData.images.length > 0 ? artworkData.images : [],
+      priceTzs: artworkData.priceTzs ?? 0,
       classification: artworkData.classification || 'ORIGINAL',
       status: 'SUBMITTED',
       featured: false,
@@ -508,7 +470,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         favorites,
         toggleFavorite,
         isFavorite,
-        placeOrder,
         inspectedArtwork,
         setInspectedArtwork,
         inspectedProvenance,

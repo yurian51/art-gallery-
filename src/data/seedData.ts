@@ -1,5 +1,4 @@
 import { Artwork, Artist, Exhibition, Collection, JournalArticle } from '../types';
-import { createInitialProvenance } from '../services/blockchainProvenance';
 
 export const SEED_ARTISTS: Artist[] = [
   {

@@ -41,10 +41,10 @@ export const CustomerDashboard: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-              Collector Custody & Portfolio
+              Customer workspace
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Patron Account & Acquisition Registry
+              Your gallery activity
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
               Registered Patron: <strong className="text-[#171717]">Dr. Amina Rashidi</strong> · Arusha Registry Node
@@ -64,10 +64,10 @@ export const CustomerDashboard: React.FC = () => {
         {/* Navigation Tabs */}
         <div className="flex items-center gap-2 mt-8 overflow-x-auto pb-1">
           {[
-            { id: 'ORDERS', label: `Acquisition Orders (${orders.length})`, icon: <ShoppingBag className="w-3.5 h-3.5" /> },
-            { id: 'FAVORITES', label: `Saved Masterworks (${favorites.length})`, icon: <Heart className="w-3.5 h-3.5" /> },
-            { id: 'COMMISSIONS', label: `Custom Commissions (${commissions.length})`, icon: <Palette className="w-3.5 h-3.5" /> },
-            { id: 'DEEDS', label: `Blockchain Provenance Deeds`, icon: <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" /> },
+            { id: 'ORDERS', label: `Orders (${orders.length})`, icon: <ShoppingBag className="w-3.5 h-3.5" /> },
+            { id: 'FAVORITES', label: `Saved artworks (${favorites.length})`, icon: <Heart className="w-3.5 h-3.5" /> },
+            { id: 'COMMISSIONS', label: `Enquiries (${commissions.length})`, icon: <Palette className="w-3.5 h-3.5" /> },
+            { id: 'DEEDS', label: `Artwork records`, icon: <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" /> },
           ].map(tab => (
             <button
               key={tab.id}
@@ -85,12 +85,14 @@ export const CustomerDashboard: React.FC = () => {
         </div>
       </div>
 
+      <div className="mb-6 border border-[#B89B62]/40 bg-white p-4 text-sm text-[#817C73]">Preview only. No customer is signed in and no private account data is connected.</div>
+
       {/* Tab 1: Orders */}
       {activeTab === 'ORDERS' && (
         <div className="space-y-6">
           {orders.length === 0 ? (
             <div className="bg-white border border-[#817C73]/20 py-16 text-center space-y-3">
-              <p className="font-serif italic text-lg text-[#817C73]">No acquisition orders recorded yet.</p>
+              <p className="font-serif italic text-lg text-[#817C73]">No orders are available for this customer workspace.</p>
               <button
                 onClick={() => navigateTo('/gallery')}
                 className="px-4 py-2 bg-[#171717] text-white text-xs font-semibold hover:bg-[#B89B62]"
@@ -194,7 +196,7 @@ export const CustomerDashboard: React.FC = () => {
         <div>
           {favoriteArtworks.length === 0 ? (
             <div className="bg-white border border-[#817C73]/20 py-16 text-center space-y-3">
-              <p className="font-serif italic text-lg text-[#817C73]">No masterworks saved to your curatorial wishlist.</p>
+              <p className="font-serif italic text-lg text-[#817C73]">No artworks have been saved in this browser.</p>
               <button
                 onClick={() => navigateTo('/gallery')}
                 className="px-4 py-2 bg-[#171717] text-white text-xs font-semibold hover:bg-[#B89B62]"
@@ -217,7 +219,7 @@ export const CustomerDashboard: React.FC = () => {
         <div className="space-y-4">
           <div className="flex justify-between items-center mb-2">
             <span className="text-xs text-[#817C73]">
-              Track your bespoke art commissions and atelier progress.
+              Review commission enquiries saved in this browser.
             </span>
             <button
               onClick={() => navigateTo('/commissions')}
@@ -227,7 +229,7 @@ export const CustomerDashboard: React.FC = () => {
             </button>
           </div>
 
-          {commissions.map(c => (
+          {commissions.length === 0 ? <p className="border border-[#817C73]/20 bg-white py-10 text-center text-sm text-[#817C73]">No commission enquiries are saved in this browser.</p> : commissions.map(c => (
             <div key={c.id} className="bg-white border border-[#817C73]/25 p-5 space-y-3">
               <div className="flex justify-between items-start">
                 <div>
@@ -235,7 +237,7 @@ export const CustomerDashboard: React.FC = () => {
                   <h3 className="font-serif font-bold text-lg text-[#171717]">
                     {c.category} Commission · {c.dimensionsRequired}
                   </h3>
-                  <p className="text-xs text-[#817C73]">Artist: {c.assignedArtistName || 'Curatorial Allocation'}</p>
+                  <p className="text-xs text-[#817C73]">Artist: {c.assignedArtistName || 'Not assigned'}</p>
                 </div>
                 <span className="font-mono text-xs font-bold text-[#171717]">
                   {formatPrice(c.budgetTzs, currency)}
@@ -247,59 +249,15 @@ export const CustomerDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Tab 4: Provenance Deeds in Custody */}
+      {/* Tab 4: Artwork documentation */}
       {activeTab === 'DEEDS' && (
-        <div className="space-y-4">
-          <div className="bg-[#FFFDF9] border-2 border-[#B89B62] p-6 space-y-3">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-[#B89B62]" />
-              <h3 className="font-serif font-bold text-lg text-[#171717]">
-                Consortium Blockchain Ownership Registry
-              </h3>
-            </div>
-            <p className="text-xs text-[#817C73] leading-relaxed">
-              Below are the immutable cryptographic ownership deeds linked to your patron identity on the
-              Polygon African Art Consortium (PAAC) smart escrow.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {artworks.filter(a => a.status === 'SOLD' || a.id === 'art-003').map(art => (
-              <div key={art.id} className="bg-white border border-[#817C73]/25 p-5 space-y-4">
-                <div className="flex items-center gap-3">
-                  <img src={art.images[0]} alt={art.title} className="w-14 h-14 object-cover border border-[#817C73]/20" />
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-serif font-bold text-base text-[#171717] truncate">{art.title}</h4>
-                    <p className="text-xs text-[#817C73]">{art.artistName}</p>
-                    <span className="font-mono text-[10px] text-[#B89B62] block">
-                      Cert #{art.provenance.certificateNumber}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-[#F7F5F0] border border-[#817C73]/15 font-mono text-[11px] space-y-1 text-[#171717]">
-                  <div className="flex justify-between text-[#817C73]">
-                    <span>Token ID:</span>
-                    <span>#{art.provenance.tokenId}</span>
-                  </div>
-                  <div className="truncate">
-                    <span className="text-[#817C73]">Hash: </span>
-                    {art.provenance.verificationHash}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setInspectedProvenance(art)}
-                  className="w-full py-2 bg-[#171717] text-[#F7F5F0] text-xs font-semibold hover:bg-[#B89B62] hover:text-[#171717] transition-all flex items-center justify-center gap-2"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" />
-                  <span>Inspect Official Certificate of Authenticity</span>
-                </button>
-              </div>
-            ))}
-          </div>
+        <div className="border border-[#817C73]/20 bg-white p-6 sm:p-8 space-y-3">
+          <h3 className="font-serif text-xl text-[#171717]">Artwork documentation</h3>
+          <p className="text-sm leading-relaxed text-[#817C73]">No live verification or ownership registry is connected. Any artwork documents must be reviewed independently; this workspace does not issue certificates.</p>
+          {artworks.length === 0 && <p className="border-t border-[#817C73]/15 pt-4 text-xs text-[#817C73]">No artwork records are available for this customer preview.</p>}
         </div>
       )}
+
     </div>
   );
 };
