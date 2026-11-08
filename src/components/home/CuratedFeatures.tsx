@@ -18,7 +18,7 @@ export const CuratedFeatures: React.FC = () => {
     setSearchQuery,
   } = useApp();
   const sw = language === 'sw';
-  const featuredArtworks = artworks.filter(artwork => artwork.featured).slice(0, 3);
+  const featuredArtworks = artworks.filter(artwork => artwork.featured).slice(0, 4);
   const currentExhibition = exhibitions.find(exhibition => exhibition.status === 'CURRENT');
   const publishedArtists = artists.slice(0, 3);
   const publishedStories = journalArticles.slice(0, 2);
@@ -84,18 +84,33 @@ export const CuratedFeatures: React.FC = () => {
   const journey = [
     {
       number: '01',
-      title: sw ? 'Gundua kazi' : 'Discover the collection',
-      body: sw ? 'Chunguza aina za sanaa na kazi zilizowekwa kwenye galari.' : 'Browse art disciplines and the works currently presented by the gallery.',
+      title: sw ? 'Gundua mkusanyiko' : 'Explore the collection',
+      body: sw ? 'Chunguza michoro, sanamu, picha na mitindo mbalimbali ya sanaa.' : 'Explore paintings, sculpture, photography and a range of artistic disciplines.',
     },
     {
       number: '02',
-      title: sw ? 'Chagua na uliza' : 'Shortlist and enquire',
-      body: sw ? 'Chagua kazi unayoipenda na uliza kuhusu maelezo yake.' : 'Choose a work that interests you and ask the gallery for its details.',
+      title: sw ? 'Chagua kazi unayoipenda' : 'Find a work that speaks to you',
+      body: sw ? 'Hifadhi au kusanya kazi unazotaka kuzifanyia utafiti zaidi.' : 'Shortlist artworks that match your taste, space or collection.',
     },
     {
       number: '03',
-      title: sw ? 'Panga hatua zinazofuata' : 'Arrange the next step',
-      body: sw ? 'Thibitisha upatikanaji, bei na utaratibu wa kukabidhi kazi.' : 'Confirm availability, pricing and the arrangements for collection or delivery.',
+      title: sw ? 'Jifunze kuhusu kazi' : 'Learn about the artwork',
+      body: sw ? 'Soma maelezo ya kazi, msanii, vipimo na taarifa zilizopo.' : 'Review the available details about the work, artist, medium and dimensions.',
+    },
+    {
+      number: '04',
+      title: sw ? 'Wasiliana na galari' : 'Speak with the gallery',
+      body: sw ? 'Uliza kuhusu bei, upatikanaji, asili na namna ya kupata kazi.' : 'Ask about pricing, availability, provenance information and acquisition.',
+    },
+    {
+      number: '05',
+      title: sw ? 'Thibitisha mpango' : 'Confirm the arrangements',
+      body: sw ? 'Jadili malipo, usafirishaji au namna ya kuchukua kazi.' : 'Agree on payment, collection or delivery arrangements directly with the gallery.',
+    },
+    {
+      number: '06',
+      title: sw ? 'Karibisha sanaa yako' : 'Welcome art into your space',
+      body: sw ? 'Pokea maelekezo ya mwisho na panga hatua ya kukabidhi kazi.' : 'Complete the handover with the details and arrangements confirmed by the gallery.',
     },
   ];
 
@@ -142,7 +157,7 @@ export const CuratedFeatures: React.FC = () => {
             </button>
           </div>
           {featuredArtworks.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-7">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4 md:gap-7">
               {featuredArtworks.map(artwork => <ArtworkCard key={artwork.id} artwork={artwork} />)}
             </div>
           ) : (
@@ -202,6 +217,35 @@ export const CuratedFeatures: React.FC = () => {
         </div>
       </section>
 
+      <section className="bg-[#171717] py-14 text-[#F7F5F0] sm:py-16">
+        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
+          <div className="flex flex-col gap-5 border-b border-white/15 pb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.24em] text-[#D7B873]">{sw ? 'Chunguza mitindo' : 'Explore popular art forms'}</span>
+              <h2 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">{sw ? 'Gundua sanaa kwa mtazamo wako.' : 'Find your place in the world of art.'}</h2>
+            </div>
+            <p className="max-w-md text-xs leading-6 text-white/60">{sw ? 'Chagua aina ya sanaa ili kuona kazi zinazohusiana kwenye katalogi.' : 'Choose a discipline to explore related works in the gallery catalogue.'}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-px border border-white/10 bg-white/10 sm:grid-cols-4">
+            {[
+              { label: sw ? 'Sanaa za kisasa' : 'Contemporary art', query: 'Contemporary Art' },
+              { label: sw ? 'Sanaa za jadi' : 'Traditional art', query: 'Traditional Art' },
+              { label: sw ? 'Sanaa dhahania' : 'Abstract art', query: 'Abstract Art' },
+              { label: sw ? 'Mandhari na mazingira' : 'Landscape art', query: 'Landscape Art' },
+              { label: sw ? 'Picha za watu' : 'Portraiture', query: 'Portraiture' },
+              { label: sw ? 'Sanaa mchanganyiko' : 'Mixed media', query: 'Mixed Media' },
+              { label: sw ? 'Sanaa za kidijitali' : 'Digital art', query: 'Digital Art' },
+              { label: sw ? 'Machapisho ya sanaa' : 'Fine-art prints', query: 'Fine Art Prints' },
+            ].map((item, index) => (
+              <button key={item.query} type="button" onClick={() => { setSearchQuery(item.query); navigateTo('/gallery'); }} className="group flex min-h-[82px] items-center justify-between gap-3 bg-[#171717] px-4 py-5 text-left transition-colors hover:bg-[#28251F] sm:px-6">
+                <span className="text-xs font-semibold text-white/85 transition-colors group-hover:text-[#E2C98E]">{item.label}</span>
+                <span className="font-serif text-sm text-[#B89B62]">0{index + 1}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-[#817C73]/15 bg-white py-16 sm:py-24">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-14">
           <div className="relative min-h-[340px] overflow-hidden sm:min-h-[500px]">
@@ -243,7 +287,7 @@ export const CuratedFeatures: React.FC = () => {
             <h2 className="font-serif text-3xl font-semibold tracking-[-0.025em] text-[#171717] sm:text-4xl lg:text-5xl">{sw ? 'Kutoka kugundua hadi kumiliki.' : 'From discovery to acquisition.'}</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#70695F]">{sw ? 'Mchakato ulio wazi unaokuwezesha kuuliza, kuthibitisha na kupanga hatua zinazofuata.' : 'A clear process that helps you enquire, confirm the details and arrange the next step.'}</p>
           </div>
-          <div className="grid grid-cols-1 gap-0 border-y border-[#817C73]/20 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-0 border-y border-[#817C73]/20 md:grid-cols-2 xl:grid-cols-3">
             {journey.map((step, index) => (
               <div key={step.number} className={`relative px-6 py-9 sm:px-9 sm:py-12 ${index > 0 ? 'border-t border-[#817C73]/20 md:border-l md:border-t-0' : ''}`}>
                 <span className="font-serif text-5xl font-semibold text-[#D9CCB1]">{step.number}</span>
