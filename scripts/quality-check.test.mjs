@@ -49,8 +49,8 @@ test('client state does not preload fabricated customers, orders, or commissions
   assert.doesNotMatch(context, /SEED_COMMISSIONS/);
   assert.doesNotMatch(context, /SEED_ORDERS/);
   assert.doesNotMatch(context, /SEED_AUDIT_LOGS/);
-  assert.match(context, /readStoredArray<CommissionRequest>\\('mag_commissions_v2'/);
-  assert.match(context, /readStoredArray<Order>\\('mag_orders_v2'/);
+  assert.ok(context.includes("readStoredArray<CommissionRequest>('mag_commissions_v2'"));
+  assert.ok(context.includes("readStoredArray<Order>('mag_orders_v2'"));
 });
 
 test('public catalogue does not preload fabricated artist and exhibition profiles', () => {
