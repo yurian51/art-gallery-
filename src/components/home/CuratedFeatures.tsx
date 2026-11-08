@@ -87,14 +87,14 @@ export const CuratedFeatures: React.FC = () => {
             <p className="mt-4 text-sm leading-7 text-[#70695F]">{sw ? 'Chagua kundi ili kuchunguza kazi zinazohusiana nalo.' : 'Choose a discipline to explore related works in the gallery.'}</p>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {disciplines.map((item, index) => (
-              <button key={item.query} type="button" onClick={() => { setSearchQuery(item.query); navigateTo('/gallery'); }} className="group relative min-h-[340px] overflow-hidden bg-[#DED7CB] text-left sm:min-h-[420px]">
-                <img src={item.image} alt={item.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            {disciplines.map(({ title, query, image, description }, index) => (
+              <button key={query} type="button" onClick={() => { setSearchQuery(query); navigateTo('/gallery'); }} className="group relative min-h-[340px] overflow-hidden bg-[#DED7CB] text-left sm:min-h-[420px]">
+                <img src={image} alt={title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
                 <span className="absolute left-5 top-5 text-[10px] font-bold tracking-[0.2em] text-white">0{index + 1}</span>
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-7">
-                  <h3 className="font-serif text-2xl font-semibold">{sw ? ['Uchoraji na mandhari','Sanamu na maumbo','Picha za watu','Galari na utamaduni'][index] : item.title}</h3>
-                  <p className="mt-2 text-xs leading-6 text-white/75">{sw ? ['Rangi, maeneo na mitazamo katika sanaa ya Afrika.','Chunguza maumbo, vifaa na ufundi wa sanaa.','Hadithi na utambulisho kupitia picha za watu.','Gundua mazingira na simulizi zinazozunguka sanaa.'][index] : item.description}</p>
+                  <h3 className="font-serif text-2xl font-semibold">{sw ? ['Uchoraji na mandhari','Sanamu na maumbo','Picha za watu','Galari na utamaduni'][index] : title}</h3>
+                  <p className="mt-2 text-xs leading-6 text-white/75">{sw ? ['Rangi, maeneo na mitazamo katika sanaa ya Afrika.','Chunguza maumbo, vifaa na ufundi wa sanaa.','Hadithi na utambulisho kupitia picha za watu.','Gundua mazingira na simulizi zinazozunguka sanaa.'][index] : description}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#E2C98E]">{sw ? 'Chunguza kundi' : 'Explore discipline'} <ArrowUpRight className="h-4 w-4" /></span>
                 </div>
               </button>
