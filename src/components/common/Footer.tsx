@@ -41,38 +41,23 @@ export const Footer: React.FC = () => {
             </p>
 
             <div className="pt-2 flex items-center gap-2 text-xs text-[#B89B62]">
-              <ShieldCheck className="w-4 h-4 text-[#B89B62]" />
-              <span className="font-mono text-[11px]">
-                Consortium Blockchain Node: PAAC-DAR-01
-              </span>
+              <MapPin className="w-4 h-4 text-[#B89B62]" />
+              <span className="font-mono text-[11px]">Arusha, Tanzania · Art Beyond Boundaries</span>
             </div>
           </div>
 
-          {/* Col 3: Gallery Salons & Visit */}
+          {/* Col 3: Gallery Location */}
           <div className="space-y-3">
             <h4 className="font-serif text-sm font-bold tracking-wider text-[#F7F5F0] uppercase">
-              Galleries & Salons
+              Find the Gallery
             </h4>
             <div className="space-y-3 text-xs text-[#817C73]">
               <div>
                 <p className="text-[#F7F5F0] font-medium flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
-                  Dar es Salaam Pavilion
+                  Arusha, Tanzania
                 </p>
-                <p className="mt-0.5">Plot 44, Toure Drive, Oysterbay</p>
-                <p>Dar es Salaam, Tanzania</p>
-              </div>
-              <div>
-                <p className="text-[#F7F5F0] font-medium flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
-                  Zanzibar Atelier
-                </p>
-                <p className="mt-0.5">Shangani St, Stone Town</p>
-                <p>Zanzibar, Tanzania</p>
-              </div>
-              <div className="flex items-center gap-1.5 text-[11px] pt-1 text-[#817C73]">
-                <Clock className="w-3 h-3 text-[#B89B62]" />
-                <span>Mon – Sat: 10:00 – 19:00 EAT</span>
+                <p className="mt-0.5">Contact us to arrange a visit.</p>
               </div>
             </div>
           </div>
