@@ -5,7 +5,7 @@ import swahiliPortraitImage from '../../assets/images/artwork_swahili_portrait_1
 import galleryInteriorImage from '../../assets/images/gallery_interior_dar_1794114974688.jpg';
 import { useApp } from '../../context/AppContext';
 import { ArtworkCard } from '../gallery/ArtworkCard';
-import { ArrowRight, ArrowUpRight, Palette, Shapes, Camera, Frame, MapPin, MessageCircle, Eye, Handshake, PackageCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Palette, Shapes, Camera, Frame, MessageCircle, Eye, Handshake, PackageCheck, Sparkles } from 'lucide-react';
 
 export const CuratedFeatures: React.FC = () => {
   const {
