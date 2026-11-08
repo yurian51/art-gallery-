@@ -20,7 +20,7 @@ import {
   SEED_COLLECTIONS,
   SEED_JOURNAL_ARTICLES,
 } from '../data/seedData';
-import { appendTransferBlock, createInitialProvenance } from '../services/blockchainProvenance';
+import { createInitialProvenance } from '../services/blockchainProvenance';
 
 interface AppContextType {
   language: Language;
@@ -52,7 +52,6 @@ interface AppContextType {
   favorites: string[];
   toggleFavorite: (artworkId: string) => void;
   isFavorite: (artworkId: string) => boolean;
-  placeOrder: (orderData: Omit<Order, 'id' | 'orderNumber' | 'createdAt'>) => Order;
 
   // Modals & Inspectors
   inspectedArtwork: Artwork | null;
@@ -78,152 +77,53 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const SEED_COMMISSIONS: CommissionRequest[] = [
-  {
-    id: 'comm-101',
-    customerName: 'Victoria Sterling',
-    customerEmail: 'v.sterling@mayfaircuratorial.co.uk',
-    customerPhone: '+44 7700 900142',
-    category: 'Paintings',
-    mediumPreferred: 'Oil & Natural Ochre on Canvas',
-    dimensionsRequired: '200cm x 150cm',
-    budgetTzs: 24000000,
-    deadline: '2026-08-30',
-    deliveryCity: 'London',
-    deliveryCountry: 'United Kingdom',
-    brief: 'Commissioning a grand-scale dining pavilion canvas exploring the maritime migration routes of Zanzibar and Kilwa Kisiwani. Must feature deep lapis, raw earth umbers and 24k gold leaf highlights.',
-    status: 'IN_PROGRESS',
-    quoteAmountTzs: 24000000,
-    assignedArtistName: 'Mwl. Juma Mwinyi',
-    createdAt: '2026-01-20T10:00:00Z',
-    updatedAt: '2026-02-05T14:00:00Z',
-    milestones: [
-      { title: 'Composition Sketch Approved', completed: true, date: '2026-01-28' },
-      { title: 'Ground Layer & Pigment Application', completed: true, date: '2026-02-15' },
-      { title: '24k Gold Leaf Gilding', completed: false },
-      { title: 'Curation Review & Crated Shipping', completed: false },
-    ],
-  },
-  {
-    id: 'comm-102',
-    customerName: 'Kassim Salim Mwinyimvua',
-    customerEmail: 'kassim.mwinyi@kilimanjaro-advisory.tz',
-    customerPhone: '+255 754 889 012',
-    category: 'Sculpture',
-    mediumPreferred: 'Tanzanian Mpingo (African Blackwood)',
-    dimensionsRequired: '130cm height x 50cm base',
-    budgetTzs: 18000000,
-    deadline: '2026-06-15',
-    deliveryCity: 'Dar es Salaam',
-    deliveryCountry: 'Tanzania',
-    brief: 'Corporate boardroom sculpture symbolizing intergenerational leadership and sustainable development. Interlocking abstract forms inspired by the Makonde tree of life.',
-    status: 'QUOTED',
-    quoteAmountTzs: 18500000,
-    assignedArtistName: 'Aloyce Masoud',
-    createdAt: '2026-02-10T11:00:00Z',
-    updatedAt: '2026-02-14T16:00:00Z',
-  },
-];
+const readStoredString = (key: string, fallback: string): string => {
+  try { return window.localStorage.getItem(key) ?? fallback; } catch { return fallback; }
+};
 
-const SEED_ORDERS: Order[] = [
-  {
-    id: 'ord-8801',
-    orderNumber: 'MAG-ORD-2026-8801',
-    customerName: 'Dr. Tariq Al-Hassan',
-    customerEmail: 't.alhassan@emiratesheritage.ae',
-    customerPhone: '+971 50 123 4567',
-    shippingAddress: {
-      street: 'Villa 14, Al Bateen Marina',
-      city: 'Abu Dhabi',
-      region: 'Abu Dhabi',
-      country: 'United Arab Emirates',
-      postalCode: '00000',
-    },
-    items: [
-      {
-        artworkId: 'art-003',
-        title: 'Subira Huzaa Heri (Patience Bears Virtue)',
-        artistName: 'Rehema Chande',
-        priceTzs: 9500000,
-        image: '/src/assets/images/artwork_swahili_portrait_1794114974703.jpg',
-        provenanceHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
-      },
-    ],
-    subtotalTzs: 9500000,
-    shippingTzs: 850000,
-    totalTzs: 10350000,
-    currencyPaid: 'USD',
-    paymentMethod: 'CARD',
-    paymentReference: 'STRIPE_TX_94882194',
-    paymentStatus: 'PAID',
-    fulfillmentStatus: 'CRATING',
-    trackingNumber: 'DHL-EXPRESS-TZ-772918',
-    createdAt: '2026-02-14T09:15:00Z',
-  },
-];
+const readStoredJson = <T,>(key: string, fallback: T): T => {
+  try {
+    const raw = window.localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as T) : fallback;
+  } catch { return fallback; }
+};
 
-const SEED_AUDIT_LOGS: AuditLog[] = [
-  {
-    id: 'log-1',
-    timestamp: '2026-02-18T10:15:00Z',
-    actor: 'Mwl. Daudi Mrisho',
-    role: 'ART_CURATOR',
-    action: 'PROVENANCE_BLOCK_MINTS',
-    details: 'Minted Genesis and Verification blocks for new masterwork "Voices of Bagamoyo" (art-001).',
-  },
-  {
-    id: 'log-2',
-    timestamp: '2026-02-14T09:16:00Z',
-    actor: 'Payment Gateway Escrow',
-    role: 'FINANCE_MANAGER',
-    action: 'PAYMENT_SETTLED',
-    details: 'Received full acquisition settlement for Order MAG-ORD-2026-8801. Blockchain deed ownership recorded.',
-  },
-];
+const writeStored = (key: string, value: unknown) => {
+  try { window.localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch { /* Storage may be unavailable. */ }
+};
 
+const APP_ROUTES = new Set(['/', '/gallery', '/artists', '/exhibitions', '/commissions', '/journal', '/about', '/account', '/artist-portal', '/admin']);
+const normalizeRoute = (route: string) => {
+  const normalized = route === '/' ? '/' : '/' + route.split('/').filter(Boolean).join('/');
+  return APP_ROUTES.has(normalized) ? normalized : '/';
+};
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    return (localStorage.getItem('mag_lang') as Language) || 'en';
-  });
+  const [language, setLanguageState] = useState<Language>(() => readStoredString('mag_lang', 'en') === 'sw' ? 'sw' : 'en');
 
   const [currency, setCurrencyState] = useState<Currency>(() => {
-    return (localStorage.getItem('mag_currency') as Currency) || 'TZS';
+    const stored = readStoredString('mag_currency', 'TZS');
+    return ['TZS', 'USD', 'EUR', 'GBP'].includes(stored) ? stored as Currency : 'TZS';
   });
 
   const [currentRole, setCurrentRole] = useState<UserRole>('CUSTOMER');
-  const [currentRoute, setCurrentRoute] = useState<string>('/');
+  const [currentRoute, setCurrentRoute] = useState<string>(() => normalizeRoute(window.location.pathname));
 
-  const [artworks, setArtworks] = useState<Artwork[]>(() => {
-    const saved = localStorage.getItem('mag_artworks');
-    return saved ? JSON.parse(saved) : SEED_ARTWORKS;
-  });
+  const [artworks, setArtworks] = useState<Artwork[]>(() => readStoredJson('mag_artworks', SEED_ARTWORKS));
 
   const [artists] = useState<Artist[]>(SEED_ARTISTS);
   const [exhibitions] = useState<Exhibition[]>(SEED_EXHIBITIONS);
   const [collections] = useState<Collection[]>(SEED_COLLECTIONS);
   const [journalArticles] = useState<JournalArticle[]>(SEED_JOURNAL_ARTICLES);
 
-  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => {
-    const saved = localStorage.getItem('mag_commissions');
-    return saved ? JSON.parse(saved) : SEED_COMMISSIONS;
-  });
+  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => readStoredJson('mag_commissions', []));
 
-  const [orders, setOrders] = useState<Order[]>(() => {
-    const saved = localStorage.getItem('mag_orders');
-    return saved ? JSON.parse(saved) : SEED_ORDERS;
-  });
+  const [orders, setOrders] = useState<Order[]>(() => readStoredJson('mag_orders', []));
 
-  const [auditLogs, setAuditLogs] = useState<AuditLog[]>(SEED_AUDIT_LOGS);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
 
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem('mag_cart');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cart, setCart] = useState<CartItem[]>(() => readStoredJson('mag_cart', []));
 
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    const saved = localStorage.getItem('mag_favorites');
-    return saved ? JSON.parse(saved) : ['art-001', 'art-002'];
-  });
+  const [favorites, setFavorites] = useState<string[]>(() => readStoredJson('mag_favorites', []));
 
   const [inspectedArtwork, setInspectedArtwork] = useState<Artwork | null>(null);
   const [inspectedProvenance, setInspectedProvenance] = useState<Artwork | null>(null);
@@ -231,31 +131,31 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    localStorage.setItem('mag_lang', language);
+    writeStored('mag_lang', language);
   }, [language]);
 
   useEffect(() => {
-    localStorage.setItem('mag_currency', currency);
+    writeStored('mag_currency', currency);
   }, [currency]);
 
   useEffect(() => {
-    localStorage.setItem('mag_cart', JSON.stringify(cart));
+    writeStored('mag_cart', cart);
   }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('mag_favorites', JSON.stringify(favorites));
+    writeStored('mag_favorites', favorites);
   }, [favorites]);
 
   useEffect(() => {
-    localStorage.setItem('mag_artworks', JSON.stringify(artworks));
+    writeStored('mag_artworks', artworks);
   }, [artworks]);
 
   useEffect(() => {
-    localStorage.setItem('mag_commissions', JSON.stringify(commissions));
+    writeStored('mag_commissions', commissions);
   }, [commissions]);
 
   useEffect(() => {
-    localStorage.setItem('mag_orders', JSON.stringify(orders));
+    writeStored('mag_orders', orders);
   }, [orders]);
 
   const setLanguage = (lang: Language) => {
@@ -266,8 +166,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setCurrencyState(cur);
   };
 
+  useEffect(() => {
+    const syncRoute = () => setCurrentRoute(normalizeRoute(window.location.pathname));
+    const normalized = normalizeRoute(window.location.pathname);
+    if (normalized !== window.location.pathname) window.history.replaceState({}, '', normalized);
+    syncRoute();
+    window.addEventListener('popstate', syncRoute);
+    return () => window.removeEventListener('popstate', syncRoute);
+  }, []);
+
   const navigateTo = (route: string) => {
-    setCurrentRoute(route);
+    const nextRoute = normalizeRoute(route);
+    if (window.location.pathname !== nextRoute) window.history.pushState({}, '', nextRoute);
+    setCurrentRoute(nextRoute);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -299,50 +210,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const isFavorite = (artworkId: string) => favorites.includes(artworkId);
-
-  const placeOrder = (orderData: Omit<Order, 'id' | 'orderNumber' | 'createdAt'>): Order => {
-    const orderNumber = `MAG-ORD-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-    const newOrder: Order = {
-      ...orderData,
-      id: `ord-${Date.now()}`,
-      orderNumber,
-      createdAt: new Date().toISOString(),
-    };
-
-    // Update artworks provenance blocks to append transfer of custody deed
-    setArtworks(prev =>
-      prev.map(art => {
-        const itemInOrder = orderData.items.find(i => i.artworkId === art.id);
-        if (itemInOrder) {
-          const updatedProv = appendTransferBlock(art.provenance, orderData.customerName, orderNumber);
-          return {
-            ...art,
-            status: art.classification === 'ORIGINAL' ? 'SOLD' : art.status,
-            provenance: updatedProv,
-          };
-        }
-        return art;
-      })
-    );
-
-    setOrders(prev => [newOrder, ...prev]);
-    clearCart();
-
-    // Log in audit trail
-    setAuditLogs(prev => [
-      {
-        id: `log-${Date.now()}`,
-        timestamp: new Date().toISOString(),
-        actor: orderData.customerName,
-        role: 'CUSTOMER',
-        action: 'ORDER_PLACED_AND_AUTHENTICATED',
-        details: `Order ${orderNumber} placed for ${orderData.items.length} artwork(s). Payment via ${orderData.paymentMethod}. Blockchain transfer deed signed.`,
-      },
-      ...prev,
-    ]);
-
-    return newOrder;
-  };
 
   const submitCommission = (requestData: Omit<CommissionRequest, 'id' | 'status' | 'createdAt' | 'updatedAt'>): CommissionRequest => {
     const newCommission: CommissionRequest = {
@@ -407,7 +274,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       dimensions: artworkData.dimensions || { heightCm: 100, widthCm: 100 },
       creationYear: year,
       origin,
-      images: artworkData.images && artworkData.images.length > 0 ? artworkData.images : ['/src/assets/images/hero_african_art_gallery_1794114972525.jpg'],
+      images: artworkData.images && artworkData.images.length > 0 ? artworkData.images : [],
       priceTzs: artworkData.priceTzs || 5000000,
       classification: artworkData.classification || 'ORIGINAL',
       status: 'SUBMITTED',
@@ -500,7 +367,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         favorites,
         toggleFavorite,
         isFavorite,
-        placeOrder,
         inspectedArtwork,
         setInspectedArtwork,
         inspectedProvenance,
