@@ -29,7 +29,6 @@ export const ArtworkDetailModal: React.FC = () => {
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
-  const [inquirySent, setInquirySent] = useState(false);
   const [showInquiryForm, setShowInquiryForm] = useState(false);
   const [inquiryMessage, setInquiryMessage] = useState('');
 
@@ -51,12 +50,6 @@ export const ArtworkDetailModal: React.FC = () => {
 
   const handleSendInquiry = (e: React.FormEvent) => {
     e.preventDefault();
-    setInquirySent(true);
-    setTimeout(() => {
-      setShowInquiryForm(false);
-      setInquirySent(false);
-      setInquiryMessage('');
-    }, 2500);
   };
 
   return (
@@ -106,7 +99,7 @@ export const ArtworkDetailModal: React.FC = () => {
               </div>
             )}
 
-            {/* Verified Blockchain Provenance Banner */}
+            {/* Artwork documentation status */}
             <div className="bg-white border border-[#B89B62]/40 p-4 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-[#B89B62]/10 border border-[#B89B62] flex items-center justify-center shrink-0">
@@ -114,10 +107,10 @@ export const ArtworkDetailModal: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-serif font-bold text-sm text-[#171717]">
-                    Cryptographic Provenance Verified
+                    Verification service not connected
                   </h4>
                   <p className="font-mono text-[11px] text-[#817C73]">
-                    Certificate #{inspectedArtwork.provenance.certificateNumber} · {inspectedArtwork.provenance.network}
+                    No authenticity certificate has been issued
                   </p>
                 </div>
               </div>
@@ -126,7 +119,7 @@ export const ArtworkDetailModal: React.FC = () => {
                 onClick={() => setInspectedProvenance(inspectedArtwork)}
                 className="px-3 py-1.5 border border-[#171717] text-xs font-medium text-[#171717] hover:bg-[#171717] hover:text-[#F7F5F0] transition-colors whitespace-nowrap"
               >
-                Inspect Ledger & Deed
+                View documentation status
               </button>
             </div>
           </div>
@@ -176,7 +169,7 @@ export const ArtworkDetailModal: React.FC = () => {
             <div className="py-3 px-4 bg-white border border-[#817C73]/20 flex items-center justify-between">
               <div>
                 <span className="text-[10px] uppercase tracking-wider text-[#817C73] block">
-                  Curatorial Valuation / Asking Price
+                  Artwork price
                 </span>
                 <span className="font-mono text-xl sm:text-2xl font-bold text-[#171717] tabular-nums">
                   {formatPrice(inspectedArtwork.priceTzs, currency)}
@@ -248,7 +241,7 @@ export const ArtworkDetailModal: React.FC = () => {
               </div>
               <p className="text-[11px] leading-relaxed">
                 Includes custom ISPM-15 certified timber crating, anti-static moisture barrier, and transit insurance.
-                Domestic Tanzania delivery within 48h. International courier via DHL Express (5–7 business days).
+                Delivery options and timing will be confirmed for each artwork before an acquisition.
               </p>
             </div>
 
@@ -258,17 +251,17 @@ export const ArtworkDetailModal: React.FC = () => {
                 onClick={() => setShowInquiryForm(true)}
                 className="w-full py-2.5 border border-[#171717] text-xs font-medium text-[#171717] hover:bg-[#171717] hover:text-[#F7F5F0] transition-colors"
               >
-                Inquire with Chief Curator
+                Ask about this artwork
               </button>
             ) : (
               <form onSubmit={handleSendInquiry} className="p-3 bg-white border border-[#817C73]/30 space-y-2">
                 <span className="text-[10px] uppercase font-semibold text-[#817C73] block">
-                  Private Curatorial Inquiry
+                  Artwork enquiry
                 </span>
                 <textarea
                   value={inquiryMessage}
                   onChange={e => setInquiryMessage(e.target.value)}
-                  placeholder="Inquire about provenance history, framing options, or private viewing..."
+                  placeholder="Write your enquiry. The sending service is not connected yet."
                   required
                   rows={3}
                   className="w-full p-2 text-xs border border-[#817C73]/30 focus:outline-none focus:border-[#B89B62]"
@@ -283,9 +276,10 @@ export const ArtworkDetailModal: React.FC = () => {
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-1.5 bg-[#171717] text-white text-xs font-medium hover:bg-[#B89B62] transition-colors"
+                    disabled
+                    className="px-4 py-1.5 opacity-50 cursor-not-allowed bg-[#171717] text-white text-xs font-medium hover:bg-[#B89B62] transition-colors"
                   >
-                    {inquirySent ? 'Inquiry Dispatched' : 'Submit Inquiry'}
+                    Enquiry service unavailable
                   </button>
                 </div>
               </form>

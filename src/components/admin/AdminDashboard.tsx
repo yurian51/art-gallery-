@@ -84,7 +84,7 @@ export const AdminDashboard: React.FC = () => {
             { id: 'COMMISSIONS', label: `Commissions (${commissions.length})` },
             { id: 'ORDERS', label: `Orders & Settlements (${orders.length})` },
             { id: 'EXHIBITIONS', label: `Salons (${exhibitions.length})` },
-            { id: 'LEDGER', label: 'Blockchain Node' },
+            { id: 'LEDGER', label: 'Artwork documentation' },
             { id: 'AUDIT', label: `Audit Trail (${auditLogs.length})` },
           ].map(mod => (
             <button
@@ -361,7 +361,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Module 5: Blockchain Node Console */}
+      {/* Module 5: Artwork documentation Console */}
       {activeModule === 'LEDGER' && (
         <div className="bg-[#171717] text-[#F7F5F0] p-6 sm:p-8 space-y-6 font-mono text-xs">
           <div className="flex justify-between items-center border-b border-white/20 pb-4">
@@ -423,7 +423,7 @@ export const AdminDashboard: React.FC = () => {
       {activeModule === 'AUDIT' && (
         <div className="bg-white border border-[#817C73]/25 p-6 space-y-4">
           <h3 className="font-serif font-bold text-xl text-[#171717] border-b border-[#817C73]/15 pb-4">
-            Consortium Security & Operational Audit Trail
+            Local workspace activity
           </h3>
 
           <div className="space-y-3 text-xs">
