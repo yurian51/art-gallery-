@@ -28,28 +28,28 @@ export const CuratedFeatures: React.FC = () => {
     {
       title: 'Original Paintings',
       titleSwahili: 'Michoro Asilia',
-      description: 'Monumental contemporary canvases using natural earth pigments and 24k gold leaf.',
+      description: 'Explore paintings and visual expressions from the gallery.',
       image: heroArtworkImage,
       category: 'Paintings',
     },
     {
       title: 'Makonde Modernist Sculpture',
       titleSwahili: 'Sanamu za Kimakonde',
-      description: 'Aerodynamic abstract forms sculpted from sustainably harvested Tanzanian Mpingo (Blackwood).',
+      description: 'Discover sculptural forms, materials and three-dimensional work.',
       image: makondeSculptureImage,
       category: 'Sculpture',
     },
     {
       title: 'Swahili Coastal Portraiture',
       titleSwahili: 'Picha za Pwani ya Waswahili',
-      description: 'Intimate figurative studies capturing matriarchal lineage and rich kanga textile heritage.',
+      description: 'Explore portraiture, people and stories through visual art.',
       image: swahiliPortraitImage,
       category: 'Portraiture',
     },
     {
       title: 'Fine Art Photography & Prints',
       titleSwahili: 'Picha na Machapisho ya Kisasa',
-      description: 'Museum-grade silver gelatin and 12-color archival giclée impressions on cotton rag.',
+      description: 'Discover photography and fine-art printmaking.',
       image: galleryInteriorImage,
       category: 'Fine Art Prints',
     },
@@ -62,13 +62,13 @@ export const CuratedFeatures: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#817C73]/20">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold font-sans block mb-1">
-              Curator’s Selection · Spring 2026
+              Selected gallery imagery
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Featured Original Artworks
+              Explore the gallery
             </h2>
             <p className="text-xs sm:text-sm text-[#817C73] font-sans mt-1">
-              Explore selected works, discover their makers, and contact the gallery for availability and details.
+              Artwork listings will appear here when verified gallery records are connected.
             </p>
           </div>
 
@@ -76,13 +76,15 @@ export const CuratedFeatures: React.FC = () => {
             onClick={() => navigateTo('/gallery')}
             className="flex items-center gap-1.5 text-xs font-semibold text-[#171717] hover:text-[#B89B62] transition-colors whitespace-nowrap"
           >
-            <span>View Complete Catalog ({artworks.length})</span>
+            <span>View Gallery</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {featuredArtworks.map(artwork => (
+          {featuredArtworks.length === 0 ? (
+            <div className="col-span-full border border-[#817C73]/20 bg-white px-6 py-12 text-center"><p className="font-serif text-xl text-[#171717]">The gallery collection is being prepared.</p><p className="mt-2 text-sm text-[#817C73]">Verified artwork listings will appear here when the catalogue is connected.</p></div>
+          ) : featuredArtworks.map(artwork => (
             <ArtworkCard key={artwork.id} artwork={artwork} />
           ))}
         </div>
@@ -93,13 +95,13 @@ export const CuratedFeatures: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-              Curatorial Classification
+              Art disciplines
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
               Explore Art Disciplines
             </h2>
             <p className="text-xs sm:text-sm text-[#817C73] mt-2">
-              From historic Makonde woodcarving traditions to experimental contemporary mixed media.
+              Explore different forms of visual expression.
             </p>
           </div>
 
@@ -144,7 +146,7 @@ export const CuratedFeatures: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#B89B62]" />
                   <span className="text-xs uppercase tracking-widest text-[#B89B62] font-semibold">
-                    Current Major Salon Exhibition
+                    Exhibition programme
                   </span>
                 </div>
 
@@ -203,18 +205,18 @@ export const CuratedFeatures: React.FC = () => {
         </section>
       )}
 
-      {/* 4. Master Artists Directory Spotlight */}
+      {/* 4. Artist profiles */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#817C73]/20">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold font-sans block mb-1">
-              Living Heritage
+              People and practice
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Master Artists & Ateliers
+              Artists
             </h2>
             <p className="text-xs sm:text-sm text-[#817C73] font-sans mt-1">
-              Meet the creators defining modern African visual language and material sovereignty.
+              Artist profiles will appear here when verified records are available.
             </p>
           </div>
 
@@ -228,7 +230,9 @@ export const CuratedFeatures: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {artists.map(artist => (
+          {artists.length === 0 ? (
+            <div className="col-span-full border border-[#817C73]/20 bg-white px-6 py-10 text-center text-sm text-[#817C73]">Artist profiles will be published here when confirmed by the gallery.</div>
+          ) : artists.map(artist => (
             <div
               key={artist.id}
               onClick={() => navigateTo('/artists')}
@@ -244,7 +248,7 @@ export const CuratedFeatures: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-1.5 text-[10px] text-[#B89B62] font-semibold mb-1">
-                  <span>VERIFIED ATELIER</span>
+                  <span>ARTIST PROFILE</span>
                   <span>·</span>
                   <span>{artist.origin}</span>
                 </div>
@@ -272,7 +276,7 @@ export const CuratedFeatures: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Custom Commissions & Institutional Advisory Callout */}
+      {/* 5. Commission enquiries */}
       <section className="bg-[#EBE6DF]/40 border-y border-[#817C73]/25 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">

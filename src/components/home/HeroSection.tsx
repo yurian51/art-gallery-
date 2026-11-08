@@ -61,10 +61,10 @@ export const HeroSection: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <span className="font-semibold text-[#171717] block">
-                    Thoughtfully Presented African Art
+                    Art, artists and ideas
                   </span>
                   <span className="text-[#817C73] text-[11px]">
-                    Discover original artworks, learn about their makers, and enquire directly about a piece.
+                    Explore visual work and learn about the people and ideas behind it.
                   </span>
                 </div>
               </div>
@@ -74,7 +74,7 @@ export const HeroSection: React.FC = () => {
           {/* Right Column: Hero Centerpiece Masterwork (6 cols) */}
           <div className="lg:col-span-6 relative">
             <div
-              onClick={() => featuredArt && setInspectedArtwork(featuredArt)}
+              onClick={() => { if (featuredArt) setInspectedArtwork(featuredArt); }}
               className="relative group cursor-pointer bg-[#EBE6DF] border border-[#817C73]/25 overflow-hidden shadow-md h-full flex flex-col justify-end min-h-[380px] lg:min-h-[480px]"
             >
               <img
@@ -88,7 +88,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative z-10 p-5 sm:p-6 bg-gradient-to-t from-black/85 via-black/45 to-transparent text-[#F7F5F0]">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
-                    Centerpiece Acquisition · Masterwork No. 001
+                    A glimpse into the gallery
                   </span>
                 </div>
 
@@ -129,24 +129,24 @@ export const HeroSection: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <Clock className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
-                <span className="font-semibold block leading-tight">Visiting Hours</span>
-                <span className="text-[11px] text-[#817C73]">Visits by arrangement</span>
+                <span className="font-semibold block leading-tight">Gallery visits</span>
+                <span className="text-[11px] text-[#817C73]">Contact details coming soon</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2.5">
               <ShieldCheck className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
-                <span className="font-semibold block leading-tight">Authenticity Deed</span>
-                <span className="text-[11px] text-[#817C73]">Artwork information</span>
+                <span className="font-semibold block leading-tight">Artwork records</span>
+                <span className="text-[11px] text-[#817C73]">Details provided when available</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2.5">
               <Compass className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
-                <span className="font-semibold block leading-tight">Global Logistics</span>
-                <span className="text-[11px] text-[#817C73]">Shipping enquiries available</span>
+                <span className="font-semibold block leading-tight">Collector enquiries</span>
+                <span className="text-[11px] text-[#817C73]">Service information coming soon</span>
               </div>
             </div>
           </div>
