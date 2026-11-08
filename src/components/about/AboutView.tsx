@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import galleryInteriorImage from '../../assets/images/gallery_interior_dar_1794114974688.jpg';
 import { useApp } from '../../context/AppContext';
 import { ShieldCheck, MapPin, Clock, Mail, Phone, Check, Award, Compass, Sparkles } from 'lucide-react';
 
@@ -52,16 +53,14 @@ export const AboutView: React.FC = () => {
           </h2>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            Established on the Oysterbay Peninsula overlooking the Indian Ocean in Dar es Salaam,
-            Mrisho Art Gallery was founded with a singular conviction: that East African visual art,
-            Makonde sculpture, coastal textiles, and figurative contemporary masters belong in the
-            forefront of international cultural dialogues and institutional collections.
+            Based in Arusha, Tanzania, Mrisho Art Gallery celebrates the depth and diversity of African creativity.
+            We bring together original artworks, artists, and collectors through a carefully presented
+            digital gallery designed for audiences in Tanzania and around the world.
           </p>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            For generations, the artistic legacy of Bagamoyo, Zanzibar, and the Makonde highlands
-            has influenced world modernism. Our mission is to provide these creators with sovereign
-            accreditation, fair primary market valuation, and transparent digital provenance.
+            Our vision is to make African art more visible and accessible while giving artists a thoughtful space
+            to present their work, share the stories behind it, and connect with interested collectors.
           </p>
 
           <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
@@ -82,8 +81,8 @@ export const AboutView: React.FC = () => {
 
         <div className="lg:col-span-6 border-2 border-[#817C73]/25 overflow-hidden shadow-xl bg-[#EBE6DF]">
           <img
-            src="/src/assets/images/gallery_interior_dar_1794114974688.jpg"
-            alt="Interior of Mrisho Art Gallery, Dar es Salaam Pavilion"
+            src={galleryInteriorImage}
+            alt="Mrisho Art Gallery, Arusha, Tanzania"
             className="w-full h-80 sm:h-96 object-cover"
           />
         </div>
@@ -96,48 +95,43 @@ export const AboutView: React.FC = () => {
             Institutional Authenticity
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-            The Mrisho Blockchain Provenance Standard
+            Our Approach to Art & Artists
           </h2>
           <p className="text-xs sm:text-sm text-[#817C73] mt-2">
-            Every artwork accessioned into our gallery undergoes a rigorous four-stage physical and
-            cryptographic certification process before becoming available to patrons.
+            We focus on clear artwork information, respect for the artist, careful presentation, and direct communication with people interested in a work.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
           <div className="p-5 bg-[#F7F5F0] border border-[#817C73]/20 space-y-2">
             <span className="font-mono text-base font-bold text-[#B89B62]">01</span>
-            <h3 className="font-serif font-bold text-base text-[#171717]">Chemical & UV Spectrometry</h3>
+            <h3 className="font-serif font-bold text-base text-[#171717]">Artist & Artwork Context</h3>
             <p className="text-[#817C73] leading-relaxed">
-              Raw earth pigments, organic binders, and wood species (e.g. Tanzanian Mpingo) are verified
-              by our senior conservator in Dar es Salaam.
+              We present the artist, medium, materials, dimensions, and background information when supplied and confirmed.
             </p>
           </div>
 
           <div className="p-5 bg-[#F7F5F0] border border-[#817C73]/20 space-y-2">
             <span className="font-mono text-base font-bold text-[#B89B62]">02</span>
-            <h3 className="font-serif font-bold text-base text-[#171717]">Genesis Block Minting</h3>
+            <h3 className="font-serif font-bold text-base text-[#171717]">Clear Artwork Details</h3>
             <p className="text-[#817C73] leading-relaxed">
-              The artwork’s unique photographic signature and accession metadata are minted onto the
-              Polygon African Art Consortium (PAAC) private smart escrow.
+              Each listing should give visitors useful details to understand the artwork before making an enquiry.
             </p>
           </div>
 
           <div className="p-5 bg-[#F7F5F0] border border-[#817C73]/20 space-y-2">
             <span className="font-mono text-base font-bold text-[#B89B62]">03</span>
-            <h3 className="font-serif font-bold text-base text-[#171717]">Wax-Sealed Certificate</h3>
+            <h3 className="font-serif font-bold text-base text-[#171717]">Artist Recognition</h3>
             <p className="text-[#817C73] leading-relaxed">
-              A physical Certificate of Authenticity embossed with the gallery's wax seal, signed by the
-              master artist and chief curator, accompanies the work.
+              Artists remain central to the story of every work, with their names and creative practice presented clearly.
             </p>
           </div>
 
           <div className="p-5 bg-[#F7F5F0] border border-[#817C73]/20 space-y-2">
             <span className="font-mono text-base font-bold text-[#B89B62]">04</span>
-            <h3 className="font-serif font-bold text-base text-[#171717]">ISPM-15 Timber Crating</h3>
+            <h3 className="font-serif font-bold text-base text-[#171717]">Collector Enquiries</h3>
             <p className="text-[#817C73] leading-relaxed">
-              All acquisitions are crated in bespoke treated timber, climate-sealed against humidity,
-              and dispatched with DHL Express international transit insurance.
+              Interested collectors can contact the gallery to discuss availability, pricing, delivery, and artwork details.
             </p>
           </div>
         </div>
@@ -155,22 +149,22 @@ export const AboutView: React.FC = () => {
             <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
               <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Main Pavilion & Sculpture Gardens</span>
               <h4 className="font-serif font-bold text-base text-[#171717]">Dar es Salaam</h4>
-              <p>Plot 44, Toure Drive, Oysterbay Peninsula</p>
+              <p>Arusha, Tanzania</p>
               <p>Dar es Salaam, Tanzania</p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Mon – Sat: 10:00 – 19:00 EAT</span>
+                <span>Visits by arrangement</span>
               </div>
             </div>
 
             <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
               <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Textile & Portrait Atelier</span>
-              <h4 className="font-serif font-bold text-base text-[#171717]">Stone Town, Zanzibar</h4>
-              <p>Shangani Street, Near Old Customs House</p>
-              <p>Zanzibar, Tanzania</p>
+              <h4 className="font-serif font-bold text-base text-[#171717]">Online Gallery</h4>
+              <p>Explore the collection from anywhere.</p>
+              <p>Tanzania and international audiences</p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Tue – Sun: 11:00 – 18:00 EAT</span>
+                <span>Online enquiries welcome</span>
               </div>
             </div>
           </div>
