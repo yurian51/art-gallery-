@@ -88,7 +88,7 @@ export const CuratedFeatures: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {disciplines.map(({ title, query, image, description }, index) => (
-              <button key={query} type="button" onClick={() => { setSearchQuery(query); navigateTo('/gallery'); }} className="group relative min-h-[340px] overflow-hidden bg-[#DED7CB] text-left sm:min-h-[420px]">
+              <button key={query} type="button" aria-label={title} onClick={() => { setSearchQuery(query); navigateTo('/gallery'); }} className="group relative min-h-[340px] overflow-hidden bg-[#DED7CB] text-left sm:min-h-[420px]">
                 <img src={image} alt={title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
                 <span className="absolute left-5 top-5 text-[10px] font-bold tracking-[0.2em] text-white">0{index + 1}</span>
