@@ -41,13 +41,13 @@ export const CustomerDashboard: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold block mb-1">
-              Collector Custody & Portfolio
+              Customer workspace
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Patron Account & Acquisition Registry
+              Your gallery activity
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Registered Patron: <strong className="text-[#171717]">Dr. Amina Rashidi</strong> · Dar es Salaam Registry Node
+              Customer workspace preview · Secure sign-in is not configured
             </p>
           </div>
 
@@ -64,10 +64,10 @@ export const CustomerDashboard: React.FC = () => {
         {/* Navigation Tabs */}
         <div className="flex items-center gap-2 mt-8 overflow-x-auto pb-1">
           {[
-            { id: 'ORDERS', label: `Acquisition Orders (${orders.length})`, icon: <ShoppingBag className="w-3.5 h-3.5" /> },
-            { id: 'FAVORITES', label: `Saved Masterworks (${favorites.length})`, icon: <Heart className="w-3.5 h-3.5" /> },
-            { id: 'COMMISSIONS', label: `Custom Commissions (${commissions.length})`, icon: <Palette className="w-3.5 h-3.5" /> },
-            { id: 'DEEDS', label: `Blockchain Provenance Deeds`, icon: <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" /> },
+            { id: 'ORDERS', label: `Orders (${orders.length})`, icon: <ShoppingBag className="w-3.5 h-3.5" /> },
+            { id: 'FAVORITES', label: `Saved artworks (${favorites.length})`, icon: <Heart className="w-3.5 h-3.5" /> },
+            { id: 'COMMISSIONS', label: `Enquiries (${commissions.length})`, icon: <Palette className="w-3.5 h-3.5" /> },
+            { id: 'DEEDS', label: `Artwork records`, icon: <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" /> },
           ].map(tab => (
             <button
               key={tab.id}
@@ -85,12 +85,14 @@ export const CustomerDashboard: React.FC = () => {
         </div>
       </div>
 
+      <div className="mb-6 border border-[#B89B62]/40 bg-white p-4 text-sm text-[#817C73]">Preview only. No customer is signed in and no private account data is connected.</div>
+
       {/* Tab 1: Orders */}
       {activeTab === 'ORDERS' && (
         <div className="space-y-6">
           {orders.length === 0 ? (
             <div className="bg-white border border-[#817C73]/20 py-16 text-center space-y-3">
-              <p className="font-serif italic text-lg text-[#817C73]">No acquisition orders recorded yet.</p>
+              <p className="font-serif italic text-lg text-[#817C73]">No orders are available for this customer workspace.</p>
               <button
                 onClick={() => navigateTo('/gallery')}
                 className="px-4 py-2 bg-[#171717] text-white text-xs font-semibold hover:bg-[#B89B62]"

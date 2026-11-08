@@ -45,15 +45,15 @@ export const ArtistDashboard: React.FC = () => {
 
   // Active Artist (Mwl. Juma Mwinyi as primary persona)
   const activeArtist = artists[0];
-  const artistArtworks = artworks.filter(a => a.artistId === activeArtist.id || a.artistName === activeArtist.name);
+  const artistArtworks = activeArtist ? artworks.filter(a => a.artistId === activeArtist.id || a.artistName === activeArtist.name) : [];
   const pendingArtworks = artworks.filter(a => a.status === 'SUBMITTED' || a.status === 'UNDER_REVIEW');
 
   const handleArtworkSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     submitArtwork({
       title,
-      artistId: activeArtist.id,
-      artistName: activeArtist.name,
+      artistId: activeArtist?.id ?? '',
+      artistName: activeArtist?.name ?? '',
       artistOrigin: origin,
       category,
       medium,
@@ -64,7 +64,7 @@ export const ArtistDashboard: React.FC = () => {
       priceTzs: Number(priceTzs),
       classification,
       description,
-      images: ['/src/assets/images/hero_african_art_gallery_1794114972525.jpg'],
+      images: [],
     });
 
     setSubmittedSuccess(true);
@@ -76,6 +76,18 @@ export const ArtistDashboard: React.FC = () => {
     }, 2000);
   };
 
+  if (!activeArtist) {
+    return (
+      <main className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <section className="border border-[#817C73]/20 bg-white p-8 sm:p-12">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#B89B62]">Artist workspace</p>
+          <h1 className="mt-2 font-serif text-3xl text-[#171717] sm:text-4xl">Artist portal</h1>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#817C73]">No artist account is connected. Secure sign-in and server-side artist permissions are not configured, so this workspace is a visual preview only.</p>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -85,14 +97,14 @@ export const ArtistDashboard: React.FC = () => {
             <div className="flex items-center gap-2 mb-1">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold">
-                Verified Master Artist Portal
+                Artist workspace preview
               </span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
               Atelier Management: {activeArtist.name}
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Studio: {activeArtist.origin} · {activeArtist.title}
+              No artist account connected · Preview data only
             </p>
           </div>
 

@@ -50,6 +50,7 @@ export const AdminDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mb-6 border border-[#B89B62]/40 bg-white p-4 text-sm leading-relaxed text-[#817C73]">Preview only. No administrator is authenticated, no live database is connected, and changes made here are stored only in this browser.</div>
       {/* Header */}
       <div className="border-b border-[#817C73]/20 pb-8 mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -57,20 +58,20 @@ export const AdminDashboard: React.FC = () => {
             <div className="flex items-center gap-2 mb-1">
               <span className="w-2 h-2 rounded-full bg-[#B89B62]" />
               <span className="text-[10px] uppercase tracking-[0.25em] text-[#B89B62] font-semibold">
-                Executive Curatorial & Operations Board
+                Administration workspace preview
               </span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              Gallery Director & Curatorial Console
+              Gallery administration
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Consortium Node: <strong className="text-[#171717]">PAAC-Oysterbay-Mainnet</strong> · Smart Escrow Enforced
+              Workspace preview · No live database or secure administrator session is connected
             </p>
           </div>
 
           <div className="flex items-center gap-2 text-xs">
             <span className="px-3 py-1 bg-white border border-[#817C73]/25 font-mono text-[#171717]">
-              Network: Polygon Fine Art
+              Local preview
             </span>
           </div>
         </div>
@@ -101,7 +102,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Module 1: Overview & Real Metrics */}
+      {/* Module 1: Overview */}
       {activeModule === 'OVERVIEW' && (
         <div className="space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
