@@ -39,7 +39,7 @@ export const CommissionPortal: React.FC = () => {
   const [budgetTzs, setBudgetTzs] = useState(0);
   const [deadline, setDeadline] = useState('');
   const [deliveryCity, setDeliveryCity] = useState('');
-  const [deliveryCountry, setDeliveryCountry] = useState('Tanzania');
+  const [deliveryCountry, setDeliveryCountry] = useState('');
   const [brief, setBrief] = useState('');
   const [submittedId, setSubmittedId] = useState<string | null>(null);
 
@@ -199,7 +199,7 @@ export const CommissionPortal: React.FC = () => {
                     onChange={e => setPreferredArtistId(e.target.value)}
                     className="w-full p-2.5 bg-[#F7F5F0] border border-[#817C73]/30 focus:outline-none focus:border-[#B89B62]"
                   >
-                    <option value="">Curatorial Board Recommendation</option>
+                    <option value="">Preferred artist (optional)</option>
                     {artists.map(a => (
                       <option key={a.id} value={a.id}>
                         {a.name} ({a.origin})

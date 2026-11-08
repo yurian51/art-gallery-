@@ -94,3 +94,15 @@ test('contact and newsletter controls do not claim to deliver messages without a
   assert.match(about, /cannot notify the gallery/i);
   assert.match(footer, /mailing service is connected/i);
 });
+
+test('provenance records cannot claim authenticity without an external verification service', () => {
+  const provenance = read('../src/services/blockchainProvenance.ts');
+  const customer = read('../src/components/account/CustomerDashboard.tsx');
+  const commissions = read('../src/components/commissions/CommissionPortal.tsx');
+  assert.match(provenance, /isAuthentic: false/);
+  assert.doesNotMatch(provenance, /Math.random/);
+  assert.doesNotMatch(provenance, /0x[0-9a-f]{40}/i);
+  assert.doesNotMatch(customer, /art-003/);
+  assert.doesNotMatch(customer, /Consortium Blockchain Ownership Registry/);
+  assert.doesNotMatch(commissions, /escrow contracts|40% on Brief Approval|30% on Composition Review/i);
+});
