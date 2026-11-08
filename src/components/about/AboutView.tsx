@@ -35,6 +35,9 @@ export const AboutView: React.FC = () => {
           <p className="font-serif italic text-lg sm:text-xl text-[#B89B62] mt-2">
             "Art Beyond Boundaries. Sanaa Bila Mipaka."
           </p>
+          <p className="text-xs uppercase tracking-[0.16em] text-[#817C73] mt-3">
+            Founded and led by <span className="font-semibold text-[#171717]">Hussein Sadiki Gumbo</span>, Founder & CEO
+          </p>
         </div>
         <div className="bg-white p-3 border border-[#817C73]/20 shadow-sm shrink-0">
           <img
