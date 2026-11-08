@@ -16,7 +16,7 @@ export const CuratedFeatures: React.FC = () => {
     exhibitions,
     journalArticles,
     navigateTo,
-    setInspectedArtwork,
+    setSearchQuery,
   } = useApp();
 
   const t = translations[language];
@@ -107,10 +107,15 @@ export const CuratedFeatures: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((cat, idx) => (
-              <div
-                key={idx}
-                onClick={() => navigateTo('/gallery')}
-                className="group cursor-pointer bg-[#F7F5F0] border border-[#817C73]/20 overflow-hidden hover:border-[#171717] transition-all"
+              <button
+                type="button"
+                key={cat.category}
+                onClick={() => {
+                  setSearchQuery(cat.category);
+                  navigateTo('/gallery');
+                }}
+                aria-label={`Explore ${cat.title} in the gallery`}
+                className="group block w-full cursor-pointer bg-[#F7F5F0] border border-[#817C73]/20 overflow-hidden text-left hover:border-[#171717] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B89B62] transition-all"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-[#EBE6DF]">
                   <img
@@ -131,7 +136,7 @@ export const CuratedFeatures: React.FC = () => {
                     <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
