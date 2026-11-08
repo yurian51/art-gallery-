@@ -1,4 +1,5 @@
 import React from 'react';
+import heroArtworkImage from '../../assets/images/hero_african_art_gallery_1794114972525.jpg';
 import { useApp } from '../../context/AppContext';
 import { translations } from '../../translations';
 import { ShieldCheck, ArrowRight, Compass, Clock, MapPin, Sparkles } from 'lucide-react';
@@ -20,7 +21,7 @@ export const HeroSection: React.FC = () => {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#B89B62]" />
                 <span className="text-xs uppercase tracking-[0.25em] text-[#817C73] font-sans font-semibold">
-                  Tanzanian & Pan-African Fine Art Institution
+                  Independent Art Gallery · Arusha, Tanzania
                 </span>
               </div>
 
@@ -60,10 +61,10 @@ export const HeroSection: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <span className="font-semibold text-[#171717] block">
-                    Cryptographic Provenance Deed on Every Artwork
+                    Thoughtfully Presented African Art
                   </span>
                   <span className="text-[#817C73] text-[11px]">
-                    Direct curatorial verification, tamper-proof registry, and physical Certificate of Authenticity.
+                    Discover original artworks, learn about their makers, and enquire directly about a piece.
                   </span>
                 </div>
               </div>
@@ -77,7 +78,7 @@ export const HeroSection: React.FC = () => {
               className="relative group cursor-pointer bg-[#EBE6DF] border border-[#817C73]/25 overflow-hidden shadow-md h-full flex flex-col justify-end min-h-[380px] lg:min-h-[480px]"
             >
               <img
-                src="/src/assets/images/hero_african_art_gallery_1794114972525.jpg"
+                src={heroArtworkImage}
                 alt="Voices of Bagamoyo centerpiece artwork on gallery wall"
                 referrerPolicy="no-referrer"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -92,18 +93,18 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-[#B89B62] transition-colors">
-                  Voices of Bagamoyo (Kelele za Mababu)
+                  {featuredArt?.title || "Featured Artwork"}
                 </h3>
                 <p className="text-xs text-white/80 font-sans mt-0.5">
-                  Mwl. Juma Mwinyi · Oil, Earth Pigments & 24k Gold Leaf on Linen
+                  {featuredArt ? `${featuredArt.artistName} · ${featuredArt.medium}` : "Explore the gallery collection"}
                 </p>
 
                 <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-white/20">
                   <span className="font-mono text-sm font-bold text-[#B89B62] tabular-nums">
-                    TZS 16,500,000 · Polygon Verified Deed
+                    {featuredArt ? `${featuredArt.priceTzs.toLocaleString()} TZS` : "Enquire for details"}
                   </span>
                   <span className="text-[11px] underline underline-offset-2 flex items-center gap-1">
-                    <span>Examine Masterwork</span>
+                    <span>View Artwork</span>
                     <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -120,8 +121,8 @@ export const HeroSection: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <MapPin className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
-                <span className="font-semibold block leading-tight">Oysterbay Pavilion</span>
-                <span className="text-[11px] text-[#817C73]">Toure Drive, Dar es Salaam</span>
+                <span className="font-semibold block leading-tight">Arusha, Tanzania</span>
+                <span className="text-[11px] text-[#817C73]">Gallery location</span>
               </div>
             </div>
 
@@ -129,7 +130,7 @@ export const HeroSection: React.FC = () => {
               <Clock className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
                 <span className="font-semibold block leading-tight">Visiting Hours</span>
-                <span className="text-[11px] text-[#817C73]">Mon–Sat: 10:00 – 19:00 EAT</span>
+                <span className="text-[11px] text-[#817C73]">Visits by arrangement</span>
               </div>
             </div>
 
@@ -137,7 +138,7 @@ export const HeroSection: React.FC = () => {
               <ShieldCheck className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
                 <span className="font-semibold block leading-tight">Authenticity Deed</span>
-                <span className="text-[11px] text-[#817C73]">Cryptographic Blockchain Proof</span>
+                <span className="text-[11px] text-[#817C73]">Artwork information</span>
               </div>
             </div>
 
@@ -145,7 +146,7 @@ export const HeroSection: React.FC = () => {
               <Compass className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
                 <span className="font-semibold block leading-tight">Global Logistics</span>
-                <span className="text-[11px] text-[#817C73]">ISPM-15 Timber Crate Shipping</span>
+                <span className="text-[11px] text-[#817C73]">Shipping enquiries available</span>
               </div>
             </div>
           </div>
