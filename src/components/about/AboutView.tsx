@@ -78,7 +78,7 @@ export const AboutView: React.FC = () => {
 
         <div className="lg:col-span-6 border-2 border-[#817C73]/25 overflow-hidden shadow-xl bg-[#EBE6DF]">
           <img
-            src="/src/assets/images/gallery_interior_dar_1794114974688.jpg"
+            src={galleryInteriorImage}
             alt="Interior of Mrisho Art Gallery, Arusha Pavilion"
             className="w-full h-80 sm:h-96 object-cover"
           />
