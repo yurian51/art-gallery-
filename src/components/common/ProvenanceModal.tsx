@@ -269,10 +269,10 @@ export const ProvenanceModal: React.FC = () => {
 
                   <div className="text-right space-y-2">
                     <div className="border-b border-[#171717] w-48 ml-auto pb-1">
-                      <span className="font-serif italic text-base text-[#171717]">Mwl. Daudi Mrisho</span>
+                      <span className="font-serif italic text-base text-[#171717]">Hussein Sadiki Gumbo</span>
                     </div>
                     <p className="text-[10px] text-[#817C73]">
-                      Chief Curator & Appraiser · Mrisho Art Gallery
+                      Founder & CEO · Mrisho Art Gallery, Arusha
                     </p>
                     <p className="font-mono text-[9px] text-[#817C73]">
                       Ledger Block Hash: {provenance.verificationHash.slice(0, 24)}...

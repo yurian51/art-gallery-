@@ -19,17 +19,60 @@ import { ArtistDashboard } from './components/artist-portal/ArtistDashboard';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { JournalView } from './components/journal/JournalView';
 import { AboutView } from './components/about/AboutView';
+import { CollectionsView } from './components/collections/CollectionsView';
+import { ContactView } from './components/contact/ContactView';
+import { FaqView } from './components/info/FaqView';
+import { ShippingReturnsView } from './components/info/ShippingReturnsView';
+import { PrivacyView } from './components/info/PrivacyView';
+import { TermsView } from './components/info/TermsView';
 
 const MainContent: React.FC = () => {
-  const { currentRoute } = useApp();
+  const { currentRoute, setIsCartOpen, artworks, setInspectedArtwork } = useApp();
   const [isRoleModalOpen, setIsRoleModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const renderRoute = () => {
+    // Dynamic /artwork/[slug] support
+    if (currentRoute.startsWith('/artwork/')) {
+      const slugOrId = currentRoute.replace('/artwork/', '');
+      const matched = artworks.find(a => a.slug === slugOrId || a.id === slugOrId);
+      if (matched) {
+        setTimeout(() => setInspectedArtwork(matched), 50);
+      }
+      return <GalleryView />;
+    }
+
+    // Dynamic /gallery/[category] support
+    if (currentRoute.startsWith('/gallery/')) {
+      return <GalleryView />;
+    }
+
+    // Dynamic /artists/[slug] support
+    if (currentRoute.startsWith('/artists/')) {
+      return <ArtistsView />;
+    }
+
+    // Dynamic /collections/[slug] support
+    if (currentRoute.startsWith('/collections/')) {
+      return <CollectionsView />;
+    }
+
+    // Dynamic /exhibitions/[slug] support
+    if (currentRoute.startsWith('/exhibitions/')) {
+      return <ExhibitionsView />;
+    }
+
+    // Dynamic /journal/[slug] support
+    if (currentRoute.startsWith('/journal/')) {
+      return <JournalView />;
+    }
+
     switch (currentRoute) {
       case '/gallery':
         return <GalleryView />;
+      case '/collections':
+        return <CollectionsView />;
       case '/artists':
         return <ArtistsView />;
       case '/exhibitions':
@@ -40,12 +83,30 @@ const MainContent: React.FC = () => {
         return <JournalView />;
       case '/about':
         return <AboutView />;
+      case '/contact':
+        return <ContactView />;
+      case '/faq':
+        return <FaqView />;
+      case '/shipping-returns':
+        return <ShippingReturnsView />;
+      case '/privacy':
+        return <PrivacyView />;
+      case '/terms':
+        return <TermsView />;
       case '/account':
+      case '/login':
+      case '/register':
         return <CustomerDashboard />;
       case '/artist-portal':
         return <ArtistDashboard />;
       case '/admin':
         return <AdminDashboard />;
+      case '/cart':
+        setTimeout(() => setIsCartOpen(true), 50);
+        return <GalleryView />;
+      case '/checkout':
+        setTimeout(() => setIsCheckoutOpen(true), 50);
+        return <GalleryView />;
       case '/':
       default:
         return (

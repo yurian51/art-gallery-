@@ -1,13 +1,14 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { translations } from '../../translations';
+import { formatPrice } from '../../services/currencyService';
 import { ShieldCheck, ArrowRight, Compass, Clock, MapPin, Sparkles } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
-  const { language, navigateTo, artworks, setInspectedArtwork } = useApp();
+  const { language, currency, navigateTo, artworks, setInspectedArtwork } = useApp();
   const t = translations[language];
 
-  const featuredArt = artworks.find(a => a.id === 'art-001') || artworks[0];
+  const featuredArt = artworks.find(a => a.id === 'art-mrisho-01') || artworks[0];
 
   return (
     <section className="relative bg-[#F7F5F0] border-b border-[#817C73]/20 overflow-hidden">
@@ -77,8 +78,8 @@ export const HeroSection: React.FC = () => {
               className="relative group cursor-pointer bg-[#EBE6DF] border border-[#817C73]/25 overflow-hidden shadow-md h-full flex flex-col justify-end min-h-[380px] lg:min-h-[480px]"
             >
               <img
-                src="/src/assets/images/hero_african_art_gallery_1794114972525.jpg"
-                alt="Voices of Bagamoyo centerpiece artwork on gallery wall"
+                src={featuredArt.images[0]}
+                alt={featuredArt.title}
                 referrerPolicy="no-referrer"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
@@ -87,23 +88,23 @@ export const HeroSection: React.FC = () => {
               <div className="relative z-10 p-5 sm:p-6 bg-gradient-to-t from-black/85 via-black/45 to-transparent text-[#F7F5F0]">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[10px] uppercase tracking-widest text-[#B89B62] font-semibold">
-                    Centerpiece Acquisition · Masterwork No. 001
+                    {language === 'sw' ? 'Kazi Kuu ya Sanaa · Mkusanyiko wa Mwanzilishi' : 'Curatorial Centerpiece · Founder Masterwork'}
                   </span>
                 </div>
 
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-[#B89B62] transition-colors">
-                  Voices of Bagamoyo (Kelele za Mababu)
+                  {language === 'sw' && featuredArt.titleSwahili ? featuredArt.titleSwahili : featuredArt.title}
                 </h3>
                 <p className="text-xs text-white/80 font-sans mt-0.5">
-                  Mwl. Juma Mwinyi · Oil, Earth Pigments & 24k Gold Leaf on Linen
+                  {featuredArt.artistName} · {featuredArt.medium}
                 </p>
 
                 <div className="mt-3 flex items-center justify-between text-xs pt-2 border-t border-white/20">
                   <span className="font-mono text-sm font-bold text-[#B89B62] tabular-nums">
-                    TZS 16,500,000 · Polygon Verified Deed
+                    {formatPrice(featuredArt.priceTzs, currency)} · Blockchain Deed
                   </span>
                   <span className="text-[11px] underline underline-offset-2 flex items-center gap-1">
-                    <span>Examine Masterwork</span>
+                    <span>{language === 'sw' ? 'Tazama Kazi Hii' : 'Examine Masterwork'}</span>
                     <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -120,8 +121,8 @@ export const HeroSection: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <MapPin className="w-4 h-4 text-[#B89B62] shrink-0" />
               <div>
-                <span className="font-semibold block leading-tight">Oysterbay Pavilion</span>
-                <span className="text-[11px] text-[#817C73]">Toure Drive, Dar es Salaam</span>
+                <span className="font-semibold block leading-tight">Main Gallery Pavilion</span>
+                <span className="text-[11px] text-[#817C73]">Arusha, Tanzania</span>
               </div>
             </div>
 

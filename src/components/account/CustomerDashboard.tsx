@@ -47,7 +47,7 @@ export const CustomerDashboard: React.FC = () => {
               Patron Account & Acquisition Registry
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Registered Patron: <strong className="text-[#171717]">Dr. Amina Rashidi</strong> · Dar es Salaam Registry Node
+              Registered Patron: <strong className="text-[#171717]">Dr. Amina Rashidi</strong> · Arusha Registry Node
             </p>
           </div>
 

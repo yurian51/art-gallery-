@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Artist } from '../../types';
 import { ArtworkCard } from '../gallery/ArtworkCard';
-import { ShieldCheck, Award, MapPin, ArrowRight, Instagram, Globe, Sparkles } from 'lucide-react';
+import { ShieldCheck, Award, MapPin, ArrowRight, Instagram, Globe, Sparkles, Phone, Mail, MessageSquare } from 'lucide-react';
 
 export const ArtistsView: React.FC = () => {
   const { artists, artworks, navigateTo } = useApp();
@@ -106,6 +106,39 @@ export const ArtistsView: React.FC = () => {
                   <p className="text-sm font-serif italic text-[#817C73] mt-0.5">
                     {selectedArtist.title} · {selectedArtist.origin}
                   </p>
+
+                  {selectedArtist.socials && (
+                    <div className="flex flex-wrap items-center gap-2 mt-2 pt-2 border-t border-[#817C73]/15 text-xs">
+                      {selectedArtist.socials.phone && (
+                        <div className="flex items-center gap-1.5 text-[11px] text-[#171717] bg-[#F7F5F0] px-2.5 py-1 border border-[#817C73]/25 font-mono">
+                          <Phone className="w-3 h-3 text-[#B89B62]" />
+                          <a href="tel:+255639827831" className="hover:text-[#B89B62]">+255 639 827 831</a>
+                          <span>/</span>
+                          <a href="tel:+255782400311" className="hover:text-[#B89B62]">+255 782 400 311</a>
+                        </div>
+                      )}
+                      {selectedArtist.socials.whatsapp && (
+                        <a
+                          href="https://wa.me/255639827831"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-[11px] text-emerald-800 bg-emerald-50 px-2.5 py-1 border border-emerald-300 font-semibold hover:bg-emerald-100 transition-colors"
+                        >
+                          <MessageSquare className="w-3 h-3" />
+                          <span>WhatsApp</span>
+                        </a>
+                      )}
+                      {selectedArtist.socials.email && (
+                        <a
+                          href={`mailto:${selectedArtist.socials.email}`}
+                          className="flex items-center gap-1 text-[11px] text-[#171717] bg-[#F7F5F0] px-2.5 py-1 border border-[#817C73]/25 hover:text-[#B89B62] transition-colors"
+                        >
+                          <Mail className="w-3 h-3 text-[#B89B62]" />
+                          <span>{selectedArtist.socials.email}</span>
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

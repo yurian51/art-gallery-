@@ -64,7 +64,7 @@ export const AdminDashboard: React.FC = () => {
               Gallery Director & Curatorial Console
             </h1>
             <p className="text-xs text-[#817C73] mt-1">
-              Consortium Node: <strong className="text-[#171717]">PAAC-Oysterbay-Mainnet</strong> · Smart Escrow Enforced
+              Consortium Node: <strong className="text-[#171717]">PAAC-Arusha-Mainnet</strong> · Smart Escrow Enforced
             </p>
           </div>
 
@@ -76,7 +76,7 @@ export const AdminDashboard: React.FC = () => {
                 className="w-8 h-8 rounded-none object-cover object-top border border-[#B89B62]"
               />
               <div className="text-left">
-                <span className="font-semibold block text-[11px] text-[#171717] leading-tight">Daudi Mrisho</span>
+                <span className="font-semibold block text-[11px] text-[#171717] leading-tight">Hussein Sadiki Gumbo</span>
                 <span className="text-[10px] text-[#B89B62] block leading-tight font-medium">Founder & CEO</span>
               </div>
             </div>
@@ -143,7 +143,7 @@ export const AdminDashboard: React.FC = () => {
               <span className="font-serif text-3xl font-bold text-[#171717]">
                 {exhibitions.reduce((acc, e) => acc + e.registeredCount, 0)}
               </span>
-              <span className="text-[11px] text-[#817C73] block mt-1">Oysterbay & London Salons</span>
+              <span className="text-[11px] text-[#817C73] block mt-1">Arusha & International Salons</span>
             </div>
           </div>
 

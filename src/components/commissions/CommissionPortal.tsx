@@ -38,7 +38,7 @@ export const CommissionPortal: React.FC = () => {
   const [dimensionsRequired, setDimensionsRequired] = useState('180cm × 140cm');
   const [budgetTzs, setBudgetTzs] = useState(15000000);
   const [deadline, setDeadline] = useState('2026-10-31');
-  const [deliveryCity, setDeliveryCity] = useState('Dar es Salaam');
+  const [deliveryCity, setDeliveryCity] = useState('Arusha');
   const [deliveryCountry, setDeliveryCountry] = useState('Tanzania');
   const [brief, setBrief] = useState('');
   const [submittedId, setSubmittedId] = useState<string | null>(null);
@@ -272,7 +272,7 @@ export const CommissionPortal: React.FC = () => {
                     value={deliveryCity}
                     onChange={e => setDeliveryCity(e.target.value)}
                     required
-                    placeholder="e.g. Dar es Salaam, London, Dubai"
+                    placeholder="e.g. Arusha, London, Dubai, New York"
                     className="w-full p-2.5 bg-[#F7F5F0] border border-[#817C73]/30 focus:outline-none focus:border-[#B89B62]"
                   />
                 </div>

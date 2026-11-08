@@ -48,20 +48,19 @@ export const AboutView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-6 space-y-5 text-[#171717] font-sans">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-            Rooted in East African Heritage, Connected to Global Collectors
+            Rooted in African Heritage, Connected to Global Collectors
           </h2>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            Established on the Oysterbay Peninsula overlooking the Indian Ocean in Dar es Salaam,
-            Mrisho Art Gallery was founded with a singular conviction: that East African visual art,
-            Makonde sculpture, coastal textiles, and figurative contemporary masters belong in the
-            forefront of international cultural dialogues and institutional collections.
+            Headquartered in Arusha, Tanzania, Mrisho Art Gallery was founded with a singular conviction:
+            that African visual art, master wood sculpture, fine textiles, and contemporary paintings
+            belong in the forefront of international cultural dialogues, museums, and private collections.
           </p>
 
           <p className="text-xs sm:text-sm text-[#817C73] leading-relaxed">
-            For generations, the artistic legacy of Bagamoyo, Zanzibar, and the Makonde highlands
-            has influenced world modernism. Our mission is to provide these creators with sovereign
-            accreditation, fair primary market valuation, and transparent digital provenance.
+            From the creative frontiers of Tanzania and East Africa to the international stage, our mission
+            is to provide exceptional artists with sovereign accreditation, fair primary market valuation,
+            and transparent digital blockchain provenance under the banner of Art Beyond Boundaries.
           </p>
 
           <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
@@ -83,7 +82,7 @@ export const AboutView: React.FC = () => {
         <div className="lg:col-span-6 border-2 border-[#817C73]/25 overflow-hidden shadow-xl bg-[#EBE6DF]">
           <img
             src="/src/assets/images/gallery_interior_dar_1794114974688.jpg"
-            alt="Interior of Mrisho Art Gallery, Dar es Salaam Pavilion"
+            alt="Interior of Mrisho Art Gallery, Arusha Pavilion"
             className="w-full h-80 sm:h-96 object-cover"
           />
         </div>
@@ -110,7 +109,7 @@ export const AboutView: React.FC = () => {
               <div className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] bg-[#0E0E0E] overflow-hidden shadow-2xl border-2 border-[#B89B62]">
                 <img
                   src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
-                  alt="Founder & CEO of Mrisho Art Gallery"
+                  alt="Hussein Sadiki Gumbo, Founder & CEO of Mrisho Art Gallery"
                   className="w-full h-full object-cover object-top filter brightness-[1.02] contrast-[1.03] transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
@@ -130,13 +129,23 @@ export const AboutView: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-5 text-center space-y-0.5">
+            <div className="mt-5 text-center space-y-1">
               <span className="text-xs uppercase tracking-[0.25em] text-[#B89B62] font-semibold block">
-                Mrisho Art Gallery Ltd.
+                Mrisho Art Gallery
               </span>
               <p className="text-xs text-[#F7F5F0]/60">
-                Dar es Salaam · East Africa
+                Arusha, Tanzania
               </p>
+              <div className="pt-2 flex flex-col items-center gap-0.5 text-[11px] text-[#F7F5F0]/85 font-mono">
+                <div className="flex items-center gap-2">
+                  <a href="tel:+255639827831" className="hover:text-[#B89B62] transition-colors">+255 639 827 831</a>
+                  <span>·</span>
+                  <a href="tel:+255782400311" className="hover:text-[#B89B62] transition-colors">+255 782 400 311</a>
+                </div>
+                <a href="mailto:mrishoartist@gmail.com" className="text-[#B89B62] hover:underline font-sans text-[11px]">
+                  mrishoartist@gmail.com
+                </a>
+              </div>
             </div>
           </div>
 
@@ -153,12 +162,12 @@ export const AboutView: React.FC = () => {
               </h2>
 
               <p className="font-serif italic text-2xl sm:text-3xl text-[#B89B62]">
-                Daudi Mrisho
+                Hussein Sadiki Gumbo
               </p>
               <p className="text-xs uppercase tracking-widest text-[#F7F5F0]/70 font-mono">
                 {language === 'sw'
-                  ? 'Mbunifu Mkuu, Mratibu na Mkurugenzi Mtendaji'
-                  : 'Principal Artist, Chief Curator & Managing Director'}
+                  ? 'Mwanzilishi na Afisa Mtendaji Mkuu · Arusha, Tanzania'
+                  : 'Founder & CEO · Arusha, Tanzania'}
               </p>
             </div>
 
@@ -166,16 +175,16 @@ export const AboutView: React.FC = () => {
               <Quote className="w-8 h-8 text-[#B89B62]/30 absolute -top-3 -left-3.5 fill-[#B89B62]/20" />
               <p className="font-serif italic text-lg sm:text-xl text-[#F7F5F0] leading-relaxed">
                 {language === 'sw'
-                  ? '"Sanaa ya Kiafrika si kumbukumbu ya kale pekee, bali ni sauti hai inayobeba utajiri wa kiroho, hadhi ya kitamaduni, na mustakabali wetu wa kimataifa. Tulianzisha Mrisho Art Gallery kuwa daraja linalounganisha ubunifu wa mafundi wetu mahiri na wapenzi wa sanaa duniani kote kwa uwazi, ubora wa hali ya juu, na heshima."'
-                  : '"African visual art is not merely an archival memory; it is a transcendent living spirit carrying immense philosophical depth, sovereign cultural dignity, and our collective global future. Mrisho Art Gallery was established to grant our preeminent masters uncompromised stature and authentic international stewardship."'}
+                  ? '"Sanaa ni sauti yetu kuu na daraja la kitamaduni. Kutoka Arusha kuelekea ulimwenguni, lengo letu ni kuonyesha ubunifu na uzuri wa sanaa ya Kiafrika kwa ubora na heshima ya juu ya kimataifa."'
+                  : '"Art is our sovereign voice and cultural bridge. From Arusha to the world, our mission is to present African brilliance with unapologetic museum excellence and authenticity."'}
               </p>
             </div>
 
             <div className="space-y-3 text-xs sm:text-sm text-[#F7F5F0]/80 leading-relaxed font-sans">
               <p>
                 {language === 'sw'
-                  ? 'Chini ya uongozi wake, Mrisho Art Gallery imekuwa kitovu kikuu cha sanaa ya kisasa na ya asili ya Afrika Mashariki—kutoka michoro ya Bagamoyo, uchongaji wa Kimakonde wa miti ya Mpingo, hadi picha za kihistoria za Zanzibar. Kila kazi ya sanaa inathibitishwa kwa mifumo ya kisasa ya blockchain, ikiwapa wateja na wakusanyaji wa kimataifa uhakika kamili wa uhalisi.'
-                  : 'Under his leadership, Mrisho Art Gallery has evolved into East Africa’s premier sanctuary for fine art—curating monumental canvases, Makonde modernist Mpingo (African Blackwood) sculptures, and Swahili coastal portraits. Every creation is certified through physical material spectroscopy and private consortium blockchain provenance, setting an unassailable benchmark for global collectors and cultural institutions.'}
+                  ? 'Chini ya uongozi wa Hussein Sadiki Gumbo, Mrisho Art Gallery imekuwa kitovu cha heshima kwa sanaa asilia na ya kisasa ya Kiafrika—kikijumuisha michoro, sanamu za miti ya Mpingo, picha za asili, na mikusanyiko ya kipekee. Kila kazi ya sanaa inapewa uthibitisho wa kimaabara na usajili wa blockchain, ikiwapa wakusanyaji ujasiri kamili wa umiliki.'
+                  : 'Under the vision of Hussein Sadiki Gumbo, Mrisho Art Gallery operates as a premier institution for visual arts, monumental canvases, African modernist wood sculptures, and fine art prints. Every artwork accessioned undergoes rigorous verification and cryptographic provenance, setting an unassailable benchmark for global art commerce.'}
               </p>
             </div>
 
@@ -203,7 +212,7 @@ export const AboutView: React.FC = () => {
                     {language === 'sw' ? 'Makao Makuu' : 'Institutional Headquarters'}
                   </span>
                   <span className="text-xs text-[#F7F5F0] font-medium">
-                    Oysterbay Peninsula, Dar es Salaam
+                    Arusha, Tanzania
                   </span>
                 </div>
               </div>
@@ -233,7 +242,7 @@ export const AboutView: React.FC = () => {
             <h3 className="font-serif font-bold text-base text-[#171717]">Chemical & UV Spectrometry</h3>
             <p className="text-[#817C73] leading-relaxed">
               Raw earth pigments, organic binders, and wood species (e.g. Tanzanian Mpingo) are verified
-              by our senior conservator in Dar es Salaam.
+              by our senior conservator at our Arusha Pavilion.
             </p>
           </div>
 
@@ -275,25 +284,31 @@ export const AboutView: React.FC = () => {
           </h3>
 
           <div className="space-y-4 text-xs text-[#817C73]">
-            <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
-              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Main Pavilion & Sculpture Gardens</span>
-              <h4 className="font-serif font-bold text-base text-[#171717]">Dar es Salaam</h4>
-              <p>Plot 44, Toure Drive, Oysterbay Peninsula</p>
-              <p>Dar es Salaam, Tanzania</p>
+            <div className="p-5 bg-white border border-[#817C73]/20 space-y-2">
+              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Gallery Headquarters & Exhibition Pavilion</span>
+              <h4 className="font-serif font-bold text-base text-[#171717]">Arusha, Tanzania</h4>
+              <p className="text-[#817C73]">
+                {language === 'sw'
+                  ? 'Kituo kikuu cha maonyesho ya sanaa asilia, mikusanyiko ya kisasa na usimamizi wa wasanii.'
+                  : 'Main institutional pavilion for visual art exhibitions, curated collections, and artist management.'}
+              </p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
                 <span>Mon – Sat: 10:00 – 19:00 EAT</span>
               </div>
             </div>
 
-            <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
-              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Textile & Portrait Atelier</span>
-              <h4 className="font-serif font-bold text-base text-[#171717]">Stone Town, Zanzibar</h4>
-              <p>Shangani Street, Near Old Customs House</p>
-              <p>Zanzibar, Tanzania</p>
+            <div className="p-5 bg-white border border-[#817C73]/20 space-y-2">
+              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">International Client Services</span>
+              <h4 className="font-serif font-bold text-base text-[#171717]">Tanzania & Global Advisory</h4>
+              <p className="text-[#817C73]">
+                {language === 'sw'
+                  ? 'Huduma za ununuzi wa sanaa kwa wakusanyaji binafsi, makampuni, na taasisi za kimataifa.'
+                  : 'White-glove international shipping, museum crating, and private curatorial acquisition advisory.'}
+              </p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Tue – Sun: 11:00 – 18:00 EAT</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" />
+                <span>Verified Blockchain Registry</span>
               </div>
             </div>
           </div>

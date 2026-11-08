@@ -166,7 +166,7 @@ const SEED_AUDIT_LOGS: AuditLog[] = [
   {
     id: 'log-1',
     timestamp: '2026-02-18T10:15:00Z',
-    actor: 'Mwl. Daudi Mrisho',
+    actor: 'Hussein Sadiki Gumbo',
     role: 'ART_CURATOR',
     action: 'PROVENANCE_BLOCK_MINTS',
     details: 'Minted Genesis and Verification blocks for new masterwork "Voices of Bagamoyo" (art-001).',
@@ -195,7 +195,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [artworks, setArtworks] = useState<Artwork[]>(() => {
     const saved = localStorage.getItem('mag_artworks');
-    return saved ? JSON.parse(saved) : SEED_ARTWORKS;
+    if (!saved) return SEED_ARTWORKS;
+    try {
+      const parsed: Artwork[] = JSON.parse(saved);
+      const savedIds = new Set(parsed.map(a => a.id));
+      const missingSeeds = SEED_ARTWORKS.filter(s => !savedIds.has(s.id));
+      return [...missingSeeds, ...parsed];
+    } catch {
+      return SEED_ARTWORKS;
+    }
   });
 
   const [artists] = useState<Artist[]>(SEED_ARTISTS);
@@ -391,7 +399,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const title = artworkData.title || 'Untitled Masterpiece';
     const artistName = artworkData.artistName || 'Emerging Master';
     const year = artworkData.creationYear || new Date().getFullYear();
-    const origin = artworkData.origin || 'Dar es Salaam, Tanzania';
+    const origin = artworkData.origin || 'Arusha, Tanzania';
 
     const newArtwork: Artwork = {
       id,

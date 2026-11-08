@@ -17,10 +17,10 @@ export const translations = {
     },
     hero: {
       headline: "Discover Art. Experience Culture. Own Original Creativity.",
-      subhead: "A premier African art destination connecting master creators, collectors, and institutions worldwide with immutable blockchain provenance.",
+      subhead: "Explore exceptional artistic expressions, discover remarkable creators and experience the beauty of African and international art.",
       exploreGallery: "Explore Gallery",
       discoverArtists: "Discover Artists",
-      curatedInDar: "Curated in Oysterbay, Dar es Salaam · International Shipping",
+      curatedInDar: "Curated in Arusha, Tanzania · International Shipping",
       viewCenterpiece: "View Featured Masterpiece",
     },
     provenance: {
@@ -95,7 +95,7 @@ export const translations = {
     },
     exhibitions: {
       title: "Exhibitions & Salons",
-      subtitle: "On-site presentations at our Oysterbay galleries and international touring showcases.",
+      subtitle: "On-site presentations at our Arusha galleries and international touring showcases.",
       current: "Current Exhibition",
       upcoming: "Upcoming Program",
       past: "Historical Archive",
@@ -146,11 +146,11 @@ export const translations = {
       cart: "Mfuko",
     },
     hero: {
-      headline: "Gundua Sanaa. Ishi Utamaduni. Miliki Ubunifu Halisi.",
-      subhead: "Kituo kikuu cha sanaa bora ya Kiafrika kinachounganisha wasanii nguli, wakusanyaji, na taasisi duniani kote kikiwa na uthibitisho wa blockchain wa asili.",
+      headline: "Gundua Sanaa. Furahia Utamaduni. Miliki Ubunifu Halisi.",
+      subhead: "Gundua ubunifu wa kipekee wa kisanaa, wafahamu wasanii mashuhuri, na ufurahie uzuri wa sanaa ya Kiafrika na ya kimataifa.",
       exploreGallery: "Tazama Sanaa",
       discoverArtists: "Gundua Wasanii",
-      curatedInDar: "Inaratibiwa Oysterbay, Dar es Salaam · Usafirishaji wa Kimataifa",
+      curatedInDar: "Inaratibiwa Arusha, Tanzania · Usafirishaji wa Kimataifa",
       viewCenterpiece: "Tazama Kito Kikuu",
     },
     provenance: {
@@ -211,7 +211,7 @@ export const translations = {
     },
     exhibitions: {
       title: "Maonyesho na Matamasha",
-      subtitle: "Maonyesho ya ana kwa ana katika kumbi zetu za Oysterbay na maonyesho ya kimataifa.",
+      subtitle: "Maonyesho ya ana kwa ana katika kumbi zetu za Arusha na maonyesho ya kimataifa.",
       current: "Onyesho Linaloendelea",
       upcoming: "Mpango Ujao",
       past: "Kumbukumbu za Zamani",

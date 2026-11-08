@@ -38,8 +38,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
   const [customerName, setCustomerName] = useState('Dr. Amina Rashidi');
   const [customerEmail, setCustomerEmail] = useState('amina.rashidi@dar-heritage.tz');
   const [customerPhone, setCustomerPhone] = useState('+255 754 312 908');
-  const [street, setStreet] = useState('18 Ocean Road, Kivukoni');
-  const [city, setCity] = useState('Dar es Salaam');
+  const [street, setStreet] = useState('Central Arusha');
+  const [city, setCity] = useState('Arusha');
   const [country, setCountry] = useState('Tanzania');
 
   // Payment Selection

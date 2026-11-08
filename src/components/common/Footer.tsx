@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
             <div className="pt-2 flex items-center gap-2 text-xs text-[#B89B62]">
               <ShieldCheck className="w-4 h-4 text-[#B89B62]" />
               <span className="font-mono text-[11px]">
-                Consortium Blockchain Node: PAAC-DAR-01
+                Consortium Blockchain Node: PAAC-ARUSHA-01
               </span>
             </div>
           </div>
@@ -51,28 +51,42 @@ export const Footer: React.FC = () => {
           {/* Col 3: Gallery Salons & Visit */}
           <div className="space-y-3">
             <h4 className="font-serif text-sm font-bold tracking-wider text-[#F7F5F0] uppercase">
-              Galleries & Salons
+              Main Gallery Location
             </h4>
-            <div className="space-y-3 text-xs text-[#817C73]">
+            <div className="space-y-2 text-xs text-[#817C73]">
               <div>
                 <p className="text-[#F7F5F0] font-medium flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
-                  Dar es Salaam Pavilion
+                  Arusha Pavilion & Head Office
                 </p>
-                <p className="mt-0.5">Plot 44, Toure Drive, Oysterbay</p>
-                <p>Dar es Salaam, Tanzania</p>
+                <p className="mt-0.5">Arusha, Tanzania</p>
+                <p className="text-[11px] text-[#817C73]">East Africa & International</p>
               </div>
-              <div>
-                <p className="text-[#F7F5F0] font-medium flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
-                  Zanzibar Atelier
+
+              <div className="space-y-1 text-[11px] text-[#F7F5F0]/85 pt-1">
+                <p className="flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#B89B62] shrink-0" />
+                  <a href="tel:+255639827831" className="hover:text-[#B89B62] transition-colors">+255 639 827 831</a>
+                  <span>/</span>
+                  <a href="tel:+255782400311" className="hover:text-[#B89B62] transition-colors">+255 782 400 311</a>
                 </p>
-                <p className="mt-0.5">Shangani St, Stone Town</p>
-                <p>Zanzibar, Tanzania</p>
+                <p className="flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#B89B62] shrink-0" />
+                  <a href="mailto:mrishoartist@gmail.com" className="hover:text-[#B89B62] transition-colors">mrishoartist@gmail.com</a>
+                </p>
               </div>
+
               <div className="flex items-center gap-1.5 text-[11px] pt-1 text-[#817C73]">
                 <Clock className="w-3 h-3 text-[#B89B62]" />
                 <span>Mon – Sat: 10:00 – 19:00 EAT</span>
+              </div>
+              <div className="pt-1">
+                <button
+                  onClick={() => navigateTo('/contact')}
+                  className="text-[11px] text-[#B89B62] hover:underline flex items-center gap-1"
+                >
+                  Contact & Curatorial Enquiries <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
           </div>
@@ -175,28 +189,44 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Operational Strip */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#817C73]">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#817C73]">
           <div className="flex flex-wrap items-center gap-2">
             <span>© {new Date().getFullYear()} Mrisho Art Gallery Ltd.</span>
             <span>·</span>
-            <span className="text-white/80">Founder & CEO: Daudi Mrisho</span>
+            <span className="text-white/90 font-medium">Founder & CEO: Hussein Sadiki Gumbo</span>
             <span>·</span>
-            <span>All Rights Reserved</span>
+            <span>Arusha, Tanzania</span>
             <span>·</span>
-            <span className="font-serif italic text-[#B89B62]">Sanaa Bila Mipaka</span>
+            <span className="font-serif italic text-[#B89B62]">Art Beyond Boundaries</span>
           </div>
 
-          <div className="flex items-center gap-6 text-[11px]">
-            <button onClick={() => navigateTo('/about')} className="hover:text-[#F7F5F0]">
-              Provenance Protocol
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-[11px]">
+            <button onClick={() => navigateTo('/contact')} className="hover:text-[#F7F5F0] transition-colors">
+              Contact
             </button>
-            <button onClick={() => navigateTo('/about')} className="hover:text-[#F7F5F0]">
-              White-Glove Shipping
+            <button onClick={() => navigateTo('/faq')} className="hover:text-[#F7F5F0] transition-colors">
+              FAQ
             </button>
-            <button onClick={() => navigateTo('/about')} className="hover:text-[#F7F5F0]">
-              Institutional Privacy Policy
+            <button onClick={() => navigateTo('/shipping-returns')} className="hover:text-[#F7F5F0] transition-colors">
+              Shipping & Returns
+            </button>
+            <button onClick={() => navigateTo('/privacy')} className="hover:text-[#F7F5F0] transition-colors">
+              Privacy Policy
+            </button>
+            <button onClick={() => navigateTo('/terms')} className="hover:text-[#F7F5F0] transition-colors">
+              Terms of Service
             </button>
           </div>
+        </div>
+
+        {/* Discreet ALTAVOX TECH Attribution Strip */}
+        <div className="mt-6 pt-4 border-t border-[#817C73]/15 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#817C73]/80">
+          <span>
+            Digital platform developed and powered by <strong className="text-[#B89B62] font-semibold tracking-wide">ALTAVOX TECH</strong>.
+          </span>
+          <span className="text-[10px] text-[#817C73]/60 mt-1 sm:mt-0 font-mono">
+            Designed, engineered and maintained by ALTAVOX TECH
+          </span>
         </div>
       </div>
     </footer>

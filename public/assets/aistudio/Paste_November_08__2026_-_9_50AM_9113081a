@@ -1,0 +1,1380 @@
+MASTER IMPLEMENTATION PROMPT
+
+MRISHO ART GALLERY
+
+Powered by ALTAVOX TECH
+
+Premium African Art Institution, International Art Marketplace & Complete Gallery Management Platform
+
+---
+
+1. PROJECT OVERVIEW
+
+Act as an elite multidisciplinary product engineering team consisting of:
+
+- Senior Software Architect.
+- Creative Director.
+- Brand Identity Designer.
+- Senior UI/UX Designer.
+- Full-Stack Engineer.
+- Backend Engineer.
+- Database Architect.
+- E-commerce Engineer.
+- Security Engineer.
+- SEO Specialist.
+- DevOps Engineer.
+- Quality Assurance Engineer.
+
+Your assignment is to inspect, improve, redesign, implement and deploy the existing MRISHO ART GALLERY website.
+
+This is an existing project developed under ALTAVOX TECH.
+
+Do not assume this is a new standalone project.
+
+First inspect the current repository, architecture, source code, database, deployment configuration and available brand assets.
+
+Improve the existing project without unnecessarily destroying working functionality.
+
+The final result must be a premium, production-ready digital art gallery and international marketplace.
+
+Official project identity
+
+Business name: MRISHO ART GALLERY
+
+Founder & CEO: HUSSEIN SADIKI GUMBO
+
+Business location: ARUSHA, TANZANIA
+
+Market: Tanzania, East Africa, Africa and International.
+
+Technology company: ALTAVOX TECH
+
+Technology relationship: Designed, engineered and maintained by ALTAVOX TECH.
+
+Official tagline:
+
+ART BEYOND BOUNDARIES.
+
+Primary languages:
+
+- English.
+- Kiswahili.
+
+Art coverage: ALL ART CATEGORIES.
+
+Business model:
+
+- Art exhibitions.
+- Artwork sales.
+- Artist portfolios.
+- Art commissions.
+- Art collections.
+- Art prints and reproductions.
+- Corporate art services.
+- International art commerce.
+
+2. BRAND OWNERSHIP AND BRAND ARCHITECTURE
+
+Maintain a strict distinction between the two brands.
+
+MRISHO ART GALLERY
+
+This is the primary business brand.
+
+It owns:
+
+- Gallery identity.
+- Artwork catalog.
+- Artist relationships.
+- Exhibition content.
+- Customer relationships.
+- Commercial art operations.
+- Gallery editorial content.
+
+Founder & CEO:
+
+HUSSEIN SADIKI GUMBO
+
+Public business location:
+
+ARUSHA, TANZANIA.
+
+Do not display Zanzibar as the gallery location.
+
+Do not invent a street address, phone number, email or GPS coordinates.
+
+ALTAVOX TECH
+
+ALTAVOX TECH is the official technology partner.
+
+Responsibilities:
+
+- Website engineering.
+- Platform development.
+- Technology infrastructure.
+- Software maintenance.
+- Technical support.
+- Security improvements.
+- Platform modernization.
+
+Show a discreet footer attribution:
+
+"Digital platform developed and powered by ALTAVOX TECH."
+
+Link the attribution to the official Altavox Tech website when its verified URL is configured.
+
+Do not put the Altavox logo beside the MRISHO ART GALLERY logo in the primary website header.
+
+MRISHO ART GALLERY must remain the dominant identity.
+
+3. FIRST TASK: COMPLETE PROJECT AUDIT
+
+Before modifying code, conduct a comprehensive technical audit.
+
+Inspect:
+
+1. GitHub repository.
+2. Current branch.
+3. Commit history.
+4. Project structure.
+5. Framework and dependencies.
+6. Existing routes.
+7. Existing UI components.
+8. Existing database.
+9. Database migrations.
+10. Authentication.
+11. User permissions.
+12. Media storage.
+13. API endpoints.
+14. Environment variables.
+15. Existing integrations.
+16. Deployment configuration.
+17. Domain and DNS configuration.
+18. Existing SEO.
+19. Mobile responsiveness.
+20. Existing test coverage.
+
+Identify:
+
+- Broken routes.
+- Broken buttons.
+- Non-functional forms.
+- Placeholder pages.
+- Fake statistics.
+- Duplicate components.
+- Insecure endpoints.
+- Missing database connections.
+- Incomplete integrations.
+- Design inconsistencies.
+- Performance problems.
+- Accessibility problems.
+
+Prepare a prioritized implementation plan.
+
+Do not assume the existing technology stack without inspecting it.
+
+Preserve functional architecture where reasonable.
+
+Do not replace the existing database or authentication system simply to make development easier.
+
+Do not delete production information.
+
+4. BRAND IDENTITY REDESIGN
+
+Create a recognizable international art gallery identity.
+
+Brand characteristics:
+
+- Premium.
+- Artistic.
+- Contemporary.
+- African.
+- Authentic.
+- Sophisticated.
+- International.
+- Editorial.
+
+Use the approved MRISHO ART GALLERY logo.
+
+If multiple logo variations exist, inspect them and select appropriate versions for different backgrounds.
+
+Create:
+
+- Primary logo.
+- Horizontal logo.
+- Compact logo.
+- Monogram.
+- Favicon.
+- Apple touch icon.
+- Social media logo.
+- Transparent PNG assets.
+- SVG assets where available.
+
+Do not replace the approved logo with generic AI-generated icons.
+
+Visual direction
+
+Create an editorial contemporary art experience inspired by premium art institutions and carefully curated galleries.
+
+Suggested palette:
+
+- Deep Charcoal: #171717.
+- Warm Ivory: #F7F5F0.
+- Gallery White: #FFFFFF.
+- Terracotta: #A94F37.
+- Muted Gold: #B89B62.
+- Stone: #817C73.
+
+Use these colors as a controlled design system, not as mandatory colors for every artwork.
+
+Artwork colors must remain natural and unaltered.
+
+Typography:
+
+- Premium editorial serif headings.
+- Modern sans-serif body typography.
+- Clear typographic hierarchy.
+- Elegant spacing.
+- Readable mobile typography.
+
+Avoid:
+
+- Generic AI website templates.
+- Excessive rounded cards.
+- Glassmorphism.
+- Neon gradients.
+- Excessive shadows.
+- Unnecessary animation.
+- Artificial-looking artwork thumbnails.
+- Cluttered interfaces.
+
+The website must feel like a serious international art institution.
+
+5. COMPLETE PUBLIC WEBSITE
+
+Implement and verify the following pages.
+
+HOME:
+/
+GALLERY:
+/gallery
+ART CATEGORIES:
+/gallery/[category]
+ARTWORK DETAILS:
+/artwork/[slug]
+COLLECTIONS:
+/collections
+COLLECTION DETAILS:
+/collections/[slug]
+ARTISTS:
+/artists
+ARTIST PROFILES:
+/artists/[slug]
+EXHIBITIONS:
+/exhibitions
+EXHIBITION DETAILS:
+/exhibitions/[slug]
+ABOUT:
+/about
+JOURNAL:
+/journal
+JOURNAL ARTICLES:
+/journal/[slug]
+COMMISSIONS:
+/commissions
+CONTACT:
+/contact
+FAQ:
+/faq
+SHIPPING:
+/shipping-returns
+PRIVACY:
+/privacy
+TERMS:
+/terms
+CART:
+/cart
+CHECKOUT:
+/checkout
+CUSTOMER ACCOUNT:
+/account
+LOGIN:
+/login
+REGISTRATION:
+/register
+
+Also implement the Kiswahili equivalents through a proper localization architecture.
+
+Every page must have:
+
+- Responsive layout.
+- SEO metadata.
+- Loading state.
+- Error handling.
+- Empty state where applicable.
+- Proper navigation.
+- Accessible interactions.
+
+6. PREMIUM HOMEPAGE DESIGN
+
+The homepage is the most important public entry point.
+
+Build it as a premium digital art exhibition.
+
+Section 1: Announcement bar
+
+Allow administrators to publish:
+
+- New artwork announcements.
+- New collections.
+- Exhibitions.
+- Special gallery events.
+- Important customer information.
+
+Section 2: Navigation
+
+Include:
+
+- MRISHO ART GALLERY logo.
+- Home.
+- Explore Art.
+- Collections.
+- Artists.
+- Exhibitions.
+- Journal.
+- About.
+- Search.
+- Language switcher.
+- Customer account.
+- Shopping bag.
+
+Mobile navigation must work perfectly.
+
+Close the navigation automatically after selecting a destination.
+
+Section 3: Hero exhibition
+
+Use an immersive editorial composition featuring authentic gallery artwork.
+
+Headline:
+
+"Discover Art. Experience Culture. Own Original Creativity."
+
+Supporting text:
+
+"Explore exceptional artistic expressions, discover remarkable creators and experience the beauty of African and international art."
+
+Primary CTA:
+EXPLORE GALLERY.
+
+Secondary CTA:
+DISCOVER ARTISTS.
+
+Use a configurable hero artwork rather than hardcoding an image.
+
+Section 4: Gallery introduction
+
+Introduce MRISHO ART GALLERY.
+
+Explain its commitment to artistic expression, cultural creativity and supporting artists.
+
+Do not invent historical achievements.
+
+Section 5: Featured artworks
+
+Display curated artworks.
+
+Each item should show:
+
+- Artwork image.
+- Title.
+- Artist.
+- Medium.
+- Price.
+- Currency.
+- Availability.
+- View details.
+- Favorite action.
+
+Section 6: Explore art categories
+
+Use high-quality category imagery and editorial layouts.
+
+Section 7: Curated collections
+
+Show collections configured by the gallery.
+
+Section 8: Meet the artists
+
+Highlight approved artists and their work.
+
+Section 9: Current exhibitions
+
+Display upcoming and ongoing exhibitions.
+
+Section 10: Art stories
+
+Publish educational and editorial content.
+
+Section 11: Commission your artwork
+
+Invite customers to request custom artwork.
+
+Section 12: About the founder
+
+Display:
+
+HUSSEIN SADIKI GUMBO
+
+FOUNDER & CEO
+
+MRISHO ART GALLERY
+
+ARUSHA, TANZANIA.
+
+Use an actual approved portrait if provided.
+
+Do not generate a fake founder portrait or invent a biography.
+
+Section 13: Newsletter
+
+Create a consent-based subscription system.
+
+Section 14: Footer
+
+Include:
+
+- Gallery identity.
+- About.
+- Explore.
+- Artists.
+- Exhibitions.
+- Contact.
+- Policies.
+- Social links.
+- Newsletter.
+- Copyright.
+
+Include discreet technology attribution:
+
+"Digital platform developed and powered by ALTAVOX TECH."
+
+7. ARTWORK CATALOG
+
+Support every relevant visual art category.
+
+Initial categories:
+
+1. Paintings.
+2. Drawings.
+3. Sculpture.
+4. Photography.
+5. Digital Art.
+6. Traditional African Art.
+7. Contemporary Art.
+8. Abstract Art.
+9. Portraiture.
+10. Landscape Art.
+11. Fine Art Prints.
+12. Mixed Media.
+13. Crafts.
+14. Textiles.
+15. Ceramics.
+16. Jewelry.
+17. Installation Art.
+18. Illustration.
+19. Decorative Art.
+20. Other approved artistic disciplines.
+
+Administrators must be able to create new categories.
+
+Each artwork must support:
+
+- UUID.
+- Title.
+- Slug.
+- Full description.
+- Artist.
+- Category.
+- Medium.
+- Materials.
+- Dimensions.
+- Weight.
+- Creation year.
+- Multiple images.
+- Image descriptions.
+- Price.
+- Currency.
+- Artwork classification.
+- Original/reproduction status.
+- Edition details.
+- Authenticity information.
+- Provenance where documented.
+- Availability.
+- Shipping requirements.
+- Publication status.
+- Featured status.
+- Created date.
+- Updated date.
+
+Artwork statuses:
+
+DRAFT
+SUBMITTED
+UNDER_REVIEW
+APPROVED
+PUBLISHED
+RESERVED
+SOLD
+ARCHIVED
+REJECTED
+
+Never present AI-generated sample artwork as a real artist's original creation.
+
+8. ADVANCED ARTWORK VIEWER
+
+Create an immersive artwork detail experience.
+
+Features:
+
+- High-resolution image viewer.
+- Image zoom.
+- Multiple image gallery.
+- Full artwork description.
+- Artist information.
+- Materials.
+- Dimensions.
+- Creation year.
+- Price.
+- Availability.
+- Edition information.
+- Authenticity details where verified.
+- Shipping information.
+- Related artwork.
+- Artist portfolio link.
+- Share functionality.
+- Favorite functionality.
+- Enquiry button.
+- Purchase button where available.
+
+Artwork photography must never be stretched, distorted or unnecessarily cropped.
+
+9. SEARCH AND DISCOVERY
+
+Implement advanced search.
+
+Search across:
+
+- Artwork titles.
+- Artists.
+- Categories.
+- Mediums.
+- Collections.
+- Exhibitions.
+- Journal articles.
+
+Filters:
+
+- Category.
+- Artist.
+- Price range.
+- Medium.
+- Materials.
+- Availability.
+- Creation year.
+- Original/print.
+- Featured collection.
+
+Sorting:
+
+- Newest.
+- Oldest.
+- Price ascending.
+- Price descending.
+- Alphabetical.
+
+Do not invent popularity rankings.
+
+10. ARTIST NETWORK
+
+Build a professional artist directory.
+
+Artist profile fields:
+
+- Artist name.
+- Biography.
+- Artist statement.
+- Profile photograph.
+- Cover image.
+- Artistic disciplines.
+- Location where voluntarily provided.
+- Social media.
+- Portfolio.
+- Exhibitions.
+- Available artwork.
+- Commission availability.
+
+Artist portal:
+
+- Registration.
+- Profile management.
+- Artwork submissions.
+- Portfolio management.
+- Submission status.
+- Sales information.
+- Commission requests.
+- Notifications.
+
+Require gallery approval before publishing an artist profile.
+
+Artists must never access another artist's private records.
+
+11. ART EXHIBITIONS
+
+Support:
+
+- Solo exhibitions.
+- Group exhibitions.
+- Physical exhibitions.
+- Virtual exhibitions.
+- Past exhibitions.
+- Upcoming exhibitions.
+
+Each exhibition must support:
+
+- Title.
+- Description.
+- Images.
+- Participating artists.
+- Artworks.
+- Venue.
+- Location.
+- Dates.
+- Registration.
+- Attendance capacity.
+- Status.
+
+Create individual exhibition landing pages.
+
+Support event registration and attendee management.
+
+Never publish unverified dates, venues or participants.
+
+12. E-COMMERCE MARKETPLACE
+
+Implement real art commerce.
+
+Support:
+
+- Original artworks.
+- Limited editions.
+- Prints.
+- Reproductions.
+- Custom art orders.
+
+Customer functionality:
+
+- Guest checkout.
+- Registration.
+- Login.
+- Shopping cart.
+- Favorites.
+- Checkout.
+- Order confirmation.
+- Order history.
+- Receipts.
+- Payment status.
+- Shipment tracking.
+- Returns requests.
+
+Implement transaction-safe inventory.
+
+Prevent double purchases of unique original artworks.
+
+Prices must be verified server-side.
+
+Store an immutable purchase snapshot for each order.
+
+13. PAYMENT INTEGRATIONS
+
+Create a modular payment architecture.
+
+Tanzania:
+
+- M-Pesa.
+- Airtel Money.
+- Mixx by Yas.
+- HaloPesa where supported.
+
+International:
+
+- Supported card gateways.
+- International payment gateways.
+- Bank transfers where configured.
+
+Requirements:
+
+- Secure payment initiation.
+- Server-side validation.
+- Verified webhooks.
+- Transaction references.
+- Idempotency.
+- Payment reconciliation.
+- Refund processing.
+- Audit trails.
+
+Use sandbox environments until live credentials are configured.
+
+Never report a payment as successful without verified confirmation.
+
+14. SHIPPING AND INTERNATIONAL SALES
+
+Support:
+
+- Arusha and other Tanzanian destinations.
+- East African destinations.
+- African destinations.
+- International destinations.
+
+Implement:
+
+- Shipping zones.
+- Shipping rates.
+- Packaging details.
+- Fragile artwork handling.
+- Insurance options.
+- Tracking numbers.
+- Delivery statuses.
+- Customs documentation.
+- Import duty disclosures.
+- Delivery confirmation.
+
+Allow manual shipping management before integrating external shipping providers.
+
+15. CUSTOM ART COMMISSIONS
+
+Build a full commission management system.
+
+Customer form:
+
+- Customer name.
+- Email.
+- Phone.
+- Art category.
+- Description.
+- Reference images.
+- Dimensions.
+- Materials.
+- Budget.
+- Preferred deadline.
+- Delivery destination.
+
+Commission workflow:
+
+SUBMITTED
+UNDER_REVIEW
+CLARIFICATION_REQUIRED
+QUOTED
+APPROVED
+DEPOSIT_PENDING
+DEPOSIT_PAID
+IN_PROGRESS
+CUSTOMER_REVIEW
+REVISION_REQUESTED
+COMPLETED
+FINAL_PAYMENT_PENDING
+PAID
+DELIVERED
+CANCELLED
+
+Admin capabilities:
+
+- Review submissions.
+- Assign artists.
+- Create quotations.
+- Record milestones.
+- Track deposits.
+- Update production.
+- Upload previews.
+- Request customer approval.
+- Record revisions.
+- Complete orders.
+
+Protect private uploads and customer information.
+
+16. CUSTOMER PORTAL
+
+Create a professional customer account.
+
+Sections:
+
+- Dashboard.
+- Personal information.
+- Addresses.
+- Orders.
+- Favorites.
+- Commissions.
+- Payment records.
+- Shipment tracking.
+- Notifications.
+- Security settings.
+
+Customers may only access their own records.
+
+17. COMPLETE ADMIN DASHBOARD
+
+Create a secure management system.
+
+Admin modules:
+
+1. Overview.
+2. Artwork management.
+3. Artists.
+4. Artist applications.
+5. Categories.
+6. Collections.
+7. Exhibitions.
+8. Orders.
+9. Payments.
+10. Refunds.
+11. Commissions.
+12. Customers.
+13. Journal.
+14. Website pages.
+15. Homepage editor.
+16. Media library.
+17. Shipping.
+18. Promotions.
+19. Newsletter.
+20. Analytics.
+21. SEO.
+22. Translations.
+23. User management.
+24. Roles and permissions.
+25. Audit logs.
+26. System settings.
+
+Every dashboard metric must use actual database data.
+
+Include:
+
+- Search.
+- Filtering.
+- Sorting.
+- Pagination.
+- Safe bulk operations.
+- Image previews.
+- Form validation.
+- Publishing controls.
+- Confirmation dialogs.
+- Activity logs.
+- Export functionality where appropriate.
+
+18. ADMIN ROLES AND PERMISSIONS
+
+Implement:
+
+SUPER_ADMIN:
+Full platform administration.
+
+ADMIN:
+Gallery operations.
+
+ART_CURATOR:
+Artwork, collections, artists and exhibitions.
+
+ARTIST:
+Own profile and submissions.
+
+CONTENT_EDITOR:
+Pages and editorial content.
+
+FINANCE_MANAGER:
+Payments, refunds and financial reporting.
+
+CUSTOMER:
+Own account and orders.
+
+VISITOR:
+Public access.
+
+Enforce authorization server-side and through database policies.
+
+19. DATABASE AND BACKEND
+
+Inspect the existing database before making modifications.
+
+Preferred technology if compatible with the current system:
+
+- PostgreSQL.
+- Supabase.
+- Supabase Auth.
+- Supabase Storage.
+- Next.js server-side APIs.
+- TypeScript.
+- Zod validation.
+
+Core tables:
+
+profiles
+roles
+user_roles
+artists
+artist_applications
+artworks
+artwork_images
+categories
+collections
+collection_artworks
+exhibitions
+exhibition_artworks
+favorites
+carts
+cart_items
+orders
+order_items
+payments
+refunds
+commissions
+commission_messages
+commission_milestones
+addresses
+shipments
+reviews
+articles
+article_categories
+pages
+media
+translations
+newsletter_subscribers
+notifications
+audit_logs
+shipping_zones
+shipping_rates
+payment_providers
+currency_rates
+discount_codes
+
+Use:
+
+- UUID identifiers.
+- Foreign keys.
+- Indexes.
+- Constraints.
+- Database transactions.
+- Migration files.
+- Row Level Security.
+- Secure storage policies.
+
+Never expose service-role credentials.
+
+20. INTERNATIONALIZATION
+
+Default language: English.
+
+Secondary language: Kiswahili.
+
+Implement:
+
+- Language selector.
+- Localized navigation.
+- Localized pages.
+- Localized forms.
+- Localized validation.
+- Localized notifications.
+- Localized SEO.
+- Localized dates.
+- Localized currency.
+
+Support TZS as the default currency.
+
+Support configurable USD, EUR and GBP.
+
+Use trusted exchange-rate sources or controlled administrative configuration.
+
+Preserve the rate used at the time of every transaction.
+
+21. SEO AND MARKETING
+
+Implement:
+
+- Dynamic metadata.
+- XML sitemap.
+- robots.txt.
+- Canonical URLs.
+- Open Graph.
+- Social sharing.
+- Structured data.
+- Artwork SEO.
+- Artist SEO.
+- Exhibition SEO.
+- Article SEO.
+- Image alt text.
+- Internal linking.
+- Search-friendly slugs.
+- Hreflang.
+
+Build newsletter subscriptions with consent management.
+
+Implement analytics for:
+
+- Artwork views.
+- Search activity.
+- Category engagement.
+- Artist engagement.
+- Cart activity.
+- Checkout conversion.
+- Actual sales.
+- Actual revenue.
+
+Do not display estimated values as real business performance.
+
+22. CONTACT AND BUSINESS INFORMATION
+
+Official business details:
+
+MRISHO ART GALLERY
+
+HUSSEIN SADIKI GUMBO
+
+FOUNDER & CEO
+
+ARUSHA, TANZANIA.
+
+The contact page must support configurable:
+
+- Business email.
+- Telephone.
+- WhatsApp.
+- Social media.
+- Physical address.
+- Google Maps location.
+
+Do not fabricate missing information.
+
+Do not display Zanzibar as the business location.
+
+The exact live street address and coordinates must only be published after the owner confirms them.
+
+23. ALTAVOX TECH INTEGRATION
+
+Maintain the technology relationship throughout the project.
+
+Requirements:
+
+- Preserve a clean separation between gallery business data and technology infrastructure.
+- Keep deployment credentials under authorized Altavox-controlled access.
+- Document the architecture.
+- Maintain database migrations.
+- Maintain deployment workflows.
+- Configure health checks.
+- Monitor errors.
+- Maintain backups.
+- Record technical changes.
+- Document third-party integrations.
+
+Add a small footer credit:
+
+"Designed and engineered by ALTAVOX TECH."
+
+The attribution must not compete with the gallery branding.
+
+The gallery must retain ownership of its artwork, content, customer relationships and business identity.
+
+24. SECURITY AND RELIABILITY
+
+Implement:
+
+- Secure authentication.
+- Server-side authorization.
+- Row Level Security.
+- Session security.
+- Input validation.
+- Rate limiting.
+- CSRF protection where applicable.
+- XSS prevention.
+- Secure uploads.
+- MIME validation.
+- File-size restrictions.
+- Webhook verification.
+- Idempotency.
+- Secrets management.
+- Audit logging.
+- Backup and recovery.
+
+Protect customer and artist personal information.
+
+Never store raw payment card data.
+
+25. PERFORMANCE AND ACCESSIBILITY
+
+Optimize:
+
+- Core Web Vitals.
+- Responsive images.
+- Image compression.
+- Lazy loading.
+- Database queries.
+- Caching.
+- Code splitting.
+- Server rendering.
+- Bundle size.
+- Loading performance.
+
+Target strong Lighthouse scores across all categories.
+
+Implement:
+
+- Semantic HTML.
+- Keyboard navigation.
+- Screen reader support.
+- Accessible color contrast.
+- Reduced motion.
+- Proper image descriptions.
+
+26. TESTING
+
+Write and execute tests for:
+
+1. Homepage.
+2. Navigation.
+3. Artwork listing.
+4. Artwork detail.
+5. Search.
+6. Filters.
+7. Artist registration.
+8. Artist approval.
+9. Artwork submission.
+10. Artwork publishing.
+11. Admin permissions.
+12. Customer registration.
+13. Shopping cart.
+14. Inventory reservation.
+15. Checkout.
+16. Payment verification.
+17. Refunds.
+18. Commission submission.
+19. Commission workflow.
+20. Exhibition publishing.
+21. Media upload.
+22. Language switching.
+23. SEO.
+24. Mobile responsiveness.
+25. Database security.
+
+Run:
+
+- Dependency installation.
+- Lint.
+- Type checking.
+- Unit tests.
+- Integration tests.
+- End-to-end tests.
+- Production build.
+- Database migration verification.
+- Security checks.
+
+Do not claim tests pass without execution evidence.
+
+27. DEPLOYMENT AND INFRASTRUCTURE
+
+Use the existing authorized deployment architecture.
+
+Preferred services if already configured:
+
+GitHub:
+Source control and CI/CD.
+
+Vercel:
+Application hosting and deployment.
+
+Supabase:
+Database, authentication and media storage.
+
+Implement:
+
+- Development environment.
+- Preview environment.
+- Production environment.
+- Environment variables.
+- Database migrations.
+- Domain configuration.
+- SSL.
+- Health checks.
+- Error monitoring.
+- Backup strategy.
+- Rollback procedures.
+
+Never expose production credentials.
+
+Never overwrite production data without authorization and a verified backup.
+
+Verify the actual deployed website after each production release.
+
+28. DESIGN QUALITY ACCEPTANCE
+
+The finished website must:
+
+- Look like a premium international art gallery.
+- Have excellent artwork presentation.
+- Be visually distinctive.
+- Work on mobile phones.
+- Work on tablets.
+- Work on desktop.
+- Have intuitive navigation.
+- Have consistent typography.
+- Have excellent photography presentation.
+- Have functional buttons.
+- Have working forms.
+- Have no broken links.
+- Have no fake content presented as real.
+
+The interface must prioritize art, not decorative UI components.
+
+29. IMPLEMENTATION PRIORITIES
+
+Execute in this order:
+
+PHASE 1:
+Existing project audit and architecture verification.
+
+PHASE 2:
+Brand identity and complete design system.
+
+PHASE 3:
+Homepage and public website redesign.
+
+PHASE 4:
+Artwork catalog and discovery.
+
+PHASE 5:
+Database, authentication and security.
+
+PHASE 6:
+Artist portal and exhibition management.
+
+PHASE 7:
+Admin dashboard and CMS.
+
+PHASE 8:
+Customer accounts and e-commerce.
+
+PHASE 9:
+Payments and shipping.
+
+PHASE 10:
+Commissions and internationalization.
+
+PHASE 11:
+SEO, performance and accessibility.
+
+PHASE 12:
+Automated testing and production deployment.
+
+Do not implement disconnected mockups.
+
+Complete each feature end-to-end.
+
+30. NON-NEGOTIABLE RULES
+
+1. Inspect before changing.
+2. Preserve existing working functionality.
+3. Do not destroy existing production data.
+4. Do not create duplicate APIs.
+5. Do not invent gallery history.
+6. Do not invent artist biographies.
+7. Do not invent artwork ownership.
+8. Do not fabricate prices.
+9. Do not create fake orders.
+10. Do not create fake payments.
+11. Do not create fake customer statistics.
+12. Do not invent business contact information.
+13. Do not display Zanzibar as the gallery location.
+14. Do not expose secrets.
+15. Do not bypass permissions.
+16. Do not leave non-functional buttons.
+17. Do not call an integration operational without verification.
+18. Do not claim deployment success without evidence.
+19. Do not replace approved branding without authorization.
+20. Do not report incomplete work as completed.
+
+31. FINAL ACCEPTANCE CRITERIA
+
+The project is complete when:
+
+- All public pages work.
+- Branding is consistent.
+- Gallery information is correct.
+- Founder information is correct.
+- Arusha is displayed as the business location.
+- Artwork catalog works.
+- Search works.
+- Filters work.
+- Artist profiles work.
+- Artist submissions work.
+- Exhibition management works.
+- Admin dashboard works.
+- CMS works.
+- Customer accounts work.
+- Cart works.
+- Checkout works.
+- Inventory is transaction-safe.
+- Configured payments are verified.
+- Shipping workflows work.
+- Commission management works.
+- English and Kiswahili work.
+- Database permissions are verified.
+- Critical tests pass.
+- Production build succeeds.
+- Deployment is verified.
+
+32. FINAL DELIVERY REPORT
+
+Provide a factual report containing:
+
+1. Existing architecture discovered.
+2. Changes implemented.
+3. Features completed.
+4. Features still pending.
+5. Database modifications.
+6. Security improvements.
+7. Tests executed.
+8. Test results.
+9. Build results.
+10. Deployment status.
+11. Production URL.
+12. Outstanding blockers.
+13. External credentials or business information still required.
+
+Clearly classify each feature as:
+
+IMPLEMENTED
+TESTED
+DEPLOYED
+PRODUCTION VERIFIED
+PENDING CONFIGURATION
+
+Do not confuse these statuses.
+
+FINAL VISION
+
+MRISHO ART GALLERY must become more than a website.
+
+It must become a complete digital art institution where:
+
+- Artists showcase their creativity.
+- Collectors discover original artwork.
+- Customers purchase artwork.
+- Visitors explore African culture.
+- The gallery manages exhibitions.
+- Artists receive commission opportunities.
+- Customers connect with artists.
+- The business operates a real international marketplace.
+
+The platform must be designed and engineered to grow from Arusha, Tanzania, to the international art market.
+
+MRISHO ART GALLERY
+
+ART BEYOND BOUNDARIES.
+
+Technology partner: ALTAVOX TECH.
