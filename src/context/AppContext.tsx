@@ -77,111 +77,27 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const SEED_COMMISSIONS: CommissionRequest[] = [
-  {
-    id: 'comm-101',
-    customerName: 'Victoria Sterling',
-    customerEmail: 'v.sterling@mayfaircuratorial.co.uk',
-    customerPhone: '+44 7700 900142',
-    category: 'Paintings',
-    mediumPreferred: 'Oil & Natural Ochre on Canvas',
-    dimensionsRequired: '200cm x 150cm',
-    budgetTzs: 24000000,
-    deadline: '2026-08-30',
-    deliveryCity: 'London',
-    deliveryCountry: 'United Kingdom',
-    brief: 'Commissioning a grand-scale dining pavilion canvas exploring the maritime migration routes of Zanzibar and Kilwa Kisiwani. Must feature deep lapis, raw earth umbers and 24k gold leaf highlights.',
-    status: 'IN_PROGRESS',
-    quoteAmountTzs: 24000000,
-    assignedArtistName: 'Mwl. Juma Mwinyi',
-    createdAt: '2026-01-20T10:00:00Z',
-    updatedAt: '2026-02-05T14:00:00Z',
-    milestones: [
-      { title: 'Composition Sketch Approved', completed: true, date: '2026-01-28' },
-      { title: 'Ground Layer & Pigment Application', completed: true, date: '2026-02-15' },
-      { title: '24k Gold Leaf Gilding', completed: false },
-      { title: 'Curation Review & Crated Shipping', completed: false },
-    ],
-  },
-  {
-    id: 'comm-102',
-    customerName: 'Kassim Salim Mwinyimvua',
-    customerEmail: 'kassim.mwinyi@kilimanjaro-advisory.tz',
-    customerPhone: '+255 754 889 012',
-    category: 'Sculpture',
-    mediumPreferred: 'Tanzanian Mpingo (African Blackwood)',
-    dimensionsRequired: '130cm height x 50cm base',
-    budgetTzs: 18000000,
-    deadline: '2026-06-15',
-    deliveryCity: 'Dar es Salaam',
-    deliveryCountry: 'Tanzania',
-    brief: 'Corporate boardroom sculpture symbolizing intergenerational leadership and sustainable development. Interlocking abstract forms inspired by the Makonde tree of life.',
-    status: 'QUOTED',
-    quoteAmountTzs: 18500000,
-    assignedArtistName: 'Aloyce Masoud',
-    createdAt: '2026-02-10T11:00:00Z',
-    updatedAt: '2026-02-14T16:00:00Z',
-  },
-];
-
-const SEED_ORDERS: Order[] = [
-  {
-    id: 'ord-8801',
-    orderNumber: 'MAG-ORD-2026-8801',
-    customerName: 'Dr. Tariq Al-Hassan',
-    customerEmail: 't.alhassan@emiratesheritage.ae',
-    customerPhone: '+971 50 123 4567',
-    shippingAddress: {
-      street: 'Villa 14, Al Bateen Marina',
-      city: 'Abu Dhabi',
-      region: 'Abu Dhabi',
-      country: 'United Arab Emirates',
-      postalCode: '00000',
-    },
-    items: [
-      {
-        artworkId: 'art-003',
-        title: 'Subira Huzaa Heri (Patience Bears Virtue)',
-        artistName: 'Rehema Chande',
-        priceTzs: 9500000,
-        image: '/src/assets/images/artwork_swahili_portrait_1794114974703.jpg',
-        provenanceHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
-      },
-    ],
-    subtotalTzs: 9500000,
-    shippingTzs: 850000,
-    totalTzs: 10350000,
-    currencyPaid: 'USD',
-    paymentMethod: 'CARD',
-    paymentReference: 'STRIPE_TX_94882194',
-    paymentStatus: 'PAID',
-    fulfillmentStatus: 'CRATING',
-    trackingNumber: 'DHL-EXPRESS-TZ-772918',
-    createdAt: '2026-02-14T09:15:00Z',
-  },
-];
-
-const SEED_AUDIT_LOGS: AuditLog[] = [
-  {
-    id: 'log-1',
-    timestamp: '2026-02-18T10:15:00Z',
-    actor: 'Hussein Sadiki Gumbo',
-    role: 'ART_CURATOR',
-    action: 'PROVENANCE_BLOCK_MINTS',
-    details: 'Minted Genesis and Verification blocks for new masterwork "Voices of Bagamoyo" (art-001).',
-  },
-  {
-    id: 'log-2',
-    timestamp: '2026-02-14T09:16:00Z',
-    actor: 'Payment Gateway Escrow',
-    role: 'FINANCE_MANAGER',
-    action: 'PAYMENT_SETTLED',
-    details: 'Received full acquisition settlement for Order MAG-ORD-2026-8801. Blockchain deed ownership recorded.',
-  },
-];
-
 const writeStored = (key: string, value: unknown) => {
   try { window.localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch { /* Storage may be unavailable. */ }
+};
+
+const readStoredString = (key: string, fallback: string): string => {
+  try {
+    return window.localStorage.getItem(key) ?? fallback;
+  } catch {
+    return fallback;
+  }
+};
+
+const readStoredArray = <T,>(key: string, fallback: T[] = []): T[] => {
+  try {
+    const value = window.localStorage.getItem(key);
+    if (!value) return fallback;
+    const parsed: unknown = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed as T[] : fallback;
+  } catch {
+    return fallback;
+  }
 };
 
 const APP_ROUTES = new Set(['/', '/gallery', '/artists', '/exhibitions', '/commissions', '/journal', '/about', '/account', '/artist-portal', '/admin']);
@@ -200,18 +116,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [currentRole, setCurrentRole] = useState<UserRole>('CUSTOMER');
   const [currentRoute, setCurrentRoute] = useState<string>(() => normalizeRoute(window.location.pathname));
 
-  const [artworks, setArtworks] = useState<Artwork[]>(() => {
-    const saved = localStorage.getItem('mag_artworks');
-    if (!saved) return SEED_ARTWORKS;
-    try {
-      const parsed: Artwork[] = JSON.parse(saved);
-      const savedIds = new Set(parsed.map(a => a.id));
-      const missingSeeds = SEED_ARTWORKS.filter(s => !savedIds.has(s.id));
-      return [...missingSeeds, ...parsed];
-    } catch {
-      return SEED_ARTWORKS;
-    }
-  });
+  const [artworks, setArtworks] = useState<Artwork[]>(() =>
+    readStoredArray<Artwork>('mag_artworks_v2', SEED_ARTWORKS)
+  );
 
   const [artists] = useState<Artist[]>(SEED_ARTISTS);
   const [exhibitions] = useState<Exhibition[]>(SEED_EXHIBITIONS);
