@@ -293,7 +293,6 @@ export const AboutView: React.FC = () => {
                 Contact form unavailable
               </button>
             </form>
-          )}
         </div>
       </div>
     </div>

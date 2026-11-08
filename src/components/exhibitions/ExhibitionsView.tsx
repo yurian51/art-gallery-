@@ -210,7 +210,6 @@ export const ExhibitionsView: React.FC = () => {
                   </button>
                 </div>
               </form>
-            )}
           </div>
         </div>
       )}
