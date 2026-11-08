@@ -100,10 +100,16 @@ const readStoredArray = <T,>(key: string, fallback: T[] = []): T[] => {
   }
 };
 
-const APP_ROUTES = new Set(['/', '/gallery', '/artists', '/exhibitions', '/commissions', '/journal', '/about', '/account', '/artist-portal', '/admin']);
+const APP_ROUTES = new Set([
+  '/', '/gallery', '/collections', '/artists', '/exhibitions', '/commissions',
+  '/journal', '/about', '/contact', '/faq', '/shipping-returns', '/privacy',
+  '/terms', '/account', '/login', '/register', '/artist-portal', '/admin',
+  '/cart', '/checkout',
+]);
 const normalizeRoute = (route: string) => {
   const normalized = route === '/' ? '/' : '/' + route.split('/').filter(Boolean).join('/');
-  return APP_ROUTES.has(normalized) ? normalized : '/';
+  const dynamicRoute = /^\\/(artwork|gallery|artists|collections|exhibitions|journal)\\/[^/]+$/.test(normalized);
+  return APP_ROUTES.has(normalized) || dynamicRoute ? normalized : '/';
 };
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => readStoredString('mag_lang', 'en') === 'sw' ? 'sw' : 'en');
