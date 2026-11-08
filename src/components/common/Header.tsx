@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { translations } from '../../translations';
 import { Currency, Language, UserRole } from '../../types';
@@ -24,6 +24,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
   } = useApp();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const closeOnOutside = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setMobileMenuOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOnOutside);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutside);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [mobileMenuOpen]);
   const t = translations[language];
 
   const navLinks = [
@@ -57,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#F7F5F0]/95 backdrop-blur-md border-b border-[#817C73]/20 transition-colors">
+    <header ref={headerRef} className="sticky top-0 z-40 bg-[#F7F5F0]/95 backdrop-blur-md border-b border-[#817C73]/20 transition-colors">
       {/* Editorial Announcement Banner */}
       <div className="bg-[#171717] text-[#F7F5F0] text-xs py-1.5 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -207,6 +224,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 text-[#171717]"
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -215,7 +234,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#F7F5F0] border-b border-[#817C73]/30 px-6 py-6 space-y-4">
+        <div id="mobile-navigation" className="lg:hidden bg-[#F7F5F0] border-b border-[#817C73]/30 px-6 py-6 space-y-4">
           <div className="flex flex-col space-y-3">
             {navLinks.map(link => (
               <button
