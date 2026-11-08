@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { translations } from '../../translations';
 import { Currency, Language, UserRole } from '../../types';
-import { Search, ShoppingBag, Heart, ShieldCheck, UserCheck, Menu, X, Globe } from 'lucide-react';
+import { Search, ShoppingBag, Heart, ShieldCheck, UserCheck, Menu, X, Globe, ChevronDown, ArrowUpRight } from 'lucide-react';
 
 interface HeaderProps {
   onOpenRoleModal: () => void;
@@ -21,9 +21,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
     cart,
     favorites,
     setIsCartOpen,
+    setSearchQuery,
   } = useApp();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [galleryMenuOpen, setGalleryMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -44,7 +46,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
   const t = translations[language];
 
   const navLinks = [
-    { label: t.nav.gallery, route: '/gallery' },
     { label: t.nav.artists, route: '/artists' },
     { label: t.nav.exhibitions, route: '/exhibitions' },
     { label: t.nav.commissions, route: '/commissions' },
@@ -74,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 bg-[#F7F5F0]/95 backdrop-blur-md border-b border-[#817C73]/20 transition-colors">
+    <header ref={headerRef} className="sticky top-0 z-40 border-b border-[#817C73]/20 bg-[#F7F5F0]/95 backdrop-blur-xl transition-colors">
       {/* Editorial Announcement Banner */}
       <div className="bg-[#171717] text-[#F7F5F0] text-xs py-1.5 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -100,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
       </div>
 
       {/* Main Top Bar Contract: Zone 1 (Wordmark) — Zone 2 (Nav Links) — Zone 3 (Utility/Actions) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-14 h-[88px] flex items-center justify-between gap-5">
         {/* Zone 1: Official Brand Logo & Wordmark */}
         <div className="flex items-center gap-4 shrink-0 py-1">
           <button
@@ -111,13 +112,24 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
             <img
               src="/assets/aistudio/file_000000003cbc82119fc00a28863060cc_f2901e66.png"
               alt="Mrisho Art Gallery — Art Beyond Boundaries"
-              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-14 sm:h-[68px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </button>
         </div>
 
         {/* Zone 2: Clean 4–6 Single-Line Nav Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#171717]/80">
+        <nav className="hidden lg:flex items-center gap-6 text-[13px] font-semibold text-[#171717]/80">
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setGalleryMenuOpen(value => !value)}
+              aria-expanded={galleryMenuOpen}
+              className={`flex items-center gap-1.5 py-3 whitespace-nowrap transition-colors hover:text-[#9A7B43] ${currentRoute === '/gallery' ? 'text-[#9A7B43]' : 'text-[#171717]/80'}`}
+            >
+              {t.nav.gallery}
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${galleryMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
           {navLinks.map(link => {
             const isActive = currentRoute === link.route;
             return (
@@ -125,14 +137,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
                 key={link.route}
                 onClick={() => handleNav(link.route)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative py-1 whitespace-nowrap transition-colors hover:text-[#171717] ${
-                  isActive ? 'text-[#171717] font-semibold' : 'text-[#171717]/70'
+                className={`relative py-3 whitespace-nowrap transition-colors hover:text-[#9A7B43] ${
+                  isActive ? 'text-[#9A7B43] font-bold' : 'text-[#171717]/75'
                 }`}
               >
                 {link.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B89B62]" />
-                )}
+                {isActive && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B89B62]" />}
               </button>
             );
           })}
@@ -182,6 +192,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
             <option value="EUR">EUR (€)</option>
             <option value="GBP">GBP (£)</option>
           </select>
+
+          <button
+            type="button"
+            onClick={() => handleNav('/commissions')}
+            className="hidden xl:inline-flex min-h-10 items-center gap-2 bg-[#B89B62] px-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#171717] transition-colors hover:bg-[#171717] hover:text-white"
+          >
+            {language === 'sw' ? 'Wasiliana nasi' : 'Enquire'}
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </button>
 
           {/* Role Perspective Switcher */}
           <button
@@ -233,10 +252,42 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
         </div>
       </div>
 
+      {/* Desktop gallery discovery menu */}
+      {galleryMenuOpen && (
+        <div className="absolute left-0 right-0 top-full z-50 hidden border-b border-[#817C73]/20 bg-white shadow-[0_24px_55px_rgba(23,23,23,0.14)] lg:block">
+          <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-10 px-8 py-9 lg:px-14">
+            <div className="col-span-4 border-r border-[#817C73]/15 pr-10">
+              <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#A88B54]">{language === 'sw' ? 'Mkusanyiko wa sanaa' : 'The art collection'}</span>
+              <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-[#171717]">{language === 'sw' ? 'Gundua kazi zenye simulizi.' : 'Discover art with a story.'}</h3>
+              <p className="mt-3 max-w-xs text-xs leading-6 text-[#817C73]">{language === 'sw' ? 'Chunguza kazi za sanaa na mitindo mbalimbali kwenye mkusanyiko wa galari.' : 'Explore artworks, disciplines and creative perspectives from the gallery.'}</p>
+              <button onClick={() => { handleNav('/gallery'); setGalleryMenuOpen(false); }} className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#171717] hover:text-[#A88B54]">
+                {language === 'sw' ? 'Tazama galari yote' : 'Explore all artworks'} <ArrowUpRight className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="col-span-8 grid grid-cols-3 gap-x-8 gap-y-7">
+              {[
+                { title: language === 'sw' ? 'Michoro' : 'Paintings', query: 'Paintings', desc: language === 'sw' ? 'Michoro na sanaa za kuona' : 'Original visual expressions' },
+                { title: language === 'sw' ? 'Sanamu' : 'Sculpture', query: 'Sculpture', desc: language === 'sw' ? 'Sanaa za maumbo ya pande tatu' : 'Three-dimensional art forms' },
+                { title: language === 'sw' ? 'Picha za watu' : 'Portraiture', query: 'Portraiture', desc: language === 'sw' ? 'Picha na simulizi za watu' : 'People, identity and stories' },
+                { title: language === 'sw' ? 'Picha na machapisho' : 'Photography & prints', query: 'Fine Art Prints', desc: language === 'sw' ? 'Picha na uchapishaji wa sanaa' : 'Photography and fine-art prints' },
+                { title: language === 'sw' ? 'Wasanii' : 'Artists', route: '/artists', desc: language === 'sw' ? 'Kutana na wabunifu' : 'Meet the artists and makers' },
+                { title: language === 'sw' ? 'Maonesho' : 'Exhibitions', route: '/exhibitions', desc: language === 'sw' ? 'Maonesho ya sanaa' : 'Current and past exhibitions' },
+              ].map(item => (
+                <button key={item.title} onClick={() => { if (item.query) { setSearchQuery(item.query); handleNav('/gallery'); } else if (item.route) handleNav(item.route); setGalleryMenuOpen(false); }} className="group text-left">
+                  <span className="block text-sm font-semibold text-[#171717] transition-colors group-hover:text-[#A88B54]">{item.title}</span>
+                  <span className="mt-1 block text-[10px] leading-5 text-[#817C73]">{item.desc}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div id="mobile-navigation" className="lg:hidden bg-[#F7F5F0] border-b border-[#817C73]/30 px-6 py-6 space-y-4">
           <div className="flex flex-col space-y-3">
+            <button onClick={() => handleNav('/gallery')} className="text-left font-serif text-lg text-[#171717] hover:text-[#B89B62] py-1 border-b border-[#817C73]/10">{t.nav.gallery}</button>
             {navLinks.map(link => (
               <button
                 key={link.route}
