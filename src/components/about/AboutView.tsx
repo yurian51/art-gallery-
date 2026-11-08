@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import galleryInteriorImage from '../../assets/images/gallery_interior_dar_1794114974688.jpg';
 import { useApp } from '../../context/AppContext';
-import { ShieldCheck, MapPin, Clock, Mail, Phone, Check, Award, Compass, Sparkles } from 'lucide-react';
+import { ShieldCheck, MapPin, Clock, Mail, Phone, Check, Award, Compass, Sparkles, Quote } from 'lucide-react';
 
 export const AboutView: React.FC = () => {
-  const { navigateTo } = useApp();
+  const { language, navigateTo } = useApp();
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
@@ -91,6 +91,81 @@ export const AboutView: React.FC = () => {
         </div>
       </div>
 
+
+      {/* Founder & CEO */}
+      <section
+        aria-labelledby="founder-title"
+        className="relative overflow-hidden border border-[#B89B62]/35 bg-[#171717] text-[#F7F5F0] shadow-xl"
+      >
+        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full border border-[#B89B62]/10" />
+        <div className="pointer-events-none absolute -right-12 -top-12 h-56 w-56 rounded-full border border-[#B89B62]/10" />
+
+        <div className="relative grid grid-cols-1 items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-12 lg:gap-14">
+          <div className="flex flex-col items-center text-center lg:col-span-5">
+            <div className="relative mb-7">
+              <div className="absolute -inset-3 rounded-full border border-[#B89B62]/45" />
+              <div className="absolute -inset-6 rounded-full border border-[#B89B62]/15" />
+              <div className="relative h-52 w-52 overflow-hidden rounded-full border-[5px] border-[#B89B62] bg-[#282521] shadow-[0_18px_55px_rgba(0,0,0,0.45)] sm:h-64 sm:w-64">
+                <img
+                  src="/assets/aistudio/file_000000007ed88211923be0350c1162b0_d5208529.png"
+                  alt="Hussein Sadiki Gumbo, Founder and CEO of Mrisho Art Gallery"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full rounded-full object-cover object-[center_18%]"
+                />
+              </div>
+            </div>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89B62]">
+              {language === 'sw' ? 'Mwanzilishi na CEO' : 'Founder & CEO'}
+            </span>
+            <p className="mt-2 text-xs tracking-[0.16em] text-[#F7F5F0]/65">
+              Mrisho Art Gallery · Arusha, Tanzania
+            </p>
+          </div>
+
+          <div className="space-y-5 lg:col-span-7">
+            <div className="space-y-3">
+              <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#B89B62]">
+                <Sparkles className="h-3.5 w-3.5" />
+                {language === 'sw' ? 'Uongozi wa Galari' : 'Gallery Leadership'}
+              </span>
+              <h2 id="founder-title" className="font-serif text-3xl font-bold leading-tight tracking-tight text-[#F7F5F0] sm:text-4xl">
+                {language === 'sw' ? 'Mwanzilishi na Afisa Mtendaji Mkuu' : 'Founder & Chief Executive Officer'}
+              </h2>
+              <p className="font-serif text-2xl italic text-[#B89B62] sm:text-3xl">
+                Hussein Sadiki Gumbo
+              </p>
+            </div>
+
+            <div className="flex gap-4 border-l-2 border-[#B89B62] pl-5">
+              <Quote className="mt-1 h-6 w-6 shrink-0 text-[#B89B62]/70" />
+              <p className="font-serif text-base italic leading-relaxed text-[#F7F5F0]/85 sm:text-lg">
+                {language === 'sw'
+                  ? '“Kutoka Arusha kuelekea ulimwenguni, tunalenga kuunganisha watu na sanaa ya Kiafrika kupitia ubunifu, urithi na mawasiliano ya moja kwa moja.”'
+                  : '“From Arusha to the world, we aim to connect people with African art through creativity, heritage and meaningful conversation.”'}
+              </p>
+            </div>
+
+            <p className="max-w-2xl text-sm leading-7 text-[#F7F5F0]/70">
+              {language === 'sw'
+                ? 'Hussein Sadiki Gumbo anaongoza Mrisho Art Gallery kwa dhamira ya kuwasilisha kazi za sanaa za Kiafrika kwa hadhira ya ndani na ya kimataifa. Galari inajikita katika kuwatambulisha wasanii, kusimulia historia ya kazi zao na kuwapa wakusanyaji njia rahisi ya kuwasiliana kuhusu kazi wanazozipenda.'
+                : 'Hussein Sadiki Gumbo leads Mrisho Art Gallery with a commitment to presenting African art to local and international audiences. The gallery focuses on introducing artists, sharing the stories behind their work, and making it easier for collectors to enquire about pieces that inspire them.'}
+            </p>
+
+            <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-5 text-xs">
+              <span className="inline-flex items-center gap-2 text-[#F7F5F0]/75">
+                <MapPin className="h-4 w-4 text-[#B89B62]" />
+                Arusha, Tanzania
+              </span>
+              <span className="inline-flex items-center gap-2 text-[#F7F5F0]/75">
+                <Award className="h-4 w-4 text-[#B89B62]" />
+                {language === 'sw' ? 'Uongozi wa Galari' : 'Gallery Executive'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* The 4-Pillar Blockchain Provenance Protocol */}
       <div className="bg-white border border-[#817C73]/25 p-8 sm:p-12 space-y-8">
         <div className="max-w-2xl">
@@ -151,9 +226,8 @@ export const AboutView: React.FC = () => {
           <div className="space-y-4 text-xs text-[#817C73]">
             <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
               <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Main Pavilion & Sculpture Gardens</span>
-              <h4 className="font-serif font-bold text-base text-[#171717]">Dar es Salaam</h4>
-              <p>Arusha, Tanzania</p>
-              <p>Dar es Salaam, Tanzania</p>
+              <h4 className="font-serif font-bold text-base text-[#171717]">Arusha, Tanzania</h4>
+              <p>Mrisho Art Gallery</p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
                 <span>Visits by arrangement</span>
