@@ -9,17 +9,9 @@ export const ExhibitionsView: React.FC = () => {
   const [rsvpName, setRsvpName] = useState('');
   const [rsvpEmail, setRsvpEmail] = useState('');
   const [rsvpGuests, setRsvpGuests] = useState('2');
-  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
 
   const handleRsvpSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setRsvpSubmitted(true);
-    setTimeout(() => {
-      setSelectedExhibitionForRsvp(null);
-      setRsvpSubmitted(false);
-      setRsvpName('');
-      setRsvpEmail('');
-    }, 2200);
   };
 
   return (
