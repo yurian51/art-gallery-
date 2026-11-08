@@ -249,59 +249,15 @@ export const CustomerDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Tab 4: Artwork documentation in Custody */}
+      {/* Tab 4: Artwork documentation */}
       {activeTab === 'DEEDS' && (
-        <div className="space-y-4">
-          <div className="bg-[#FFFDF9] border-2 border-[#B89B62] p-6 space-y-3">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-[#B89B62]" />
-              <h3 className="font-serif font-bold text-lg text-[#171717]">
-                Consortium Blockchain Ownership Registry
-              </h3>
-            </div>
-            <p className="text-xs text-[#817C73] leading-relaxed">
-              Below are the immutable cryptographic ownership deeds linked to your patron identity on the
-              Polygon African Art Consortium (PAAC) smart escrow.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {artworks.filter(a => a.status === 'SOLD' || a.id === 'art-003').map(art => (
-              <div key={art.id} className="bg-white border border-[#817C73]/25 p-5 space-y-4">
-                <div className="flex items-center gap-3">
-                  <img src={art.images[0]} alt={art.title} className="w-14 h-14 object-cover border border-[#817C73]/20" />
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-serif font-bold text-base text-[#171717] truncate">{art.title}</h4>
-                    <p className="text-xs text-[#817C73]">{art.artistName}</p>
-                    <span className="font-mono text-[10px] text-[#B89B62] block">
-                      Cert #{art.provenance.certificateNumber}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-[#F7F5F0] border border-[#817C73]/15 font-mono text-[11px] space-y-1 text-[#171717]">
-                  <div className="flex justify-between text-[#817C73]">
-                    <span>Token ID:</span>
-                    <span>#{art.provenance.tokenId}</span>
-                  </div>
-                  <div className="truncate">
-                    <span className="text-[#817C73]">Hash: </span>
-                    {art.provenance.verificationHash}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setInspectedProvenance(art)}
-                  className="w-full py-2 bg-[#171717] text-[#F7F5F0] text-xs font-semibold hover:bg-[#B89B62] hover:text-[#171717] transition-all flex items-center justify-center gap-2"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#B89B62]" />
-                  <span>Inspect Official Certificate of Authenticity</span>
-                </button>
-              </div>
-            ))}
-          </div>
+        <div className="border border-[#817C73]/20 bg-white p-6 sm:p-8 space-y-3">
+          <h3 className="font-serif text-xl text-[#171717]">Artwork documentation</h3>
+          <p className="text-sm leading-relaxed text-[#817C73]">No live verification or ownership registry is connected. Any artwork documents must be reviewed independently; this workspace does not issue certificates.</p>
+          {artworks.length === 0 && <p className="border-t border-[#817C73]/15 pt-4 text-xs text-[#817C73]">No artwork records are available for this customer preview.</p>}
         </div>
       )}
+
     </div>
   );
 };
