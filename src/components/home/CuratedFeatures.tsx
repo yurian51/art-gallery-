@@ -182,7 +182,7 @@ export const CuratedFeatures: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {categories.map(({ title, description, image, query, icon: Icon, number }) => (
-              <button key={query} type="button" onClick={() => { setSearchQuery(query); navigateTo('/gallery'); }} className="group relative min-h-[340px] overflow-hidden bg-[#DED7CB] text-left sm:min-h-[410px]">
+              <button key={query} type="button" aria-label={title} onClick={() => { setSearchQuery(query); navigateTo('/gallery'); }} className="group relative min-h-[340px] overflow-hidden bg-[#DED7CB] text-left sm:min-h-[410px]">
                 <img src={image} alt={title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/5 transition-opacity group-hover:from-black/90" />
                 <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5 text-white">
