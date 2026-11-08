@@ -106,3 +106,25 @@ test('provenance records cannot claim authenticity without an external verificat
   assert.doesNotMatch(customer, /Consortium Blockchain Ownership Registry/);
   assert.doesNotMatch(commissions, /escrow contracts|40% on Brief Approval|30% on Composition Review/i);
 });
+
+test('old browser demo data is not loaded into the clean gallery state', () => {
+  const context = read('../src/context/AppContext.tsx');
+  assert.ok(context.includes("mag_artworks_v2"));
+  assert.ok(context.includes("mag_orders_v2"));
+  assert.ok(context.includes("mag_commissions_v2"));
+  assert.ok(context.includes("mag_cart_v2"));
+  assert.ok(context.includes("mag_favorites_v2"));
+  assert.doesNotMatch(context, /localStorage\.getItem\('mag_(artworks|orders|commissions|cart|favorites)'\)/);
+});
+
+test('visit requests are not reported as confirmed without an RSVP service', () => {
+  const exhibitions = read('../src/components/exhibitions/ExhibitionsView.tsx');
+  assert.doesNotMatch(exhibitions, /Viewing Invitation Confirmed/);
+  assert.doesNotMatch(exhibitions, /setRsvpSubmitted\(true\)/);
+  assert.match(exhibitions, /RSVP service unavailable/);
+});
+
+test('Vercel serves application routes through the single-page entry point', () => {
+  const config = JSON.parse(read('../vercel.json'));
+  assert.equal(config.rewrites[0].destination, '/index.html');
+});
