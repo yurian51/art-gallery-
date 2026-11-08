@@ -29,7 +29,7 @@ export const AboutView: React.FC = () => {
             "Art Beyond Boundaries. Sanaa Bila Mipaka."
           </p>
           <p className="text-xs uppercase tracking-[0.16em] text-[#817C73] mt-3">
-            Founded and led by <span className="font-semibold text-[#171717]">Hussein Sadiki Gumbo</span>, Founder & CEO
+            Led by <span className="font-semibold text-[#171717]">Hussein Sadiki Gumbo</span>, CEO
           </p>
         </div>
         <div className="bg-white p-3 border border-[#817C73]/20 shadow-sm shrink-0">
@@ -76,7 +76,7 @@ export const AboutView: React.FC = () => {
         <div className="lg:col-span-6 border-2 border-[#817C73]/25 overflow-hidden shadow-xl bg-[#EBE6DF]">
           <img
             src={galleryInteriorImage}
-            alt="Mrisho Art Gallery, Arusha, Tanzania"
+            alt="Gallery interior reference image"
             className="w-full h-80 sm:h-96 object-cover"
           />
         </div>
@@ -216,20 +216,20 @@ export const AboutView: React.FC = () => {
 
           <div className="space-y-4 text-xs text-[#817C73]">
             <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
-              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Main Pavilion & Sculpture Gardens</span>
+              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Gallery location</span>
               <h4 className="font-serif font-bold text-base text-[#171717]">Arusha, Tanzania</h4>
               <p>Mrisho Art Gallery</p>
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
-                <span>Visits by arrangement</span>
+                <span>Arusha, Tanzania</span>
               </div>
             </div>
 
             <div className="p-5 bg-white border border-[#817C73]/20 space-y-1.5">
-              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Textile & Portrait Atelier</span>
+              <span className="text-[10px] uppercase font-bold text-[#B89B62] block">Online gallery</span>
               <h4 className="font-serif font-bold text-base text-[#171717]">Online Gallery</h4>
-              <p>Explore the collection from anywhere.</p>
-              <p>Tanzania and international audiences</p>
+              <p>Gallery information and artwork listings.</p>
+              
               <div className="pt-2 text-[11px] text-[#171717] font-medium flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#B89B62]" />
                 <span>Online enquiries welcome</span>

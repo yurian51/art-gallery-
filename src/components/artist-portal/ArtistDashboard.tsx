@@ -31,19 +31,18 @@ export const ArtistDashboard: React.FC = () => {
   // Submit Artwork Form State
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState<ArtCategory>('Paintings');
-  const [medium, setMedium] = useState('Natural Earth Pigments & Gold Leaf on Linen');
-  const [materials, setMaterials] = useState('Ground ochre, gum arabic, pure gold leaf, master stretcher bars');
-  const [heightCm, setHeightCm] = useState(140);
-  const [widthCm, setWidthCm] = useState(120);
-  const [depthCm, setDepthCm] = useState(5);
+  const [medium, setMedium] = useState('');
+  const [materials, setMaterials] = useState('');
+  const [heightCm, setHeightCm] = useState(0);
+  const [widthCm, setWidthCm] = useState(0);
+  const [depthCm, setDepthCm] = useState(0);
   const [creationYear, setCreationYear] = useState(2026);
-  const [origin, setOrigin] = useState('Bagamoyo Atelier, Tanzania');
-  const [priceTzs, setPriceTzs] = useState(11500000);
+  const [origin, setOrigin] = useState('');
+  const [priceTzs, setPriceTzs] = useState(0);
   const [classification, setClassification] = useState<'ORIGINAL' | 'LIMITED_EDITION'>('ORIGINAL');
   const [description, setDescription] = useState('');
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
 
-  // Active Artist (Mwl. Juma Mwinyi as primary persona)
   const activeArtist = artists[0];
   const artistArtworks = activeArtist ? artworks.filter(a => a.artistId === activeArtist.id || a.artistName === activeArtist.name) : [];
   const pendingArtworks = artworks.filter(a => a.status === 'SUBMITTED' || a.status === 'UNDER_REVIEW');

@@ -88,6 +88,15 @@ const readStoredJson = <T,>(key: string, fallback: T): T => {
   } catch { return fallback; }
 };
 
+const readStoredArray = <T,>(key: string, fallback: T[] = []): T[] => {
+  try {
+    const raw = window.localStorage.getItem(key);
+    if (!raw) return fallback;
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed as T[] : fallback;
+  } catch { return fallback; }
+};
+
 const writeStored = (key: string, value: unknown) => {
   try { window.localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch { /* Storage may be unavailable. */ }
 };
@@ -108,22 +117,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [currentRole, setCurrentRole] = useState<UserRole>('CUSTOMER');
   const [currentRoute, setCurrentRoute] = useState<string>(() => normalizeRoute(window.location.pathname));
 
-  const [artworks, setArtworks] = useState<Artwork[]>(() => readStoredJson('mag_artworks', SEED_ARTWORKS));
+  const [artworks, setArtworks] = useState<Artwork[]>(() => readStoredArray<Artwork>('mag_artworks', SEED_ARTWORKS));
 
   const [artists] = useState<Artist[]>(SEED_ARTISTS);
   const [exhibitions] = useState<Exhibition[]>(SEED_EXHIBITIONS);
   const [collections] = useState<Collection[]>(SEED_COLLECTIONS);
   const [journalArticles] = useState<JournalArticle[]>(SEED_JOURNAL_ARTICLES);
 
-  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => readStoredJson('mag_commissions', []));
+  const [commissions, setCommissions] = useState<CommissionRequest[]>(() => readStoredArray<CommissionRequest>('mag_commissions'));
 
-  const [orders, setOrders] = useState<Order[]>(() => readStoredJson('mag_orders', []));
+  const [orders, setOrders] = useState<Order[]>(() => readStoredArray<Order>('mag_orders'));
 
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
 
-  const [cart, setCart] = useState<CartItem[]>(() => readStoredJson('mag_cart', []));
+  const [cart, setCart] = useState<CartItem[]>(() => readStoredArray<CartItem>('mag_cart'));
 
-  const [favorites, setFavorites] = useState<string[]>(() => readStoredJson('mag_favorites', []));
+  const [favorites, setFavorites] = useState<string[]>(() => readStoredArray<string>('mag_favorites'));
 
   const [inspectedArtwork, setInspectedArtwork] = useState<Artwork | null>(null);
   const [inspectedProvenance, setInspectedProvenance] = useState<Artwork | null>(null);
@@ -256,26 +265,26 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const submitArtwork = (artworkData: Partial<Artwork>): Artwork => {
     const id = `art-${Date.now().toString().slice(-4)}`;
     const title = artworkData.title || 'Untitled Masterpiece';
-    const artistName = artworkData.artistName || 'Emerging Master';
+    const artistName = artworkData.artistName || 'Artist submission';
     const year = artworkData.creationYear || new Date().getFullYear();
-    const origin = artworkData.origin || 'Dar es Salaam, Tanzania';
+    const origin = artworkData.origin || 'Not provided';
 
     const newArtwork: Artwork = {
       id,
       title,
       slug: title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
-      description: artworkData.description || 'Contemporary original work submitted for curatorial registry.',
+      description: artworkData.description || 'Artwork submitted for gallery review.',
       artistId: artworkData.artistId || 'artist-submission',
       artistName,
       artistOrigin: origin,
       category: artworkData.category || 'Paintings',
-      medium: artworkData.medium || 'Mixed Media on Canvas',
-      materials: artworkData.materials || 'Archival pigments and linen',
-      dimensions: artworkData.dimensions || { heightCm: 100, widthCm: 100 },
+      medium: artworkData.medium || 'Not provided',
+      materials: artworkData.materials || 'Not provided',
+      dimensions: artworkData.dimensions || { heightCm: 0, widthCm: 0 },
       creationYear: year,
       origin,
       images: artworkData.images && artworkData.images.length > 0 ? artworkData.images : [],
-      priceTzs: artworkData.priceTzs || 5000000,
+      priceTzs: artworkData.priceTzs ?? 0,
       classification: artworkData.classification || 'ORIGINAL',
       status: 'SUBMITTED',
       featured: false,

@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
                   <MapPin className="w-3.5 h-3.5 text-[#B89B62]" />
                   Arusha, Tanzania
                 </p>
-                <p className="mt-0.5">Contact us to arrange a visit.</p>
+                <p className="mt-0.5">Detailed address and visit arrangements will be published when confirmed.</p>
               </div>
             </div>
           </div>

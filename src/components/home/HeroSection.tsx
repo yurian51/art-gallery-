@@ -79,7 +79,7 @@ export const HeroSection: React.FC = () => {
             >
               <img
                 src={heroArtworkImage}
-                alt="Voices of Bagamoyo centerpiece artwork on gallery wall"
+                alt="African visual artwork presented in a gallery setting"
                 referrerPolicy="no-referrer"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />

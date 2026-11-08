@@ -124,6 +124,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRoleModal, onOpenSearch })
               <button
                 key={link.route}
                 onClick={() => handleNav(link.route)}
+                aria-current={isActive ? 'page' : undefined}
                 className={`relative py-1 whitespace-nowrap transition-colors hover:text-[#171717] ${
                   isActive ? 'text-[#171717] font-semibold' : 'text-[#171717]/70'
                 }`}
